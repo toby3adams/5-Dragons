@@ -1,2 +1,15 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System;
+using Dragons.Game.Directing;
+using Dragons.Game.Services;
+
+namespace Dragons
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            Director director = new Director(SceneManager.VideoService);
+            director.StartGame();
+        }
+    }
+}
