@@ -3,7 +3,7 @@ namespace Dragons.Game.Casting{
 
         public Projectile(int damage, ProjectileMovement movement){
             this.damage = damage;
-            // this.movement = movement;
+            this.movement = movement;
         }
 
         int damage;
