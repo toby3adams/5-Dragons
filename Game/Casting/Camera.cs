@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 
 
-namespace Byui.Games.Casting
+namespace Dragons.Games.Casting
 {
     /// <summary>
     /// A visible Actor.

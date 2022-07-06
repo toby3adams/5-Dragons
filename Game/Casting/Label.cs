@@ -1,4 +1,4 @@
-namespace Byui.Games.Casting
+namespace Dragons.Games.Casting
 {
     /// <summary>
     /// A readable Actor.

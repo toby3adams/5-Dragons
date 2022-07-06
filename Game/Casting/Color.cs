@@ -1,6 +1,6 @@
 using System;
 
-namespace Byui.Games.Casting
+namespace Dragons.Games.Casting
 {
     /// <summary>
     /// A color.
