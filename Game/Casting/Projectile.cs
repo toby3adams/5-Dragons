@@ -1,6 +1,3 @@
-using System.Numerics;
-
-
 namespace Dragons.Game.Casting{
     public class Projectile : Actor{
 

@@ -1,5 +1,4 @@
 using Dragons.Game.Casting;
-using System.Numerics;
 using System.Collections.Generic;
 
 
@@ -12,7 +11,7 @@ namespace Dragons.Game.Scripting{
         public ProjectilePositionAction(){}
 
         public override void Execute(Scene scene, float deltaTime, IActionCallback callback){
-            
+            UpdateProjectilePosition(scene);
         }   
 
 
@@ -53,8 +52,6 @@ namespace Dragons.Game.Scripting{
             }
         }
 
-        void MoveProjectile(){}
-        void HandleProjectileCollision(Cast cast){}
 
     }
 }
