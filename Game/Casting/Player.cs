@@ -17,8 +17,5 @@ namespace Dragons.Game.Casting
         public Player(){}
 
 
-
-
-
     }
 }
