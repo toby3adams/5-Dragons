@@ -8,6 +8,8 @@ namespace Dragons.Game.Casting{
             this.damage = damage;
             this.speed = speed;
             this.direction = direction;
+
+
         }
 
         public int damage;

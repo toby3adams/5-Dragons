@@ -29,11 +29,17 @@ namespace Dragons.Game.Scripting
                 List<Actor> dragons = scene.GetAllActors("dragon");
                 List<Actor> projectiles = scene.GetAllActors("projectile");
                 Label status = scene.GetFirstActor<Label>("status");
+                List<Actor> walls = scene.GetAllActors("wall");
 
 
                 Actor world = camera.GetWorld();
                 foreach (Actor dragon in dragons){
                     dragon.ClampTo(world);
+                }
+                
+                foreach(Actor wall in walls)
+                {
+                    wall.ClampTo(world);
                 }
 
 
@@ -41,10 +47,11 @@ namespace Dragons.Game.Scripting
                 // parameter when drawing the player. The videoservice uses the camera to translate
                 // the player's position within the world to its position on the screen.
                 _videoService.ClearBuffer();
-                _videoService.DrawGrid(160, Color.Gray(), camera);
+                _videoService.DrawGrid(80, Color.Gray(), camera);
                 _videoService.Draw(instructions);
                 _videoService.Draw(player, camera);
                 _videoService.Draw(dragons, camera);
+                _videoService.Draw(walls, camera);
                 _videoService.Draw(projectiles, camera);
                 _videoService.Draw(status);
                 _videoService.FlushBuffer();

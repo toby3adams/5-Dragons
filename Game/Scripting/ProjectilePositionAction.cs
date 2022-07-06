@@ -3,6 +3,7 @@ using System.Numerics;
 using System.Collections.Generic;
 
 
+
 namespace Dragons.Game.Scripting{
     public class ProjectilePositionAction : Action {
 
@@ -11,8 +12,9 @@ namespace Dragons.Game.Scripting{
         public ProjectilePositionAction(){}
 
         public override void Execute(Scene scene, float deltaTime, IActionCallback callback){
-            UpdateProjectilePosition(scene);
+            
         }   
+
 
         void UpdateProjectilePosition(Scene scene){
             List<Actor> Projectiles = scene.GetAllActors("projectile");
@@ -49,9 +51,10 @@ namespace Dragons.Game.Scripting{
             else if (direction == 8){
                 projectile.MoveTo(projectile.GetLeft() + projectile.speed, projectile.GetTop() + projectile.speed);
             }
-
-
         }
+
+        void MoveProjectile(){}
+        void HandleProjectileCollision(Cast cast){}
 
     }
 }
