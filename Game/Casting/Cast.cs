@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace Dragons.Games.Casting
+namespace Dragons.Game.Casting
 {
     /// <summary>
     /// A collection of Actors.

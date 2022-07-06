@@ -1,6 +1,6 @@
 using System;
 
-namespace Dragons.Games.Casting
+namespace Dragons.Game.Casting
 {
     /// <summary>
     /// A color.

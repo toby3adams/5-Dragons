@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 
 
-namespace Dragons.Games.Casting
+namespace Dragons.Game.Casting
 {
     /// <summary>
     /// A validator for string and numeric types.
