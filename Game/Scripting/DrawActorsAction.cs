@@ -27,6 +27,7 @@ namespace Dragons.Game.Scripting
                 Label instructions = scene.GetFirstActor<Label>("instructions");
                 Actor player = scene.GetFirstActor("player");
                 List<Actor> dragons = scene.GetAllActors("dragon");
+                List<Actor> projectiles = scene.GetAllActors("projectile");
                 Label status = scene.GetFirstActor<Label>("status");
                 List<Actor> walls = scene.GetAllActors("wall");
 
@@ -51,6 +52,7 @@ namespace Dragons.Game.Scripting
                 _videoService.Draw(player, camera);
                 _videoService.Draw(dragons, camera);
                 _videoService.Draw(walls, camera);
+                _videoService.Draw(projectiles, camera);
                 _videoService.Draw(status);
                 _videoService.FlushBuffer();
             }
