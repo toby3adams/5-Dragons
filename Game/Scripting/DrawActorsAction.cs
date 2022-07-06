@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Dragons.Game.Casting;
 using Dragons.Game.Services;
 
@@ -25,8 +26,15 @@ namespace Dragons.Game.Scripting
                 Camera camera = scene.GetFirstActor<Camera>("camera");
                 Label instructions = scene.GetFirstActor<Label>("instructions");
                 Actor player = scene.GetFirstActor("player");
-                Actor dragon1 = scene.GetFirstActor("dragon1");
+                List<Actor> dragons = scene.GetAllActors("dragon");
                 Label status = scene.GetFirstActor<Label>("status");
+
+
+                Actor world = camera.GetWorld();
+                foreach (Actor dragon in dragons){
+                    dragon.ClampTo(world);
+                }
+
 
                 // Draw the actors on the screen. Note we have provided the camera as a second 
                 // parameter when drawing the player. The videoservice uses the camera to translate
@@ -35,7 +43,7 @@ namespace Dragons.Game.Scripting
                 _videoService.DrawGrid(160, Color.Gray(), camera);
                 _videoService.Draw(instructions);
                 _videoService.Draw(player, camera);
-                _videoService.Draw(dragon1, camera);
+                _videoService.Draw(dragons, camera);
                 _videoService.Draw(status);
                 _videoService.FlushBuffer();
             }

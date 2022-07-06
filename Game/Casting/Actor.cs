@@ -6,7 +6,7 @@ namespace Dragons.Game.Casting
 {
     /// <summary>
     /// A participant in the game.
-    /// </summary>
+    /// </summary> 
     public class Actor
     {
         private bool _enabled = true;

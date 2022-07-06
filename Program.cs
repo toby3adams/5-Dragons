@@ -39,6 +39,11 @@ namespace Dragons
             dragon1.MoveTo(400, 400);
             dragon1.Tint(Color.Green());
 
+            Dragon dragon2 = new Dragon();
+            dragon2.SizeTo(60, 60);
+            dragon2.MoveTo(500, 500);
+            dragon2.Tint(Color.Orange());
+
             Actor screen = new Actor();
             screen.SizeTo(640, 480);
             screen.MoveTo(0, 0);
@@ -47,7 +52,9 @@ namespace Dragons
             world.SizeTo(1280, 960);
             world.MoveTo(0, 0);
 
+
             Camera camera = new Camera(player, screen, world);
+
 
             // Instantiate the actions that use the actors.
             SteerPlayerAction steerPlayerAction = new SteerPlayerAction(serviceFactory);
@@ -61,8 +68,9 @@ namespace Dragons
             scene.AddActor("status", status);
             scene.AddActor("player", player);
             scene.AddActor("camera", camera);
-            scene.AddActor("dragon1", dragon1);
-            
+            scene.AddActor("dragon", dragon1);
+            scene.AddActor("dragon", dragon2);
+
             scene.AddAction(Phase.Input, steerPlayerAction);
             scene.AddAction(Phase.Update, movePlayerAction);
             scene.AddAction(Phase.Update, updateStatusAction);
