@@ -43,13 +43,38 @@ namespace Dragons
             dragon2.SizeTo(60, 60);
             dragon2.MoveTo(500, 500);
             dragon2.Tint(Color.Orange());
+            
+            Wall wall1 = new Wall(); // top wall
+            wall1.SizeTo(1000, 20);
+            wall1.MoveTo(200, 600);
+            wall1.Tint(Color.Gray());
+            
+            Wall wall2 = new Wall(); // bottom wall
+            wall2.SizeTo(960, 20);
+            wall2.MoveTo(220, 1000);
+            wall2.Tint(Color.Gray());
+
+            Wall wall3 = new Wall(); // left wall
+            wall3.SizeTo(20, 400);
+            wall3.MoveTo(200, 620);
+            wall3.Tint(Color.Gray());
+            
+            Wall wall4 = new Wall(); // upper wall, door side
+            wall4.SizeTo(20, 160);
+            wall4.MoveTo(1180, 620);
+            wall4.Tint(Color.Gray());
+
+            Wall wall5 = new Wall();
+            wall5.SizeTo(20, 160);
+            wall5.MoveTo(1180, 860);
+            wall5.Tint(Color.Gray());
 
             Actor screen = new Actor();
-            screen.SizeTo(640, 480);
+            screen.SizeTo(1900, 1060);
             screen.MoveTo(0, 0);
 
             Actor world = new Actor();
-            world.SizeTo(1280, 960);
+            world.SizeTo(3000, 2000);
             world.MoveTo(0, 0);
 
 
@@ -70,6 +95,11 @@ namespace Dragons
             scene.AddActor("camera", camera);
             scene.AddActor("dragon", dragon1);
             scene.AddActor("dragon", dragon2);
+            scene.AddActor("wall", wall1);
+            scene.AddActor("wall", wall2);
+            scene.AddActor("wall", wall3);
+            scene.AddActor("wall", wall4);
+            scene.AddActor("wall", wall5);
 
             scene.AddAction(Phase.Input, steerPlayerAction);
             scene.AddAction(Phase.Update, movePlayerAction);

@@ -11,22 +11,33 @@ namespace Dragons.Game.Scripting
     /// </summary>
     public class MovePlayerAction : Action
     {
+        private bool WallCollision;
         public MovePlayerAction()
         {
         }
 
         public override void Execute(Scene scene, float deltaTime, IActionCallback callback)
         {
+            Actor player = scene.GetFirstActor("player");
+            PlayerWallCollision pwc = new PlayerWallCollision();
+            WallCollision = pwc.CheckPwc(scene, player);
             try
             {
                 // get the actors, including the camera, from the cast
                 Camera camera = scene.GetFirstActor<Camera>("camera");
                 Actor world = camera.GetWorld();
-                Actor player = scene.GetFirstActor("player");
+                //Actor player = scene.GetFirstActor("player");
                 
                 // move the player and clamp it to the boundaries of the world.
-                player.Move();
-                player.ClampTo(world);    
+                
+                
+                if(!WallCollision)
+                {
+                    player.Move();
+                    player.ClampTo(world);
+                } 
+              //  player.Move();
+                // player.ClampTo(world);    
             }
             catch (Exception exception)
             {
