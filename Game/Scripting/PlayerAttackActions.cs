@@ -14,49 +14,77 @@ namespace Dragons.Game.Scripting
             _keyboardService = serviceFactory.GetKeyboardService();
         }
             
+        private int counter;
+        private int last_direction;
 
+    
+
+        public int check_for_directions_stuff(Vector2 player_velocity){
+            if (player_velocity.X > 0 && player_velocity.Y == 0){
+                return 1;
+            }
+            else if (player_velocity.X < 0 && player_velocity.Y == 0){
+                return 5;
+            }
+            else if (player_velocity.X == 0 && player_velocity.Y > 0){
+                return 7;
+            }
+            else if (player_velocity.X == 0 && player_velocity.Y < 0){
+                return 3;
+            }
+            else if (player_velocity.X < 0 && player_velocity.Y < 0){
+                return 4;
+            }
+            else if (player_velocity.X < 0 && player_velocity.Y > 0){
+                return 6;
+            }
+            else if (player_velocity.X > 0 && player_velocity.Y > 0){
+                return 8;
+            }
+            else if (player_velocity.X > 0 && player_velocity.Y < 0){
+                return 2;
+            }
+            else{
+                return 0;
+            }
+
+        }
 
         public override void Execute(Scene scene, float deltaTime, IActionCallback callback)
         {
+            Actor player = scene.GetFirstActor<Actor>("player");
+            Vector2 velocity = player.GetVelocity();
+            int direction = check_for_directions_stuff(velocity);
+            
+            if (direction != 0){
+                this.last_direction = direction;
+            }
 
+            
+            if (counter > 60){
 
                 if (_keyboardService.IsKeyDown(KeyboardKey.J))
                 {
-                    Actor player = scene.GetFirstActor<Actor>("player");
-                    Vector2 velocity = player.GetVelocity();
-                    
-                    if (velocity.X > 0){
-                        ProjectileMovement movement = new ProjectileMovement("right", 7);
-                        Projectile projectile1 = new Projectile(10, movement);
+                    if (direction != 0){
+                        Projectile projectile1 = new Projectile(10, 7, direction);
                         projectile1.MoveTo(player.GetCenterX(), player.GetCenterY());
-                        projectile1.SizeTo(1, 1);
+                        projectile1.SizeTo(3, 3);
                         scene.AddActor("projectile", projectile1);
+                        counter = 0;
                     }
-                    else if (velocity.X < 0){
-                        ProjectileMovement movement = new ProjectileMovement("left", 7);
-                        Projectile projectile1 = new Projectile(10, movement);
+                    else {
+                        Projectile projectile1 = new Projectile(10, 7, last_direction);
                         projectile1.MoveTo(player.GetCenterX(), player.GetCenterY());
-                        projectile1.SizeTo(1, 1);
+                        projectile1.SizeTo(3, 3);
                         scene.AddActor("projectile", projectile1);
+                        counter = 0;
                     }
-                    else if (velocity.Y > 0){
-                        ProjectileMovement movement = new ProjectileMovement("up", 7);
-                        Projectile projectile1 = new Projectile(10, movement);
-                        projectile1.MoveTo(player.GetCenterX(), player.GetCenterY());
-                        projectile1.SizeTo(1, 1);
-                        scene.AddActor("projectile", projectile1);
-                    }
-                    else if (velocity.Y < 0){
-                        ProjectileMovement movement = new ProjectileMovement("down", 7);
-                        Projectile projectile1 = new Projectile(10, movement);
-                        projectile1.MoveTo(player.GetCenterX(), player.GetCenterY());
-                        projectile1.SizeTo(1, 1);
-                        scene.AddActor("projectile", projectile1);
-                    }
-
-
+                   
                 }
+                }
+                counter += 1;
+            }
 
         }
     }
-    }
+

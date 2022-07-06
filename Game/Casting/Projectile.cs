@@ -1,17 +1,22 @@
+using System.Numerics;
+
+
 namespace Dragons.Game.Casting{
     public class Projectile : Actor{
 
-        public Projectile(int damage, ProjectileMovement movement){
+        public Projectile(int damage, int speed, int direction){
             this.damage = damage;
-            this.movement = movement;
+            this.speed = speed;
+            this.direction = direction;
         }
 
-        int damage;
-        ProjectileMovement movement;
+        public int damage;
+        public int speed;
+        public int direction;
 
 
-        public ProjectileMovement GetMovement(){
-            return this.movement;
+        public int GetDirection(){
+            return this.direction;
         }
 
     }

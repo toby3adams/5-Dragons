@@ -1,4 +1,5 @@
 using Dragons.Game.Casting;
+using System.Numerics;
 using System.Collections.Generic;
 
 
@@ -16,26 +17,39 @@ namespace Dragons.Game.Scripting{
         void UpdateProjectilePosition(Scene scene){
             List<Actor> Projectiles = scene.GetAllActors("projectile");
             foreach (Projectile projectile in Projectiles){
-                ProjectileMovement movement = projectile.GetMovement();
 
-                MoveProjectile(projectile, movement);
+
+                MoveProjectile(projectile, projectile.GetDirection());
 
             }
         }
 
-        void MoveProjectile(Actor projectile, ProjectileMovement movement){
-            if (movement.direction == "left"){
-                projectile.MoveTo(projectile.GetCenterX() - movement.speed, projectile.GetCenterY());
+        void MoveProjectile(Projectile projectile, int direction){
+            if (direction == 1){
+                projectile.MoveTo(projectile.GetLeft() + projectile.speed, projectile.GetTop());
             }
-            else if (movement.direction == "right"){
-                projectile.MoveTo(projectile.GetCenterX()+ movement.speed, projectile.GetCenterY());
+            else if (direction == 2){
+                projectile.MoveTo(projectile.GetLeft() + projectile.speed, projectile.GetTop() - projectile.speed);
             }
-            else if (movement.direction == "up"){
-                projectile.MoveTo(projectile.GetCenterX(), projectile.GetCenterY() + movement.speed);
+            else if (direction == 3){
+                projectile.MoveTo(projectile.GetLeft(), projectile.GetTop() - projectile.speed);
             }
-            else if (movement.direction == "down"){
-                projectile.MoveTo(projectile.GetCenterX(), projectile.GetCenterY() - movement.speed);
+            else if (direction == 4){
+                projectile.MoveTo(projectile.GetLeft() - projectile.speed, projectile.GetTop() - projectile.speed);
             }
+            else if (direction == 5){
+                projectile.MoveTo(projectile.GetLeft() - projectile.speed, projectile.GetTop());
+            }
+            else if (direction == 6){
+                projectile.MoveTo(projectile.GetLeft() - projectile.speed, projectile.GetTop() + projectile.speed);
+            }
+            else if (direction == 7){
+                projectile.MoveTo(projectile.GetLeft(), projectile.GetTop() + projectile.speed);
+            }
+            else if (direction == 8){
+                projectile.MoveTo(projectile.GetLeft() + projectile.speed, projectile.GetTop() + projectile.speed);
+            }
+
 
         }
 
