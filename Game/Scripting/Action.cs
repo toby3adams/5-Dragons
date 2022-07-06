@@ -6,7 +6,7 @@ namespace Dragons.Game.Scripting
     /// <summary>
     /// A thing that is done in the game.
     /// </summary>
-    public interface Action
+    public class Action
     {
         /// <summary>
         /// Executes something that is important in the game. This method should be overriden by 
@@ -14,6 +14,6 @@ namespace Dragons.Game.Scripting
         /// </summary>
         /// <param name="cast">The cast of actors.</param>
         /// <param name="script">The script of actions.</param>
-        void Execute(Cast cast, Script script);
+        void Execute(Cast cast, Script script){}
     }
 }
