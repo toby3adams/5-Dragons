@@ -10,7 +10,7 @@ namespace Dragons.Game.Scripting{
         public ProjectilePositionAction(){}
 
         public override void Execute(Scene scene, float deltaTime, IActionCallback callback){
-            
+            UpdateProjectilePosition(scene);
         }   
 
         void UpdateProjectilePosition(Scene scene){
@@ -27,18 +27,17 @@ namespace Dragons.Game.Scripting{
             if (movement.direction == "left"){
                 projectile.MoveTo(projectile.GetCenterX() - movement.speed, projectile.GetCenterY());
             }
-            if (movement.direction == "right"){
+            else if (movement.direction == "right"){
                 projectile.MoveTo(projectile.GetCenterX()+ movement.speed, projectile.GetCenterY());
             }
-            if (movement.direction == "up"){
+            else if (movement.direction == "up"){
                 projectile.MoveTo(projectile.GetCenterX(), projectile.GetCenterY() + movement.speed);
             }
-            if (movement.direction == "down"){
+            else if (movement.direction == "down"){
                 projectile.MoveTo(projectile.GetCenterX(), projectile.GetCenterY() - movement.speed);
             }
 
         }
-        void HandleProjectileCollision(Cast cast){}
 
     }
 }
