@@ -1,19 +1,30 @@
-using Dragons.Game.Casting;
-
-
-namespace Dragons.Game.Scripting 
+namespace Dragons.Game.Scripting
 {
     /// <summary>
     /// A thing that is done in the game.
     /// </summary>
-    public class Action
+    public abstract class Action
     {
-        /// <summary>
-        /// Executes something that is important in the game. This method should be overriden by 
-        /// derived classes.
-        /// </summary>
-        /// <param name="cast">The cast of actors.</param>
-        /// <param name="script">The script of actions.</param>
-        void Execute(Cast cast, Script script){}
+        private bool _enabled = true;
+
+        public Action() { }
+
+        public void Disable()
+        {
+            _enabled = false;
+        }
+
+        public void Enable()
+        {
+            _enabled = true;
+        }
+        
+        public abstract void Execute(Scene scene, float deltaTime, IActionCallback callback);
+    
+        public bool IsEnabled()
+        {
+            return _enabled;
+        }
+
     }
 }

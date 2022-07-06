@@ -8,18 +8,17 @@ namespace Dragons.Game.Scripting{
 
         public ProjectilePositionAction(){}
 
-        void Execute(Cast cast, Script script){
-            UpdateProjectilePosition(cast);
-            HandleProjectileCollision(cast);
-        }        
+        public override void Execute(Scene scene, float deltaTime, IActionCallback callback){
+            
+        }   
 
         void UpdateProjectilePosition(Cast cast){
-            List<Actor> Projectiles = cast.GetActors("Projectiles");
-            foreach (Projectile projectile in Projectiles){
-                ProjectileMovement movement = projectile.GetMovement();
+            // List<Actor> Projectiles = cast.GetActors("Projectiles");
+            // foreach (Projectile projectile in Projectiles){
+                // ProjectileMovement movement = projectile.GetMovement();
                 
 
-            }
+            // }
 
 
         }

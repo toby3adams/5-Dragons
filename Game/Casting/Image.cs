@@ -17,7 +17,7 @@ namespace Dragons.Game.Casting
         private int _keyFrame = 0;
         private bool _repeated = false;
         
-        public Image() { }
+        public Image(string filename) { }
 
         public virtual void Animate(string[] files, float duration, int frameRate)
         {

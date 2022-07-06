@@ -8,8 +8,7 @@ namespace Dragons
     {
         static void Main(string[] args)
         {
-            Director director = new Director(SceneManager.VideoService);
-            director.StartGame();
+
         }
     }
 }
