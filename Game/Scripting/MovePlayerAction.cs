@@ -13,6 +13,7 @@ namespace Dragons.Game.Scripting
     public class MovePlayerAction : Action
     {
         private int WallCollision;
+        
         public MovePlayerAction()
         {
         }

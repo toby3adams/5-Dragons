@@ -14,7 +14,8 @@ namespace Dragons.Game.Scripting
             _keyboardService = serviceFactory.GetKeyboardService();
         }
             
-        private int counter;
+        private int counter_ranged;
+        private int counter_melee;
         private int last_direction;
 
     
@@ -60,29 +61,44 @@ namespace Dragons.Game.Scripting
                 this.last_direction = direction;
             }
 
+
+            if (counter_melee > 30){
+
+                if (_keyboardService.IsKeyDown(KeyboardKey.K)){
+                    if (direction != 0){
+                        
+                        counter_melee = 0;
+                    }
+                    else {
+                        
+                        counter_melee = 0;
+                    }
+                }
+                counter_melee += 1;
+            }
             
-            if (counter > 60){
+            if (counter_ranged > 60){
 
                 if (_keyboardService.IsKeyDown(KeyboardKey.J))
                 {
                     if (direction != 0){
                         Projectile projectile1 = new Projectile(10, 7, direction);
                         projectile1.MoveTo(player.GetCenterX(), player.GetCenterY());
-                        projectile1.SizeTo(3, 3);
+                        projectile1.SizeTo(4, 4);
                         scene.AddActor("projectile", projectile1);
-                        counter = 0;
+                        counter_ranged = 0;
                     }
                     else {
                         Projectile projectile1 = new Projectile(10, 7, last_direction);
                         projectile1.MoveTo(player.GetCenterX(), player.GetCenterY());
-                        projectile1.SizeTo(3, 3);
+                        projectile1.SizeTo(4, 4);
                         scene.AddActor("projectile", projectile1);
-                        counter = 0;
+                        counter_ranged = 0;
                     }
                    
                 }
                 }
-                counter += 1;
+                counter_ranged += 1;
             }
 
         }

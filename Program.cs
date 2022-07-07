@@ -88,6 +88,8 @@ namespace Dragons
             DrawActorsAction drawActorsAction = new DrawActorsAction(serviceFactory);
             PlayerAttackAction player_attacks = new PlayerAttackAction(serviceFactory);
             ProjectilePositionAction projectile_movement = new ProjectilePositionAction();
+            ProjectileCollisions projectile_collisions = new ProjectileCollisions();
+
 
             // Instantiate a new scene, add the actors and actions.
             Scene scene = new Scene();
@@ -109,6 +111,7 @@ namespace Dragons
             scene.AddAction(Phase.Update, player_attacks);
             scene.AddAction(Phase.Update, projectile_movement);
             scene.AddAction(Phase.Output, drawActorsAction);
+            scene.AddAction(Phase.Update, projectile_collisions);
 
             // Start the game.
             Director director = new Director(serviceFactory);
