@@ -21,8 +21,8 @@ namespace Dragons.Game.Scripting
         public override void Execute(Scene scene, float deltaTime, IActionCallback callback)
         {
             Actor player = scene.GetFirstActor("player");
-            PlayerWallCollision pwc = new PlayerWallCollision();
-            pwc.CheckPwc(scene, player);
+            PlayerCollisions player_collisions = new PlayerCollisions();
+            player_collisions.CheckCollisions(scene, player);
             try
             {
                 // get the actors, including the camera, from the cast
@@ -36,25 +36,25 @@ namespace Dragons.Game.Scripting
  
                     Vector2 velocity = player.GetVelocity();
                     
-                    if (pwc.collision_down){
+                    if (player_collisions.collision_down){
                         if (velocity.Y > 0){
                             player.Steer(velocity.X, 0);
                             velocity.Y = 0;
                         }
                     }
-                    if (pwc.collision_left){
+                    if (player_collisions.collision_left){
                         if (velocity.X < 0){
                             player.Steer(0, velocity.Y);
                             velocity.X = 0;
                         }
                     }
-                    if (pwc.collision_right){
+                    if (player_collisions.collision_right){
                         if (velocity.X > 0){
                             player.Steer(0, velocity.Y);
                             velocity.X = 0;
                         }
                     }
-                    if (pwc.collision_up){
+                    if (player_collisions.collision_up){
                         if (velocity.Y < 0){
                             player.Steer(velocity.X, 0);
                             velocity.Y = 0;
