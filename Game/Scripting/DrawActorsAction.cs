@@ -30,7 +30,9 @@ namespace Dragons.Game.Scripting
                 List<Actor> projectiles = scene.GetAllActors("projectile");
                 Label status = scene.GetFirstActor<Label>("status");
                 List<Actor> walls = scene.GetAllActors("wall");
+
                 List<Actor> swings = scene.GetAllActors("swing");
+
 
 
 
@@ -43,6 +45,7 @@ namespace Dragons.Game.Scripting
                 _videoService.Draw(instructions);
                 
                 _videoService.Draw(swings, camera); //for debugging swings
+
 
                 _videoService.Draw(player, camera);
                 _videoService.Draw(dragons, camera);

@@ -17,7 +17,11 @@ namespace Dragons.Game.Scripting
             
         private int counter_ranged;
         private int counter_melee;
-        private int last_direction = 0;
+        private int counter_sheild;
+        private int last_direction = 1;
+        private int last_sheild_direction = 1;
+        Wall sheild;
+        private bool first_sheild = true;
 
     
 
@@ -62,6 +66,69 @@ namespace Dragons.Game.Scripting
                 this.last_direction = direction;
             }
 
+
+            //sheild
+            if (counter_sheild > 240){
+
+                if (_keyboardService.IsKeyDown(KeyboardKey.L)){
+
+                    this.sheild = new Wall();
+                    sheild.Tint(Color.Gray());
+                    
+                    scene.AddActor("wall", sheild);
+
+                    if (last_direction == 1){
+                        sheild.SizeTo(15, 60);
+                        sheild.MoveTo(player.GetRight(), player.GetTop()-5);
+                        
+                    }
+                    if (last_direction == 2){
+                        sheild.SizeTo(15, 60);
+                        sheild.MoveTo(player.GetRight(), player.GetTop()-35);
+                        sheild.Rotate(-45);
+                    }
+                    if (last_direction == 3){
+                        sheild.SizeTo(60, 15);
+                        sheild.MoveTo(player.GetLeft()-5, player.GetTop()-15);
+                    }
+                    if (last_direction == 4){
+                        sheild.SizeTo(15, 60);
+                        sheild.MoveTo(player.GetLeft()-15, player.GetTop()-35);
+                        sheild.Rotate(45);
+                    }
+                    if (last_direction == 5){
+                        sheild.SizeTo(15, 60);
+                        sheild.MoveTo(player.GetLeft()-15, player.GetTop()-5);
+                    }
+                    if (last_direction == 6){
+                        sheild.SizeTo(15, 60);
+                        sheild.MoveTo(player.GetLeft()-15, player.GetBottom()-25);
+                        sheild.Rotate(-45);
+                    }
+                    if (last_direction == 7){
+                        sheild.SizeTo(60, 15);
+                        sheild.MoveTo(player.GetLeft()-5, player.GetBottom());
+                    }
+                    if (last_direction == 8){
+                        sheild.SizeTo(15, 60);
+                        sheild.MoveTo(player.GetRight(), player.GetBottom()-20);
+                        sheild.Rotate(45);
+                    }
+                    counter_sheild = 0;
+                    first_sheild = false;
+                }
+            }
+            
+            if (!first_sheild){
+            if (counter_sheild > 60){
+                scene.RemoveActor("wall", this.sheild);
+            }
+            }
+            counter_sheild += 1;
+
+
+
+
             // melee attacks
             if (counter_melee > 30){
 
@@ -69,8 +136,6 @@ namespace Dragons.Game.Scripting
 
                     List<Dragon> dragons = scene.GetAllActors<Dragon>("dragon");
                     Actor swing = new Actor();
-                    
-                    
                     
                     scene.AddActor("swing", swing);
 
@@ -159,8 +224,6 @@ namespace Dragons.Game.Scripting
                         projectile1.SizeTo(4, 4);
                         scene.AddActor("projectile", projectile1);
                         counter_ranged = 0;
-
-                   
                 }
                 }
                 counter_ranged += 1;

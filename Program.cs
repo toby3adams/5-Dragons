@@ -22,7 +22,7 @@ namespace Dragons
 
             // Instantiate the actors that are used in this example.
             Label instructions = new Label();
-            instructions.Display("'w', 's', 'a', 'd' to move, j to attack");
+            instructions.Display("'w', 's', 'a', 'd' to move, j -ranged attk, k-melee attk, l-sheild");
             instructions.MoveTo(25, 25);
 
             Label status = new Label();
@@ -89,6 +89,7 @@ namespace Dragons
             PlayerAttackAction player_attacks = new PlayerAttackAction(serviceFactory);
             ProjectilePositionAction projectile_movement = new ProjectilePositionAction();
             ProjectileCollisions projectile_collisions = new ProjectileCollisions();
+            DragonCombat dragon_combat = new DragonCombat();
 
 
             // Instantiate a new scene, add the actors and actions.
@@ -112,6 +113,7 @@ namespace Dragons
             scene.AddAction(Phase.Update, projectile_movement);
             scene.AddAction(Phase.Output, drawActorsAction);
             scene.AddAction(Phase.Update, projectile_collisions);
+            scene.AddAction(Phase.Update, dragon_combat);
 
             // Start the game.
             Director director = new Director(serviceFactory);
