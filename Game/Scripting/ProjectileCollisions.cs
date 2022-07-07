@@ -54,7 +54,7 @@ namespace Dragons.Game.Scripting{
             foreach (Dragon dragon in dragons){
                 foreach(Projectile projectile in projectiles){
                     if (projectile.Overlaps(dragon)){
-                        // dragon.takes_damage(projectile.damage);
+                        dragon.takes_damage(projectile.damage);
                         scene.RemoveActor("projectile", projectile);
                     }
 

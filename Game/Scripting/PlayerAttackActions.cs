@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Dragons.Game.Casting;
 using Dragons.Game.Services;
 using System.Numerics;
+using System;
 
 namespace Dragons.Game.Scripting
 {
@@ -111,7 +112,8 @@ namespace Dragons.Game.Scripting
 
                     foreach (Dragon dragon in dragons){
                         if (swing.Overlaps(dragon)){
-                            // dragon.takes_damage(player.damage);
+                            dragon.takes_damage(player.damage);
+                            // Console.WriteLine(dragon.dragon_health); // debugging
                         }
                     }
                     scene.RemoveActor("swing", swing);
