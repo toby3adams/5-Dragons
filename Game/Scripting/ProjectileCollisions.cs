@@ -5,7 +5,7 @@ using Dragons.Game.Services;
 
 namespace Dragons.Game.Scripting{
     public class ProjectileCollisions : Action{
-        public bool collision;
+
 
 
 
@@ -15,38 +15,49 @@ namespace Dragons.Game.Scripting{
             
             List<Projectile> projectiles = scene.GetAllActors<Projectile>("projectile");
 
-            foreach (Projectile projectile in projectiles){
-                collision = false;
-                wall_projectile_collision(scene, projectile);
+                wall_projectile_collision(scene, projectiles);
 
-                if (collision){
-                    scene.RemoveActor("projectile", projectile);
-                }
-            }
+                player_projectile_collision(scene, projectiles);
 
-
-            player_projectile_collision(scene, projectiles);
+                dragon_projectile_collision(scene, projectiles);
 
         }
 
-        public void wall_projectile_collision(Scene scene, Projectile projectile){
+        public void wall_projectile_collision(Scene scene, List<Projectile> projectiles){
             List<Wall> walls = scene.GetAllActors<Wall>("wall");
             
-
+            foreach (Projectile projectile in projectiles){
                 foreach (Wall wall in walls){
                     if (projectile.Overlaps(wall))
                     {
-                        collision = true;
+                        scene.RemoveActor("projectile", projectile);
                     }
                 }
+            }
         }
 
         public void player_projectile_collision(Scene scene, List<Projectile> projectiles){
-            Actor player = scene.GetFirstActor("player");
+            Player player = scene.GetFirstActor<Player>("player");
 
             foreach (Projectile projectile in projectiles){
                 if (projectile.Overlaps(player)){
-                    // player_takes_damage(projectile.damage);
+                    player.takes_damage(projectile.damage);
+                    scene.RemoveActor("projectile", projectile);
+                }
+            }
+        }
+
+        public void dragon_projectile_collision(Scene scene, List<Projectile> projectiles){
+
+            List<Dragon> dragons = scene.GetAllActors<Dragon>("dragon");
+
+            foreach (Dragon dragon in dragons){
+                foreach(Projectile projectile in projectiles){
+                    if (projectile.Overlaps(dragon)){
+                        // dragon.takes_damage(projectile.damage);
+                        scene.RemoveActor("projectile", projectile);
+                    }
+
                 }
             }
         }

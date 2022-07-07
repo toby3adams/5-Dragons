@@ -16,7 +16,7 @@ namespace Dragons.Game.Scripting
             
         private int counter_ranged;
         private int counter_melee;
-        private int last_direction;
+        private int last_direction = 0;
 
     
 
@@ -53,7 +53,7 @@ namespace Dragons.Game.Scripting
 
         public override void Execute(Scene scene, float deltaTime, IActionCallback callback)
         {
-            Actor player = scene.GetFirstActor<Actor>("player");
+            Player player = scene.GetFirstActor<Player>("player");
             Vector2 velocity = player.GetVelocity();
             int direction = check_for_directions_stuff(velocity);
             
@@ -61,40 +61,103 @@ namespace Dragons.Game.Scripting
                 this.last_direction = direction;
             }
 
-
+            // melee attacks
             if (counter_melee > 30){
 
                 if (_keyboardService.IsKeyDown(KeyboardKey.K)){
-                    if (direction != 0){
+
+                    List<Dragon> dragons = scene.GetAllActors<Dragon>("dragon");
+                    Actor swing = new Actor();
+                    
+                    
+                    
+                    scene.AddActor("swing", swing);
+
+                    if (last_direction == 1){
+                        swing.SizeTo(player.melee_range, 50);
+                        swing.MoveTo(player.GetRight(), player.GetTop());
                         
-                        counter_melee = 0;
                     }
-                    else {
-                        
-                        counter_melee = 0;
+                    if (last_direction == 2){
+                        swing.SizeTo(player.melee_range+25, player.melee_range+25);
+                        swing.MoveTo(player.GetRight()-25, player.GetTop()-player.melee_range);
                     }
+                    if (last_direction == 3){
+                        swing.SizeTo(50, player.melee_range);
+                        swing.MoveTo(player.GetLeft(), player.GetTop()-player.melee_range);
+                    }
+                    if (last_direction == 4){
+                        swing.SizeTo(player.melee_range+25, player.melee_range+25);
+                        swing.MoveTo(player.GetLeft()-player.melee_range, player.GetTop()-player.melee_range);
+                    }
+                    if (last_direction == 5){
+                        swing.SizeTo(player.melee_range, 50);
+                        swing.MoveTo(player.GetLeft()-player.melee_range, player.GetTop());
+                    }
+                    if (last_direction == 6){
+                        swing.SizeTo(player.melee_range+25, player.melee_range+25);
+                        swing.MoveTo(player.GetLeft()-player.melee_range, player.GetBottom()-25);
+                    }
+                    if (last_direction == 7){
+                        swing.SizeTo(50, player.melee_range);
+                        swing.MoveTo(player.GetLeft(), player.GetBottom());
+                    }
+                    if (last_direction == 8){
+                        swing.SizeTo(player.melee_range+25, player.melee_range+25);
+                        swing.MoveTo(player.GetRight()-25, player.GetBottom()-25);
+                    }
+                    
+
+
+                    foreach (Dragon dragon in dragons){
+                        if (swing.Overlaps(dragon)){
+                            // dragon.takes_damage(player.damage);
+                        }
+                    }
+                    scene.RemoveActor("swing", swing);
+
+                    counter_melee = 0;
                 }
-                counter_melee += 1;
+                
             }
+            counter_melee += 1;
             
+
+            //ranged attacks
             if (counter_ranged > 60){
 
                 if (_keyboardService.IsKeyDown(KeyboardKey.J))
                 {
-                    if (direction != 0){
-                        Projectile projectile1 = new Projectile(10, 7, direction);
-                        projectile1.MoveTo(player.GetCenterX(), player.GetCenterY());
-                        projectile1.SizeTo(4, 4);
-                        scene.AddActor("projectile", projectile1);
-                        counter_ranged = 0;
-                    }
-                    else {
+              
                         Projectile projectile1 = new Projectile(10, 7, last_direction);
-                        projectile1.MoveTo(player.GetCenterX(), player.GetCenterY());
+                        if (last_direction == 1){
+                            projectile1.MoveTo(player.GetRight()+2, player.GetCenterY());
+                        }
+                        if (last_direction == 2){
+                            projectile1.MoveTo(player.GetRight()+2, player.GetTop()-2);
+                        }
+                        if (last_direction == 3){
+                            projectile1.MoveTo(player.GetCenterX(), player.GetTop()-2);
+                        }
+                        if (last_direction == 4){
+                            projectile1.MoveTo(player.GetLeft()-2, player.GetTop()-2);
+                        }
+                        if (last_direction == 5){
+                            projectile1.MoveTo(player.GetLeft()-2, player.GetCenterY());
+                        }
+                        if (last_direction == 6){
+                            projectile1.MoveTo(player.GetLeft()-2, player.GetBottom()+2);
+                        }
+                        if (last_direction == 7){
+                            projectile1.MoveTo(player.GetCenterX(), player.GetBottom()+2);
+                        }
+                        if (last_direction == 8){
+                            projectile1.MoveTo(player.GetRight()+2, player.GetBottom()+2);
+                        }
                         projectile1.SizeTo(4, 4);
                         scene.AddActor("projectile", projectile1);
                         counter_ranged = 0;
-                    }
+
                    
                 }
                 }
