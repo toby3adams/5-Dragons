@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Dragons.Game.Casting;
 using Dragons.Game.Services;
+using System.Numerics;
 
 
 namespace Dragons.Game.Scripting
@@ -11,7 +12,7 @@ namespace Dragons.Game.Scripting
     /// </summary>
     public class MovePlayerAction : Action
     {
-        private bool WallCollision;
+        private int WallCollision;
         public MovePlayerAction()
         {
         }
@@ -20,7 +21,7 @@ namespace Dragons.Game.Scripting
         {
             Actor player = scene.GetFirstActor("player");
             PlayerWallCollision pwc = new PlayerWallCollision();
-            WallCollision = pwc.CheckPwc(scene, player);
+            pwc.CheckPwc(scene, player);
             try
             {
                 // get the actors, including the camera, from the cast
@@ -31,13 +32,37 @@ namespace Dragons.Game.Scripting
                 // move the player and clamp it to the boundaries of the world.
                 
                 
-                if(!WallCollision)
-                {
+ 
+                    Vector2 velocity = player.GetVelocity();
+                    
+                    if (pwc.collision_down){
+                        if (velocity.Y > 0){
+                            player.Steer(velocity.X, 0);
+                            velocity.Y = 0;
+                        }
+                    }
+                    if (pwc.collision_left){
+                        if (velocity.X < 0){
+                            player.Steer(0, velocity.Y);
+                            velocity.Y = 0;
+                        }
+                    }
+                    if (pwc.collision_right){
+                        if (velocity.X > 0){
+                            player.Steer(0, velocity.Y);
+                            velocity.X = 0;
+                        }
+                    }
+                    if (pwc.collision_up){
+                        if (velocity.Y < 0){
+                            player.Steer(velocity.X, 0);
+                            velocity.X = 0;
+                        }
+                    }              
                     player.Move();
                     player.ClampTo(world);
-                } 
-              //  player.Move();
-                // player.ClampTo(world);    
+                
+                   
             }
             catch (Exception exception)
             {

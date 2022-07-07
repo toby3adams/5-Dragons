@@ -9,25 +9,40 @@ namespace Dragons.Game.Scripting
 {
     public class PlayerWallCollision
     {
-        private bool collision;
-        Scene scene;
+        public bool collision_up = false;
+        public bool collision_down = false;
+        public bool collision_left = false;
+        public bool collision_right = false;
+    
         public PlayerWallCollision()
         {
             
         }
-        public bool CheckPwc(Scene scene, Actor player)
+        public void CheckPwc(Scene scene, Actor player)
         {
            
             List<Actor>walls = scene.GetAllActors("wall");
             foreach(Actor wall in walls)
             {
-                if((player.GetTop() == wall.GetBottom() || player.GetBottom() == wall.GetTop() || player.GetLeft() == wall.GetRight() || player.GetRight() == wall.GetLeft()) && (player.GetLeft() > wall.GetLeft() || player.GetLeft() < wall.GetRight() && player.GetRight() > wall.GetLeft() || player.GetRight() < wall.GetRight()))
+                if (player.GetTop() == wall.GetBottom() && player.GetRight() > wall.GetLeft() && player.GetLeft() < wall.GetRight())
                 {
-                    collision = true;
+                    collision_up = true;
                 }
+                if (player.GetLeft() == wall.GetRight() && player.GetBottom() > wall.GetTop() && player.GetTop() < wall.GetBottom()){
+                    collision_left = true;
+                }
+                if (player.GetRight() == wall.GetLeft() && player.GetBottom() > wall.GetTop() && player.GetTop() < wall.GetBottom()){
+                    collision_right = true;
+                }
+                if (player.GetBottom() == wall.GetTop() && player.GetRight() > wall.GetLeft() && player.GetLeft() < wall.GetRight()){
+                    collision_down = true;
+                }
+                
+                
+                    
+                
             }
 
-            return collision;
         }
         
 
