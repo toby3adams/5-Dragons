@@ -44,7 +44,7 @@ namespace Dragons.Game.Scripting
                     if (pwc.collision_left){
                         if (velocity.X < 0){
                             player.Steer(0, velocity.Y);
-                            velocity.Y = 0;
+                            velocity.X = 0;
                         }
                     }
                     if (pwc.collision_right){
@@ -56,7 +56,7 @@ namespace Dragons.Game.Scripting
                     if (pwc.collision_up){
                         if (velocity.Y < 0){
                             player.Steer(velocity.X, 0);
-                            velocity.X = 0;
+                            velocity.Y = 0;
                         }
                     }              
                     player.Move();

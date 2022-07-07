@@ -48,9 +48,9 @@ namespace Dragons.Game.Services
 
              //had to change so that it would actually print out the objects other than in the top left screen-sized section of the map
 
-            if (actor.GetCenterX() >= focus.GetCenterX() - screen.GetWidth() && actor.GetCenterX() <= focus.GetCenterX() + screen.GetWidth())
+            if (actor.GetRight() >= focus.GetCenterX() - screen.GetWidth() && actor.GetLeft() <= focus.GetCenterX() + screen.GetWidth())
             {
-                if (actor.GetCenterY() >= focus.GetCenterY() - screen.GetHeight() && actor.GetCenterY() <= focus.GetCenterY() + screen.GetHeight()){
+                if (actor.GetBottom() >= focus.GetCenterY() - screen.GetHeight() && actor.GetTop() <= focus.GetCenterY() + screen.GetHeight()){
 
                 
                 Raylib_cs.Color color = GetRaylibColor(actor.GetTint());
