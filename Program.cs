@@ -2,6 +2,7 @@
 using Dragons.Game.Directing;
 using Dragons.Game.Scripting;
 using Dragons.Game.Services;
+using System.Collections.Generic;
 
 
 namespace Dragons
@@ -64,30 +65,27 @@ namespace Dragons
             dragon_shadow.MoveTo(800, 800);
             dragon_shadow.Tint(Color.Purple());
             
-            Wall wall1 = new Wall(); // top wall
-            wall1.SizeTo(1000, 20);
-            wall1.MoveTo(200, 600);
-            wall1.Tint(Color.Gray());
-            
-            Wall wall2 = new Wall(); // bottom wall
-            wall2.SizeTo(960, 20);
-            wall2.MoveTo(220, 1000);
-            wall2.Tint(Color.Gray());
+            List<Wall> WallList = new List<Wall>(); // initializes a list of the walls in the program. 
+            int NumbWall = 8;//wall.NumberOfWalls(); need to set this to be related to the amount of wall that their are.
+            for (int i =0; i<NumbWall; i++)
+            {
+                Wall wall = new Wall(); 
+                List<int> WallInfo = wall.GetWallInformation(i);
+                int xVector = WallInfo[0];
+                int yVector = WallInfo[1];
+                int xSize = WallInfo[2];
+                int ySize = WallInfo[3];
+                wall.SizeTo(xSize,ySize);
+                wall.MoveTo(xVector,yVector);
+                wall.Tint(Color.Orange());
+                WallList.Add(wall);
+            }
+            //This is a test code. 
 
-            Wall wall3 = new Wall(); // left wall
-            wall3.SizeTo(20, 400);
-            wall3.MoveTo(200, 620);
-            wall3.Tint(Color.Gray());
-            
-            Wall wall4 = new Wall(); // upper wall, door side
-            wall4.SizeTo(20, 160);
-            wall4.MoveTo(1180, 620);
-            wall4.Tint(Color.Gray());
 
-            Wall wall5 = new Wall();
-            wall5.SizeTo(20, 160);
-            wall5.MoveTo(1180, 860);
-            wall5.Tint(Color.Gray());
+
+
+
 
             Actor screen = new Actor();
             screen.SizeTo(1900, 1060);
@@ -124,11 +122,11 @@ namespace Dragons
             scene.AddActor("dragon", dragon_air);
             scene.AddActor("dragon", dragon_shadow);
             scene.AddActor("dragon", dragon_fire);
-            scene.AddActor("wall", wall1);
-            scene.AddActor("wall", wall2);
-            scene.AddActor("wall", wall3);
-            scene.AddActor("wall", wall4);
-            scene.AddActor("wall", wall5);
+            foreach (Actor walled in WallList){   scene.AddActor("wall",walled);   }
+
+
+
+
 
             scene.AddAction(Phase.Input, steerPlayerAction);
             scene.AddAction(Phase.Update, movePlayerAction);
