@@ -28,6 +28,11 @@ namespace Dragons
             Label status = new Label();
             status.Display("x:-, y:-");
             status.MoveTo(25, 55);
+
+            Label dragon_life = new Label();
+            dragon_life.Display("Dragon Life:-");
+            dragon_life.MoveTo(200, 55);
+
             
             Player player = new Player();
             player.SizeTo(50, 50);
@@ -96,6 +101,7 @@ namespace Dragons
             Scene scene = new Scene();
             scene.AddActor("instructions", instructions);
             scene.AddActor("status", status);
+            scene.AddActor("dragon_life", dragon_life);
             scene.AddActor("player", player);
             scene.AddActor("camera", camera);
             scene.AddActor("dragon", dragon1);

@@ -29,29 +29,33 @@ namespace Dragons.Game.Scripting
                 List<Actor> dragons = scene.GetAllActors("dragon");
                 List<Actor> projectiles = scene.GetAllActors("projectile");
                 Label status = scene.GetFirstActor<Label>("status");
+                Label dragon_life = scene.GetFirstActor<Label>("dragon_life");
                 List<Actor> walls = scene.GetAllActors("wall");
 
-                List<Actor> swings = scene.GetAllActors("swing");
 
-
-
+                Actor world = camera.GetWorld();
+                foreach (Actor dragon in dragons){
+                    dragon.ClampTo(world);
+                }
+                
+                /*foreach(Actor wall in walls)
+                {
+                    wall.ClampTo(world);
+                }*/
 
 
                 // Draw the actors on the screen. Note we have provided the camera as a second 
                 // parameter when drawing the player. The videoservice uses the camera to translate
                 // the player's position within the world to its position on the screen.
                 _videoService.ClearBuffer();
-                _videoService.DrawGrid(80, Color.Gray(), camera);
+               // _videoService.DrawGrid(80, Color.Gray(), camera);
                 _videoService.Draw(instructions);
-                
-                _videoService.Draw(swings, camera); //for debugging swings
-
-
                 _videoService.Draw(player, camera);
                 _videoService.Draw(dragons, camera);
                 _videoService.Draw(walls, camera);
                 _videoService.Draw(projectiles, camera);
                 _videoService.Draw(status);
+                _videoService.Draw(dragon_life);
                 _videoService.FlushBuffer();
             }
             catch (Exception exception)

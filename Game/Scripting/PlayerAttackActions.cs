@@ -68,7 +68,7 @@ namespace Dragons.Game.Scripting
 
 
             //sheild
-            if (counter_sheild > 240){
+            if (counter_sheild > 60){
 
                 if (_keyboardService.IsKeyDown(KeyboardKey.L)){
 

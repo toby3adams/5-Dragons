@@ -16,6 +16,7 @@ namespace Dragons.Game.Casting
         private Vector2 _size = Vector2.Zero;
         private Color _tint = Color.White();
         private Vector2 _velocity = Vector2.Zero;
+        private int health;
         
         public Actor() { }
 
@@ -104,6 +105,10 @@ namespace Dragons.Game.Casting
             return _size.Y;
         }
 
+        public virtual int GetHealth()
+        {
+            return health;
+        }
         public virtual float GetLeft()
         {
             return _position.X;
