@@ -40,27 +40,27 @@ namespace Dragons
             player.MoveTo(640, 480);
             player.Tint(Color.Red());
 
-            Dragon dragon_water = new Dragon(40, 150, 12, 8, 750);
+            Dragon dragon_water = new Dragon(40, 150, 12, 8, 100);
             dragon_water.SizeTo(60, 60);
             dragon_water.MoveTo(400, 400);
             dragon_water.Tint(Color.Blue());
 
-            Dragon dragon_earth = new Dragon(40, 150, 12, 8, 750);
+            Dragon dragon_earth = new Dragon(40, 150, 12, 8, 100);
             dragon_earth.SizeTo(60, 60);
             dragon_earth.MoveTo(500, 500);
             dragon_earth.Tint(Color.Gray());
 
-            Dragon dragon_air = new Dragon(40, 150, 12, 8, 750);
+            Dragon dragon_air = new Dragon(40, 150, 12, 8, 100);
             dragon_air.SizeTo(60, 60);
             dragon_air.MoveTo(700, 700);
             dragon_air.Tint(Color.Green());
 
-            Dragon dragon_fire = new Dragon(40, 150, 12, 8, 750);
+            Dragon dragon_fire = new Dragon(40, 150, 12, 8, 100);
             dragon_fire.SizeTo(60, 60);
             dragon_fire.MoveTo(900, 900);
             dragon_fire.Tint(Color.Orange());
 
-            Dragon dragon_shadow = new Dragon(40, 150, 12, 8, 750);
+            Dragon dragon_shadow = new Dragon(40, 150, 12, 8, 80);
             dragon_shadow.SizeTo(60, 60);
             dragon_shadow.MoveTo(800, 800);
             dragon_shadow.Tint(Color.Purple());

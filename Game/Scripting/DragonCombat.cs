@@ -37,12 +37,16 @@ namespace Dragons.Game.Scripting{
             
             if (player.GetCenterX() - dragon.aggro_distance < dragon.GetCenterX() && dragon.GetCenterX() < player.GetCenterX() + dragon.aggro_distance){
                 if (player.GetCenterY()-dragon.aggro_distance < dragon.GetCenterY() && dragon.GetCenterY() < player.GetCenterY()+dragon.aggro_distance){
-                    dragon.is_near_player = true; 
+                    dragon.is_near_player = true;
                 }
+                else{
+                    dragon.is_near_player = false;
+                }                
             }
             else{
-            dragon.is_near_player = false;
+                    dragon.is_near_player = false;
             }
+
             // Console.WriteLine(dragon.is_near_player); //debugging
         }
 
