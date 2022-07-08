@@ -16,12 +16,15 @@ namespace Dragons.Game.Scripting{
             List<Dragon> dragons = scene.GetAllActors<Dragon>("dragon");
             Player player = scene.GetFirstActor<Player>("player");
 
-                check_health_death(scene);
+                
 
             foreach (Dragon dragon in dragons){
-
+                check_health_death(scene, dragon);
                 check_for_player(dragon, player);
-                attack_player(dragon, player);
+                if (dragon.is_near_player){
+                    attack_player(dragon, player);
+                }
+                
             }
 
 
@@ -47,8 +50,10 @@ namespace Dragons.Game.Scripting{
 
         }
 
-        private void check_health_death(Scene scene){
-
+        private void check_health_death(Scene scene, Dragon dragon){
+            if (dragon.dragon_health <= 0){
+                scene.RemoveActor("dragon", dragon);
+            }
         }
 
 
