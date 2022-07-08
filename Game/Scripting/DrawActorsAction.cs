@@ -57,7 +57,7 @@ namespace Dragons.Game.Scripting
                 _videoService.Draw(projectiles, camera);
                 _videoService.Draw(status);
                 _videoService.Draw(dragon_life);
-                _videoService.Draw(swing);
+                _videoService.Draw(swing, camera);
                 _videoService.FlushBuffer();
             }
             catch (Exception exception)
