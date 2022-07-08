@@ -24,17 +24,17 @@ namespace Dragons.Game.Scripting
             List<Actor>walls = scene.GetAllActors("wall");
             foreach(Actor wall in walls)
             {
-                if (player.GetTop() == wall.GetBottom() && player.GetRight() > wall.GetLeft() && player.GetLeft() < wall.GetRight())
+                if (player.GetTop() <= wall.GetBottom() && player.GetBottom() > wall.GetBottom() && player.GetRight() > wall.GetLeft() && player.GetLeft() < wall.GetRight())
                 {
                     collision_up = true;
                 }
-                if (player.GetLeft() == wall.GetRight() && player.GetBottom() > wall.GetTop() && player.GetTop() < wall.GetBottom()){
+                if (player.GetLeft() <= wall.GetRight() && player.GetRight() > wall.GetRight() && player.GetBottom() > wall.GetTop() && player.GetTop() < wall.GetBottom()){
                     collision_left = true;
                 }
-                if (player.GetRight() == wall.GetLeft() && player.GetBottom() > wall.GetTop() && player.GetTop() < wall.GetBottom()){
+                if (player.GetRight() >= wall.GetLeft() && player.GetLeft() < wall.GetLeft() && player.GetBottom() > wall.GetTop() && player.GetTop() < wall.GetBottom()){
                     collision_right = true;
                 }
-                if (player.GetBottom() == wall.GetTop() && player.GetRight() > wall.GetLeft() && player.GetLeft() < wall.GetRight()){
+                if (player.GetBottom() >= wall.GetTop() && player.GetTop() < wall.GetTop() && player.GetRight() > wall.GetLeft() && player.GetLeft() < wall.GetRight()){
                     collision_down = true;
                 }    
             }
@@ -42,17 +42,17 @@ namespace Dragons.Game.Scripting
             List<Actor> dragons = scene.GetAllActors("dragon");
             foreach (Actor dragon in dragons){
 
-                if (player.GetTop() == dragon.GetBottom() && player.GetRight() > dragon.GetLeft() && player.GetLeft() < dragon.GetRight())
+                if (player.GetTop() <= dragon.GetBottom() && player.GetBottom() > dragon.GetBottom() && player.GetRight() > dragon.GetLeft() && player.GetLeft() < dragon.GetRight())
                 {
                     collision_up = true;
                 }
-                if (player.GetLeft() == dragon.GetRight() && player.GetBottom() > dragon.GetTop() && player.GetTop() < dragon.GetBottom()){
+                if (player.GetLeft() <= dragon.GetRight() && player.GetRight() > dragon.GetRight() && player.GetBottom() > dragon.GetTop() && player.GetTop() < dragon.GetBottom()){
                     collision_left = true;
                 }
-                if (player.GetRight() == dragon.GetLeft() && player.GetBottom() > dragon.GetTop() && player.GetTop() < dragon.GetBottom()){
+                if (player.GetRight() >= dragon.GetLeft() && player.GetLeft() < dragon.GetLeft() && player.GetBottom() > dragon.GetTop() && player.GetTop() < dragon.GetBottom()){
                     collision_right = true;
                 }
-                if (player.GetBottom() == dragon.GetTop() && player.GetRight() > dragon.GetLeft() && player.GetLeft() < dragon.GetRight()){
+                if (player.GetBottom() >= dragon.GetTop() && player.GetTop() < dragon.GetTop() && player.GetRight() > dragon.GetLeft() && player.GetLeft() < dragon.GetRight()){
                     collision_down = true;
                 } 
             }

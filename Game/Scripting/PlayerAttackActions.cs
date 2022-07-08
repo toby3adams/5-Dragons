@@ -17,7 +17,7 @@ namespace Dragons.Game.Scripting
             
         private int counter_ranged;
         private int counter_melee;
-        private int counter_sheild;
+        private int counter_sheild = 65;
         private int last_direction = 1;
         private int last_sheild_direction = 1;
         Wall sheild;
@@ -68,7 +68,8 @@ namespace Dragons.Game.Scripting
 
 
             //sheild
-            if (counter_sheild > 60){
+            if (counter_sheild > 65)//has to be larger than the amount required before it is removed
+            {
 
                 if (_keyboardService.IsKeyDown(KeyboardKey.L)){
 
@@ -118,7 +119,9 @@ namespace Dragons.Game.Scripting
                     first_sheild = false;
                 }
             }
-            
+            if (counter_sheild < 60){
+                player.Steer(0,0);
+            }
             if (!first_sheild){
             if (counter_sheild > 60){
                 scene.RemoveActor("wall", this.sheild);

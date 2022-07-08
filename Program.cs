@@ -129,9 +129,9 @@ namespace Dragons
 
 
             scene.AddAction(Phase.Input, steerPlayerAction);
+            scene.AddAction(Phase.Input, player_attacks);
             scene.AddAction(Phase.Update, movePlayerAction);
             scene.AddAction(Phase.Update, updateStatusAction);
-            scene.AddAction(Phase.Update, player_attacks);
             scene.AddAction(Phase.Update, projectile_movement);
             scene.AddAction(Phase.Output, drawActorsAction);
             scene.AddAction(Phase.Update, projectile_collisions);
