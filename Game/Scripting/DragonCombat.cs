@@ -11,6 +11,12 @@ namespace Dragons.Game.Scripting{
 
         public DragonCombat(){}
 
+        int spin_counter = 0;
+        int tracking_counter = 0;
+        int melee_counter = 0;
+        int wave_counter = 0;
+
+
         public override void Execute(Scene scene, float deltaTime, IActionCallback callback){
 
             List<Dragon> dragons = scene.GetAllActors<Dragon>("dragon");
@@ -22,7 +28,7 @@ namespace Dragons.Game.Scripting{
                 check_health_death(scene, dragon);
                 check_for_player(dragon, player);
                 if (dragon.is_near_player){
-                    Console.WriteLine(get_player_direction(player, dragon));
+                    // Console.WriteLine(get_player_direction(player, dragon));
                     attack_player(dragon, player);
                 }
                 
@@ -52,6 +58,28 @@ namespace Dragons.Game.Scripting{
         }
 
         private void attack_player(Dragon dragon, Player player){
+
+            spin_counter +=1;
+            tracking_counter +=1;
+            wave_counter +=1;
+            melee_counter +=1;
+
+            if (tracking_counter > 60){
+                int players_direction = get_player_direction(player, dragon);
+                // shoot_tracking_projectile(players_direction, dragon.ranged_damage);
+            }
+
+            if (wave_counter > 60){
+
+            }
+
+            if (spin_counter > 60){
+
+            }
+
+            if (melee_counter > 60){
+                
+            }
 
             // spin projectiles that dont track
             // melee

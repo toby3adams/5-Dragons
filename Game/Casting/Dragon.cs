@@ -14,8 +14,8 @@ namespace Dragons.Game.Casting{
 
         public int melee_range;
         public int dragon_health;
-        private int melee_damage;
-        private int ranged_damage;
+        public int melee_damage;
+        public int ranged_damage;
         public bool is_near_player;
         public int aggro_distance;
         private bool dragon_alive = true;
