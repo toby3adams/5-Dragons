@@ -37,7 +37,7 @@ namespace Dragons
             
             Player player = new Player();
             player.SizeTo(50, 50);
-            player.MoveTo(640, 480);
+            player.MoveTo(1600, 1300);
             player.Tint(Color.Red());
 
             Dragon dragon_water = new Dragon(40, 150, 12, 8, 100);
@@ -60,9 +60,9 @@ namespace Dragons
             dragon_fire.MoveTo(900, 900);
             dragon_fire.Tint(Color.Orange());
 
-            Dragon dragon_shadow = new Dragon(40, 150, 12, 8, 80);
+            Dragon dragon_shadow = new Dragon(40, 150, 12, 8, 900);
             dragon_shadow.SizeTo(60, 60);
-            dragon_shadow.MoveTo(800, 800);
+            dragon_shadow.MoveTo(2600, 1800);
             dragon_shadow.Tint(Color.Purple());
             
             List<Wall> WallList = new List<Wall>(); // initializes a list of the walls in the program. 
@@ -88,7 +88,7 @@ namespace Dragons
 
 
             Actor screen = new Actor();
-            screen.SizeTo(1900, 1060);
+            screen.SizeTo(1860, 980);
             screen.MoveTo(0, 0);
 
             Actor world = new Actor();
