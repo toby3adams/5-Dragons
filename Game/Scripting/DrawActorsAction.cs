@@ -49,7 +49,7 @@ namespace Dragons.Game.Scripting
                 // parameter when drawing the player. The videoservice uses the camera to translate
                 // the player's position within the world to its position on the screen.
                 _videoService.ClearBuffer();
-               // _videoService.DrawGrid(80, Color.Gray(), camera);
+                _videoService.DrawGrid(100, Color.Gray(), camera);
                 _videoService.Draw(instructions);
                 _videoService.Draw(player, camera);
                 _videoService.Draw(dragons, camera);
