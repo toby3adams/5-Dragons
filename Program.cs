@@ -37,7 +37,7 @@ namespace Dragons
             
             Player player = new Player();
             player.SizeTo(50, 50);
-            player.MoveTo(1600, 1300);
+            player.MoveTo(1000, 1000); //5250,5250 SpawnLocation
             player.Tint(Color.Red());
 
             Dragon dragon_water = new Dragon(40, 150, 12, 8, 100);
@@ -65,8 +65,10 @@ namespace Dragons
             dragon_shadow.MoveTo(2600, 1800);
             dragon_shadow.Tint(Color.Purple());
             
+
+            Wall ProbsABadIdea = new Wall();
             List<Wall> WallList = new List<Wall>(); // initializes a list of the walls in the program. 
-            int NumbWall = 8;//wall.NumberOfWalls(); need to set this to be related to the amount of wall that their are.
+            int NumbWall = ProbsABadIdea.wallNumb;//wall.NumberOfWalls(); need to set this to be related to the amount of wall that their are.
             for (int i =0; i<NumbWall; i++)
             {
                 Wall wall = new Wall(); 
@@ -92,7 +94,7 @@ namespace Dragons
             screen.MoveTo(0, 0);
 
             Actor world = new Actor();
-            world.SizeTo(3000, 2000);
+            world.SizeTo(10000, 10000);
             world.MoveTo(0, 0);
 
 
