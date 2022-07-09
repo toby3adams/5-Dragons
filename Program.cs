@@ -40,14 +40,15 @@ namespace Dragons
             Player player = new Player();
             player.SizeTo(50, 50);
             player.MoveTo(1000, 1000); //5250,5250 SpawnLocation
-            player.Tint(Color.Red());
+            // player.Tint(Color.Red());
+            player.Display("Game/Assets/robot0.png");
 
             //Trying to add a picture to the player
-            Image player_texture = new Image("Game/Assets/adventure_test.png");
-            player_texture.SizeTo(50, 50);
-            player_texture.MoveTo(1000, 1000);
-            player_texture.Display("Game/Assets/adventure_test.png");
-            player_texture.Tint(Color.White());
+            // Image player_texture = new Image();
+            // player_texture.SizeTo(50, 50);
+            // player_texture.MoveTo(1000, 1000);
+            // player_texture.Display("Game/Assets/adventure_test.png");
+            // player_texture.Tint(Color.White());
 
             
             RandomDragPos rdp = new RandomDragPos();
@@ -151,7 +152,7 @@ namespace Dragons
             scene.AddActor("dragon", dragon_air);
             scene.AddActor("dragon", dragon_shadow);
             scene.AddActor("dragon", dragon_fire);
-            scene.AddActor("player_texture", player_texture);
+            // scene.AddActor("player_texture", player_texture);
             foreach (Actor walled in WallList){   scene.AddActor("wall",walled);   }
 
 

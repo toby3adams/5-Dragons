@@ -2,7 +2,7 @@
 
 namespace Dragons.Game.Casting
 {
-    public class Player : Actor 
+    public class Player : Image 
     {
         private int Player_Life = 20; 
         private int Player_Armor = 12;

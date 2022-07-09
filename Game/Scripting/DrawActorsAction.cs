@@ -25,7 +25,7 @@ namespace Dragons.Game.Scripting
                 // Get the actors from the cast.
                 Camera camera = scene.GetFirstActor<Camera>("camera");
                 Label instructions = scene.GetFirstActor<Label>("instructions");
-                Actor player = scene.GetFirstActor("player");
+                Image player = scene.GetFirstActor<Image>("player");
                 List<Actor> dragons = scene.GetAllActors("dragon");
                 List<Actor> projectiles = scene.GetAllActors("projectile");
                 List<Actor> swing = scene.GetAllActors("swing");
@@ -51,13 +51,14 @@ namespace Dragons.Game.Scripting
                 _videoService.ClearBuffer();
                 _videoService.DrawGrid(100, Color.Gray(), camera);
                 _videoService.Draw(instructions);
-                _videoService.Draw(player, camera);
+
                 _videoService.Draw(dragons, camera);
                 _videoService.Draw(walls, camera);
                 _videoService.Draw(projectiles, camera);
                 _videoService.Draw(status);
                 _videoService.Draw(dragon_life);
                 _videoService.Draw(swing, camera);
+                _videoService.Draw(player, camera);
                 _videoService.FlushBuffer();
             }
             catch (Exception exception)
