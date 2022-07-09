@@ -120,7 +120,7 @@ namespace Dragons
             screen.MoveTo(0, 0);
 
             Actor world = new Actor();
-            world.SizeTo(10000, 10000);
+            world.SizeTo(5580, 5580);
             world.MoveTo(0, 0);
 
 

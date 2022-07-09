@@ -10,7 +10,7 @@ namespace Dragons.Game.Scripting{
 
     public class RandomDragPos 
     {
-        int position_counter = 4;
+        int position_counter = 3;
         List<Point> points = new List<Point>();
         
         Random rnd = new Random();
@@ -20,20 +20,20 @@ namespace Dragons.Game.Scripting{
         public void GeneratePositions()
         {
             // generates random x and y values within desired range.
-            int pos_1_x = rnd.Next(0,1000);
-            int pos_1_y = rnd.Next(0,1000);
+            int pos_1_x = rnd.Next(830, 1030);
+            int pos_1_y = rnd.Next(3030, 3230);
             //
-            int pos_2_x = rnd.Next(1001,2000);
-            int pos_2_y = rnd.Next(0,1000);
+            int pos_2_x = rnd.Next(4460,4660);
+            int pos_2_y = rnd.Next(3030, 3230);
             //
-            int pos_3_x = rnd.Next(0,1000);
-            int pos_3_y = rnd.Next(1001,2000);
+            int pos_3_x = rnd.Next(830, 1030);
+            int pos_3_y = rnd.Next(4990, 5190);
             //
-            int pos_4_x = rnd.Next(1001,2000);
-            int pos_4_y = rnd.Next(1001,2000);
+            int pos_4_x = rnd.Next(4460,4660);
+            int pos_4_y = rnd.Next(4990,5190);
             //
-            int pos_5_x = rnd.Next(2001, 3000);
-            int pos_5_y = rnd.Next(0,2000);
+            int pos_5_x = rnd.Next(2690, 2890);
+            int pos_5_y = rnd.Next(650, 850);
             // logic and while statement ensures the pos_1 x and y are divisible by 5 for collision
             if(pos_1_x % 5 != 0)
             {
@@ -119,22 +119,31 @@ namespace Dragons.Game.Scripting{
             points.Add(pos_3);
              
             Point pos_4 = new Point(pos_4_x, pos_4_y);       
-            points.Add(pos_4);
+            points.Add(pos_4);        
             
-            Point pos_5 = new Point(pos_5_x, pos_5_y);
-            points.Add(pos_5);
+            ShufflePoints();
 
-            List<Point> points_shuf = points.OrderBy(x => rnd.Next()).ToList();    
+            Point pos_5 = new Point(pos_5_x, pos_5_y);
+            points.Add(pos_5);   
             
         }
         public Point GetPosition()
         {   
             Point point = points[position_counter];
             Console.WriteLine($"Pos index: {position_counter}");
+            Console.WriteLine($"X:{point.GetX()}, Y:{point.GetY()}");
             points.RemoveAt(position_counter);
-            position_counter = position_counter - 1;
+            if(position_counter != 0)
+            {
+                position_counter = position_counter - 1;
+                
+            }        
            
             return point;
+        }
+        public void ShufflePoints()
+        {
+            points = points.OrderBy(x => rnd.Next()).ToList();
         }
     }
 }
