@@ -43,16 +43,9 @@ namespace Dragons
             player.SizeTo(50, 50);
             player.MoveTo(3250, 3250); //5250,5250 SpawnLocation
             // player.Tint(Color.Red());
-            player.Display("Game/Assets/robot0.png");
+            player.Display("Game/Assets/fighter.png");
 
-            //Trying to add a picture to the player
-            // Image player_texture = new Image();
-            // player_texture.SizeTo(50, 50);
-            // player_texture.MoveTo(1000, 1000);
-            // player_texture.Display("Game/Assets/adventure_test.png");
-            // player_texture.Tint(Color.White());
 
-            
             RandomPos rdp = new RandomPos();
             // params: min x value, max x value, min y value, max y value, Add to list for randomization, make number divisible by spec int.
             // pos1            
