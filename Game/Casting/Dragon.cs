@@ -1,7 +1,7 @@
 
 
 namespace Dragons.Game.Casting{
-    public class Dragon : Actor {
+    public class Dragon : Image {
 
         public Dragon(int melee_range, int health, int melee_damage, int ranged_damage, int aggro_distance){
             this.melee_damage = melee_damage;
