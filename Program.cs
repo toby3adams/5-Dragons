@@ -39,7 +39,7 @@ namespace Dragons
             
             Player player = new Player();
             player.SizeTo(50, 50);
-            player.MoveTo(1000, 1000); //5250,5250 SpawnLocation
+            player.MoveTo(3250, 3250); //5250,5250 SpawnLocation
             // player.Tint(Color.Red());
             player.Display("Game/Assets/robot0.png");
 
@@ -121,7 +121,7 @@ namespace Dragons
             screen.MoveTo(0, 0);
 
             Actor world = new Actor();
-            world.SizeTo(5580, 5580);
+            world.SizeTo(5580, 5580);  // 5500 / 500 = 11x11  Mid = 6,6 
             world.MoveTo(0, 0);
 
 

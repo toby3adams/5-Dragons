@@ -6,10 +6,10 @@ namespace Dragons.Game.Casting{
     public class Wall : Actor{
 
         public int wallNumb = 0; 
-        private int SquareRoomSize = 500;
-        private int DoorSize = 60; // This must be a number that when subtracted from the squareRoomSize and divided by two equals a whole number.
-        private int SpawnlocationX = 5000;
-        private int SpawnlocationY = 5000;
+        private int SquareRoomSize = 400; // This will scale all of the structures on a map
+        private int DoorSize = 100; // This must be a number that when subtracted from the squareRoomSize and divided by two equals a whole number.
+        private int SpawnlocationX = 3000;
+        private int SpawnlocationY = 3000;
         private int WallLength;
         private int DoorOffset;
 
@@ -25,13 +25,36 @@ namespace Dragons.Game.Casting{
             this.DoorOffset = WallLength+DoorSize;
 
             SpawnRoom();
+            //2 Hallways above
+            VerticalThrough(SpawnlocationX,SpawnlocationY-SquareRoomSize);
+            VerticalThrough(SpawnlocationX,SpawnlocationY-2*SquareRoomSize); 
+
+            // 2 Top Caps and 2 Bottom Caps 
+            TopCap(SpawnlocationX-SquareRoomSize,SpawnlocationY+SquareRoomSize);
+            TopCap(SpawnlocationX+SquareRoomSize,SpawnlocationY+SquareRoomSize);
+
+            BottomCap(SpawnlocationX-SquareRoomSize,SpawnlocationY-SquareRoomSize);
+            BottomCap(SpawnlocationX+SquareRoomSize,SpawnlocationY-SquareRoomSize);
+
+            //Add 3 walls to block off exit. These Will be commented out.
+            // WallVectorList.Add(new List<int>  {SpawnlocationX+SquareRoomSize*2,SpawnlocationY});  //Top Wall
+            // WallSizeList.Add(new List<int>  {WallThickness,SquareRoomSize});  
+                
+            //  WallVectorList.Add(new List<int>  {SpawnlocationX-SquareRoomSize,SpawnlocationY}); 
+            // WallSizeList.Add(new List<int>  {WallThickness,SquareRoomSize}); 
+
+            //  WallVectorList.Add(new List<int>  {SpawnlocationX,SpawnlocationY+SquareRoomSize*2});//Bottom wall
+            // WallSizeList.Add(new List<int>  {SquareRoomSize,WallThickness}); 
+
+            //Final Boss Room 
+            FinalBossRoom(SpawnlocationX-SquareRoomSize,SpawnlocationY-SquareRoomSize*4);
 
             // LeftCap(5000+SquareRoomSize,5000);
             // RightCap(5000-SquareRoomSize,5000);
             // TopCap(5000,5000+2*SquareRoomSize);
             // BottomCap(5000,5000-2*SquareRoomSize);
 
-            TopRightElbow(4500,5000-3*SquareRoomSize);
+            //TopRightElbow(4500,5000-3*SquareRoomSize);
              
              
             //  WallVectorList.Add(new List<int>  {800,20}); // Wall 6 
@@ -62,6 +85,26 @@ namespace Dragons.Game.Casting{
         //Horizontal and Vertical Threw
         //(Bottom,Right),(Left,Top),(Top,Right) Elbows
 // 500X500 Cubes  20x20 Matrix //10000/500 = 20  20x20  middle 5000,5000                                        //middle 5000,5000
+        public void FinalBossRoom(int MatrixPositionX, int MatrixPositionY)
+        {
+            int WallLength = (SquareRoomSize*3-DoorSize)/2;
+            int DoorOffset = WallLength+DoorSize;
+
+            WallVectorList.Add(new List<int>  {MatrixPositionX,MatrixPositionY});  //Top Wall
+            WallSizeList.Add(new List<int>  {SquareRoomSize*3,WallThickness});   
+
+             WallVectorList.Add(new List<int>  {MatrixPositionX,MatrixPositionY+SquareRoomSize*2});//Bottom wall
+            WallSizeList.Add(new List<int>  {WallLength,WallThickness}); 
+             WallVectorList.Add(new List<int>  {MatrixPositionX+DoorOffset,MatrixPositionY+SquareRoomSize*2}); 
+            WallSizeList.Add(new List<int>  {WallLength,WallThickness});
+
+
+             WallVectorList.Add(new List<int>  {MatrixPositionX,MatrixPositionY});//Left Wall 
+            WallSizeList.Add(new List<int>  {WallThickness,SquareRoomSize*2}); 
+
+             WallVectorList.Add(new List<int>  {MatrixPositionX+SquareRoomSize*3,MatrixPositionY});// Right Upper Wall
+            WallSizeList.Add(new List<int>  {WallThickness,SquareRoomSize*2+WallThickness}); 
+        }
         public void SpawnRoom()
         {
              WallVectorList.Add(new List<int>  {SpawnlocationX,SpawnlocationY});  //Top Wall
@@ -148,7 +191,7 @@ namespace Dragons.Game.Casting{
             WallSizeList.Add(new List<int>  {WallThickness,SquareRoomSize+WallThickness}); 
         }
 
-        public void  BottomCap(int MatrixPositionX, int MatrixPositionY)
+        public virtual void BottomCap(int MatrixPositionX, int MatrixPositionY)
         {
             WallVectorList.Add(new List<int>  {MatrixPositionX,MatrixPositionY}); 
             WallSizeList.Add(new List<int>  {SquareRoomSize,WallThickness});  
