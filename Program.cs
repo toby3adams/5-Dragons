@@ -19,6 +19,8 @@ namespace Dragons
     {
         public static void Main(string[] args)
         {
+            bool AddToList = true; // used to Add generated Point to list in RandomPos class
+            bool DontAddToList = false; // used to indicate that point is NOT to be added to list in RandomPos class
             
             // Instantiate a service factory for other objects to use.
             IServiceFactory serviceFactory = new RaylibServiceFactory();
@@ -51,42 +53,49 @@ namespace Dragons
             // player_texture.Tint(Color.White());
 
             
-            RandomDragPos rdp = new RandomDragPos();
-            rdp.GeneratePositions();
-
+            RandomPos rdp = new RandomPos();
+            // params: min x value, max x value, min y value, max y value, Add to list for randomization, make number divisible by spec int.
+            // pos1            
+            rdp.GeneratePosition(830,1030,3030,3230,AddToList,5); 
+            // pos 2
+            rdp.GeneratePosition(4460,4660,3030,3230,AddToList,5);
+            // pos 3
+            rdp.GeneratePosition(830,1030,4990,5190,AddToList,5);
+            // pos 4
+            rdp.GeneratePosition(4460,4660,4990,5190,AddToList,5);
+            
+            rdp.ShufflePoints();
+            // water, earth, air, fire dragons added to list for randomzing of position.
             Dragon dragon_water = new Dragon(40, 150, 12, 8, 100);
-            Point dragon_water_pos = rdp.GetPosition();
+            Point dragon_water_pos = rdp.GetPosition(); // retrieves randomized point, randomly placing dragon at one of 4 possible positions
             dragon_water.SizeTo(60, 60);
             dragon_water.MoveTo(dragon_water_pos.GetX(), dragon_water_pos.GetY());
             dragon_water.Tint(Color.Blue());
 
             
             Dragon dragon_earth = new Dragon(40, 150, 12, 8, 100);
-            Point dragon_earth_pos = rdp.GetPosition();
-            dragon_earth.SizeTo(60, 60);
-            
+            Point dragon_earth_pos = rdp.GetPosition(); // retrieves randomized point, randomly placing dragon at one of 4 possible positions
+            dragon_earth.SizeTo(60, 60);            
             dragon_earth.MoveTo(dragon_earth_pos.GetX(), dragon_earth_pos.GetY());
             dragon_earth.Tint(Color.Gray());
-
             
             Dragon dragon_air = new Dragon(40, 150, 12, 8, 100);
-            Point dragon_air_pos = rdp.GetPosition();
+            Point dragon_air_pos = rdp.GetPosition(); // retrieves randomized point, randomly placing dragon at one of 4 possible positions
             dragon_air.SizeTo(60, 60);
             //dragon_air.MoveTo(700, 700);
             dragon_air.MoveTo(dragon_air_pos.GetX(), dragon_air_pos.GetY());
             dragon_air.Tint(Color.Green());
-
             
             Dragon dragon_fire = new Dragon(40, 150, 12, 8, 100);
-            Point dragon_fire_pos = rdp.GetPosition();
+            Point dragon_fire_pos = rdp.GetPosition(); // retrieves randomized point, randomly placing dragon at one of 4 possible positions
             dragon_fire.SizeTo(60, 60);
             //dragon_fire.MoveTo(900, 900);
-            dragon_fire.MoveTo(dragon_fire_pos.GetX(), dragon_fire_pos.GetY());
+            dragon_fire.MoveTo(dragon_fire_pos.GetX(), dragon_fire_pos.GetY());            
             dragon_fire.Tint(Color.Orange());
 
-            
+            // shadow dragon "Boss" static position
             Dragon dragon_shadow = new Dragon(40, 150, 12, 8, 900);
-            Point dragon_shadow_pos = rdp.GetPosition();
+            Point dragon_shadow_pos = rdp.GeneratePosition(2690,2890,650,850,DontAddToList,5);
             dragon_shadow.SizeTo(60, 60);
             //dragon_shadow.MoveTo(2600, 1800);
             dragon_shadow.MoveTo(dragon_shadow_pos.GetX(), dragon_shadow_pos.GetY());
