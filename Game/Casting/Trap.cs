@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 
 namespace Dragons.Game.Casting{
-    public class Trap : Actor{
+    public class Trap : Image{
 
         public Trap()
         {
