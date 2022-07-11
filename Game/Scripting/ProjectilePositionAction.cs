@@ -16,12 +16,14 @@ namespace Dragons.Game.Scripting{
 
 
         void UpdateProjectilePosition(Scene scene){
-            List<Actor> Projectiles = scene.GetAllActors("projectile");
+            List<Projectile> Projectiles = scene.GetAllActors<Projectile>("projectile");
             foreach (Projectile projectile in Projectiles){
-
-
                 MoveProjectile(projectile, projectile.GetDirection());
+            }
 
+            List<Projectile> trackers = scene.GetAllActors<Projectile>("tracker");
+            foreach (Projectile projectile in trackers){
+                MoveProjectile(projectile, projectile.GetDirection());
             }
         }
 

@@ -64,27 +64,27 @@ namespace Dragons
             
             rdp.ShufflePoints();
             // water, earth, air, fire dragons added to list for randomzing of position.
-            Dragon dragon_water = new Dragon(40, 150, 12, 8, 100);
+            Dragon dragon_water = new Dragon(40, 150, 12, 8, 550);
             Point dragon_water_pos = rdp.GetPosition(); // retrieves randomized point, randomly placing dragon at one of 4 possible positions
             dragon_water.SizeTo(100, 100);
             dragon_water.MoveTo(dragon_water_pos.GetX(), dragon_water_pos.GetY());
             dragon_water.Tint(Color.Blue());
 
             
-            Dragon dragon_earth = new Dragon(40, 150, 12, 8, 100);
+            Dragon dragon_earth = new Dragon(40, 150, 12, 8, 550);
             Point dragon_earth_pos = rdp.GetPosition(); // retrieves randomized point, randomly placing dragon at one of 4 possible positions
             dragon_earth.SizeTo(100, 100);            
             dragon_earth.MoveTo(dragon_earth_pos.GetX(), dragon_earth_pos.GetY());
             dragon_earth.Tint(Color.Gray());
             
-            Dragon dragon_air = new Dragon(40, 150, 12, 8, 100);
+            Dragon dragon_air = new Dragon(40, 150, 12, 8, 550);
             Point dragon_air_pos = rdp.GetPosition(); // retrieves randomized point, randomly placing dragon at one of 4 possible positions
             dragon_air.SizeTo(100, 100);
             //dragon_air.MoveTo(700, 700);
             dragon_air.MoveTo(dragon_air_pos.GetX(), dragon_air_pos.GetY());
             dragon_air.Tint(Color.Green());
             
-            Dragon dragon_fire = new Dragon(40, 150, 12, 8, 100);
+            Dragon dragon_fire = new Dragon(40, 150, 12, 8, 550);
             Point dragon_fire_pos = rdp.GetPosition(); // retrieves randomized point, randomly placing dragon at one of 4 possible positions
             dragon_fire.SizeTo(100, 100);
             //dragon_fire.MoveTo(900, 900);
