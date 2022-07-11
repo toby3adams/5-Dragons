@@ -29,7 +29,7 @@ namespace Dragons.Game.Scripting{
                 check_for_player(dragon, player);
                 if (dragon.is_near_player){
                     // Console.WriteLine(get_player_direction(player, dragon));
-                    attack_player(dragon, player);
+                    attack_player(scene, dragon, player);
                 }
                 
             }
@@ -57,7 +57,7 @@ namespace Dragons.Game.Scripting{
             // Console.WriteLine(dragon.is_near_player); //debugging
         }
 
-        private void attack_player(Dragon dragon, Player player){
+        private void attack_player(Scene scene, Dragon dragon, Player player){
 
             spin_counter +=1;
             tracking_counter +=1;
@@ -73,13 +73,89 @@ namespace Dragons.Game.Scripting{
 
             }
 
-            if (spin_counter > 60){
 
+
+            if (spin_counter > 250){
+                spin_counter = 0;
             }
+            if (spin_counter == 190){
+                Projectile projectile = new Projectile(10, 6, 1);
+                projectile.SizeTo(8,8);
+                projectile.MoveTo(dragon.GetRight()+2, dragon.GetCenterY());
+                projectile.Tint(dragon.GetTint());
+                scene.AddActor("projectile", projectile);
+            }
+            if (spin_counter == 195){
+                Projectile projectile = new Projectile(10, 6, 2);
+                projectile.SizeTo(8,8);
+                projectile.MoveTo(dragon.GetRight()+2, dragon.GetTop()-2);
+                projectile.Tint(dragon.GetTint());
+                scene.AddActor("projectile", projectile);
+            }
+            if (spin_counter == 200){
+                Projectile projectile = new Projectile(10, 6, 3);
+                projectile.SizeTo(8,8);
+                projectile.MoveTo(dragon.GetCenterX(), dragon.GetTop()-2);
+                projectile.Tint(dragon.GetTint());
+                scene.AddActor("projectile", projectile);                
+            }
+            if (spin_counter == 205){
+                Projectile projectile = new Projectile(10, 6, 4);
+                projectile.SizeTo(8,8);
+                projectile.MoveTo(dragon.GetLeft()-2, dragon.GetTop()-2);
+                projectile.Tint(dragon.GetTint());
+                scene.AddActor("projectile", projectile);                
+            }
+            if (spin_counter == 210){
+                Projectile projectile = new Projectile(10, 6, 5);
+                projectile.SizeTo(8,8);
+                projectile.MoveTo(dragon.GetLeft()-2, dragon.GetCenterY());
+                projectile.Tint(dragon.GetTint());
+                scene.AddActor("projectile", projectile);                
+            }
+            if (spin_counter == 215){
+                Projectile projectile = new Projectile(10, 6, 6);
+                projectile.SizeTo(8,8);
+                projectile.MoveTo(dragon.GetLeft()-2, dragon.GetBottom()+2);
+                projectile.Tint(dragon.GetTint());
+                scene.AddActor("projectile", projectile);                
+            }
+            if (spin_counter == 220){
+                Projectile projectile = new Projectile(10, 6, 7);
+                projectile.SizeTo(8,8);
+                projectile.MoveTo(dragon.GetCenterX(), dragon.GetBottom()+2);
+                projectile.Tint(dragon.GetTint());
+                scene.AddActor("projectile", projectile);                
+            }
+            if (spin_counter == 225){
+                Projectile projectile = new Projectile(10, 6, 8);
+                projectile.SizeTo(8,8);
+                projectile.MoveTo(dragon.GetRight()+2, dragon.GetBottom()+2);
+                projectile.Tint(dragon.GetTint());
+                scene.AddActor("projectile", projectile);                
+            }
+
+
 
             if (melee_counter > 60){
-                
+                if (player.GetCenterX() < dragon.GetCenterX() + 150 && player.GetCenterX() > dragon.GetCenterX() -150){
+                    if (player.GetCenterY() < dragon.GetCenterY() + 150 && player.GetCenterY() > dragon.GetCenterY() -150){
+                        Actor swing = new Actor();
+                        scene.AddActor("swing", swing);
+                        swing.MoveTo(dragon.GetLeft()-50, dragon.GetTop()-50);
+                        swing.SizeTo(200,200);
+                        if (swing.Overlaps(player)){
+                            player.takes_damage(dragon.melee_damage);
+                        }
+                        scene.RemoveActor("swing",swing);
+                        melee_counter = 0;
+                    }
+                }
             }
+            if (!(player.GetCenterX() < dragon.GetCenterX() + 150 && player.GetCenterX() > dragon.GetCenterX() -150) || (!(player.GetCenterY() < dragon.GetCenterY() + 150 && player.GetCenterY() > dragon.GetCenterY() -150))){
+                    melee_counter = 0;
+                }
+            
 
             // spin projectiles that dont track
             // melee
