@@ -52,18 +52,19 @@ namespace Dragons.Game.Scripting
                 // the player's position within the world to its position on the screen.
                 _videoService.ClearBuffer();
                 _videoService.DrawGrid(100, Color.Gray(), camera);
-                _videoService.Draw(instructions);
+                
 
-                _videoService.Draw(dragons, camera);
+                
                 _videoService.Draw(floors, camera);
 
 
                 _videoService.Draw(lavas, camera);
                 
-                
+                _videoService.Draw(dragons, camera);
                 _videoService.Draw(walls, camera);
                 _videoService.Draw(projectiles, camera);
                 _videoService.Draw(status);
+                _videoService.Draw(instructions);
                 _videoService.Draw(dragon_life);
                 _videoService.Draw(player_life);
                 _videoService.Draw(swing, camera);

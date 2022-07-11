@@ -8,8 +8,8 @@ namespace Dragons.Game.Casting{
         public int LavaNumb = 0; 
         private int WallSize = 20;
         private int TileSize = 400/20; // This will scale all of the structures on a map
-        private int SpawnlocationX = 3000;
-        private int SpawnlocationY = 3000;
+        private int SpawnlocationX = 1000;
+        private int SpawnlocationY = 3500;
 
         
 
