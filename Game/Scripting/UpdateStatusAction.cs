@@ -26,6 +26,8 @@ namespace Dragons.Game.Scripting
                 List<Dragon> dragons = scene.GetAllActors<Dragon>("dragon");
                 Label status = scene.GetFirstActor<Label>("status");
                 Label dragon_life = scene.GetFirstActor<Label>("dragon_life");
+                Label player_life = scene.GetFirstActor<Label>("player_life");
+
 
                 int dragons_in_range = 0;
 
@@ -41,6 +43,8 @@ namespace Dragons.Game.Scripting
                     dragon_life.Display(new_drag_life); 
                 }
 
+                string new_player_life = $"Player Life:{player.GetHealth().ToString()}";
+                        player_life.Display(new_player_life);  
 
 
 

@@ -20,9 +20,14 @@ namespace Dragons.Game.Casting
 
         public Player(){}
 
-        public void takes_damage(int damage){
-            this.Player_Life -= (damage * 1-(Player_Armor/100));
+        public override int GetHealth()
+        {
+            return Player_Life;
+        }
 
+        public void takes_damage(int damage){
+            this.Player_Life -= (damage * 1-(Player_Armor/100)); 
+            // Will Player_Armor ever be able to get the number to round down? Stored as an int.
         }
     }
 }

@@ -38,6 +38,11 @@ namespace Dragons
             dragon_life.Display("Dragon Life:-");
             dragon_life.MoveTo(200, 55);
 
+            Label player_life = new Label();
+            player_life.Display("Player Life:-");
+            player_life.MoveTo(400, 55);
+
+
             
             Player player = new Player();
             player.SizeTo(50, 50);
@@ -95,9 +100,9 @@ namespace Dragons
             dragon_shadow.Tint(Color.Purple());
             
 
-            Wall ProbsABadIdea = new Wall();
+            Wall GetNumberOfWalls = new Wall();
             List<Wall> WallList = new List<Wall>(); // initializes a list of the walls in the program. 
-            int NumbWall = ProbsABadIdea.wallNumb;//wall.NumberOfWalls(); need to set this to be related to the amount of wall that their are.
+            int NumbWall = GetNumberOfWalls.wallNumb;//wall.NumberOfWalls(); need to set this to be related to the amount of wall that their are.
             for (int i =0; i<NumbWall; i++)
             {
                 Wall wall = new Wall(); 
@@ -114,7 +119,41 @@ namespace Dragons
             //This is a test code. 
 
 
+            Floor GetNumberOfTiles = new Floor();
+            List<Floor> TileList = new List<Floor>(); // initializes a list of the walls in the program. 
+            int NumbTiles = GetNumberOfTiles.FloorNumb;//wall.NumberOfWalls(); need to set this to be related to the amount of wall that their are.
+            for (int i = 0; i<NumbTiles; i++)
+            {
+                Floor Tile = new Floor(); 
+                List<int> FloorInfo = Tile.GetFloorInformation(i);
+                int xVector = FloorInfo[0];
+                int yVector = FloorInfo[1];
+                int xSize = FloorInfo[2];
+                int ySize = FloorInfo[3];
+                Tile.SizeTo(xSize,ySize);
+                Tile.MoveTo(xVector,yVector);
+                Tile.Tint(Color.Black());
+                TileList.Add(Tile);
+            }
 
+
+            // THis is Jsut for Lava Will need to be modified for all traps.
+            Lava GetTraps = new Lava();
+            List<Lava> LavaList = new List<Lava>(); // initializes a list of the walls in the program. 
+            int NumbTraps = GetTraps.LavaNumb;//wall.NumberOfWalls(); need to set this to be related to the amount of wall that their are.
+            for (int i = 0; i<NumbTraps; i++)
+            {
+                Lava lava = new Lava(); 
+                List<int> LavaInfo = lava.GetLavaInformation(i);
+                int xVector = LavaInfo[0];
+                int yVector = LavaInfo[1];
+                int xSize = LavaInfo[2];
+                int ySize = LavaInfo[3];
+                lava.SizeTo(xSize,ySize);
+                lava.MoveTo(xVector,yVector);
+                lava.Tint(Color.Red());
+                LavaList.Add(lava);
+            }
 
 
 
@@ -147,6 +186,7 @@ namespace Dragons
             scene.AddActor("instructions", instructions);
             scene.AddActor("status", status);
             scene.AddActor("dragon_life", dragon_life);
+            scene.AddActor("player_life", player_life);
             scene.AddActor("player", player);
             scene.AddActor("camera", camera);
             scene.AddActor("dragon", dragon_water);
@@ -156,7 +196,8 @@ namespace Dragons
             scene.AddActor("dragon", dragon_fire);
             // scene.AddActor("player_texture", player_texture);
             foreach (Actor walled in WallList){   scene.AddActor("wall",walled);   }
-
+            foreach (Actor tiler in TileList){   scene.AddActor("floor",tiler);   }
+            foreach (Actor lavaTile in LavaList){   scene.AddActor("lava",lavaTile);   }
 
 
 
