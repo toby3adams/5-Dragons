@@ -446,16 +446,16 @@ namespace Dragons.Game.Scripting{
         private int get_player_direction(Player player, Actor actor){
 
 
-            if (player.GetLeft() >= actor.GetRight() && actor.GetTop() - 8 < player.GetBottom() && actor.GetBottom() +8 > player.GetTop()){
+            if (player.GetLeft() >= actor.GetRight() && actor.GetTop()  < player.GetBottom() && actor.GetBottom() > player.GetTop()){
                 return 1;
             }
-            else if (player.GetBottom() <= actor.GetTop() && player.GetRight() > actor.GetLeft() -8 && player.GetLeft() < actor.GetRight() +8){
+            else if (player.GetBottom() <= actor.GetTop() && player.GetRight() > actor.GetLeft() && player.GetLeft() < actor.GetRight()){
                 return 3;
             }
-            else if (player.GetRight() <= actor.GetLeft() && actor.GetTop() - 8 < player.GetBottom() && actor.GetBottom() +8 > player.GetTop()){
+            else if (player.GetRight() <= actor.GetLeft() && actor.GetTop()  < player.GetBottom() && actor.GetBottom() > player.GetTop()){
                 return 5;
             }
-            else if (player.GetTop() >= actor.GetBottom() && player.GetRight() > actor.GetLeft() -8 && player.GetLeft() < actor.GetRight() +8){
+            else if (player.GetTop() >= actor.GetBottom() && player.GetRight() > actor.GetLeft() && player.GetLeft() < actor.GetRight()){
                 return 7;
             }
             else if (player.GetBottom() < actor.GetTop() && player.GetLeft() > actor.GetRight()){
