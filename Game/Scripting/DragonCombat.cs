@@ -55,7 +55,6 @@ namespace Dragons.Game.Scripting{
                     dragon.is_near_player = false;
             }
 
-            // Console.WriteLine(dragon.is_near_player); //debugging
         }
 
         private void attack_player(Scene scene, Dragon dragon, Player player){
@@ -65,10 +64,10 @@ namespace Dragons.Game.Scripting{
             wave_counter +=1;
             melee_counter +=1;
 
-            if (tracking_counter > 120){
+            if (tracking_counter > 360){
                 int players_direction = get_player_direction(player, dragon);
                 
-                Projectile tracker = new Projectile(dragon.ranged_damage, 6, players_direction);
+                Projectile tracker = new Projectile(dragon.ranged_damage, 4, players_direction);
                 tracker.SizeTo(8,8);
                 tracker.Tint(dragon.GetTint());
                 scene.AddActor("tracker", tracker);
@@ -104,7 +103,229 @@ namespace Dragons.Game.Scripting{
                 List<Projectile> trackers = scene.GetAllActors<Projectile>("tracker");
                 foreach (Projectile projectile in trackers){
                     int player_direction = get_player_direction(player, projectile);
-                    projectile.direction = player_direction;
+
+                    if (projectile.direction == 1){
+                        if (player_direction == 1){
+                            projectile.direction += 0;
+                        }
+                        if (player_direction == 2){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 3){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 4){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 5){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 6){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 7){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 8){
+                            projectile.direction -= 1;
+                        }
+                    }
+                    else if (projectile.direction == 2){
+                        if (player_direction == 1){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 2){
+                            projectile.direction += 0;
+                        }
+                        if (player_direction == 3){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 4){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 5){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 6){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 7){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 8){
+                            projectile.direction -= 1;
+                        }
+                    }
+                    else if (projectile.direction == 3){
+                        if (player_direction == 1){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 2){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 3){
+                            projectile.direction += 0;
+                        }
+                        if (player_direction == 4){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 5){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 6){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 7){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 8){
+                            projectile.direction -= 1;
+                        }
+                    }               
+                    else if (projectile.direction == 4){
+                        if (player_direction == 1){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 2){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 3){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 4){
+                            projectile.direction += 0;
+                        }
+                        if (player_direction == 5){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 6){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 7){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 8){
+                            projectile.direction += 1;
+                        }
+                    }
+                    else if (projectile.direction == 5){
+                        if (player_direction == 1){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 2){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 3){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 4){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 5){
+                            projectile.direction += 0;
+                        }
+                        if (player_direction == 6){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 7){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 8){
+                            projectile.direction += 1;
+                        }
+                    }
+                    else if (projectile.direction == 6){
+                        if (player_direction == 1){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 2){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 3){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 4){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 5){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 6){
+                            projectile.direction += 0;
+                        }
+                        if (player_direction == 7){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 8){
+                            projectile.direction += 1;
+                        }
+                    }
+                    else if (projectile.direction == 7){
+                        if (player_direction == 1){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 2){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 3){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 4){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 5){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 6){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 7){
+                            projectile.direction += 0;
+                        }
+                        if (player_direction == 8){
+                            projectile.direction += 1;
+                        }
+                    }
+                    else if (projectile.direction == 8){
+                        if (player_direction == 1){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 2){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 3){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 4){
+                            projectile.direction += 1;
+                        }
+                        if (player_direction == 5){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 6){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 7){
+                            projectile.direction -= 1;
+                        }
+                        if (player_direction == 8){
+                            projectile.direction += 0;
+                        }
+                    }
+
+
+
+
+
+
+                    if (projectile.direction == 9){
+                        projectile.direction = 1;
+                    }
+                    if (projectile.direction == 0){
+                        projectile.direction = 8;
+                    }
+                    
+
                 }
             }
 
@@ -197,7 +418,6 @@ namespace Dragons.Game.Scripting{
             if (!(player.GetCenterX() < dragon.GetCenterX() + 150 && player.GetCenterX() > dragon.GetCenterX() -150) || (!(player.GetCenterY() < dragon.GetCenterY() + 150 && player.GetCenterY() > dragon.GetCenterY() -150))){
                     melee_counter = 0;
             }
-            
         }
 
 
@@ -226,16 +446,16 @@ namespace Dragons.Game.Scripting{
         private int get_player_direction(Player player, Actor actor){
 
 
-            if (player.GetLeft() > actor.GetRight() && actor.GetTop() - 25 < player.GetBottom() && actor.GetBottom() +25 > player.GetTop()){
+            if (player.GetLeft() >= actor.GetRight() && actor.GetTop() - 8 < player.GetBottom() && actor.GetBottom() +8 > player.GetTop()){
                 return 1;
             }
-            else if (player.GetBottom() < actor.GetTop() && player.GetRight() > actor.GetLeft() -25 && player.GetLeft() < actor.GetRight() +25){
+            else if (player.GetBottom() <= actor.GetTop() && player.GetRight() > actor.GetLeft() -8 && player.GetLeft() < actor.GetRight() +8){
                 return 3;
             }
-            else if (player.GetRight() < actor.GetLeft() && actor.GetTop() - 25 < player.GetBottom() && actor.GetBottom() +25 > player.GetTop()){
+            else if (player.GetRight() <= actor.GetLeft() && actor.GetTop() - 8 < player.GetBottom() && actor.GetBottom() +8 > player.GetTop()){
                 return 5;
             }
-            else if (player.GetTop() > actor.GetBottom() && player.GetRight() > actor.GetLeft() -25 && player.GetLeft() < actor.GetRight() +25){
+            else if (player.GetTop() >= actor.GetBottom() && player.GetRight() > actor.GetLeft() -8 && player.GetLeft() < actor.GetRight() +8){
                 return 7;
             }
             else if (player.GetBottom() < actor.GetTop() && player.GetLeft() > actor.GetRight()){
