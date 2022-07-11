@@ -55,6 +55,9 @@ namespace Dragons.Game.Scripting
                 if (player.GetBottom() >= dragon.GetTop() && player.GetTop() < dragon.GetTop() && player.GetRight() > dragon.GetLeft() && player.GetLeft() < dragon.GetRight()){
                     collision_down = true;
                 } 
+
+
+               
             }
 
         }

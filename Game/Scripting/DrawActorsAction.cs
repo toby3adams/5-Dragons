@@ -31,8 +31,10 @@ namespace Dragons.Game.Scripting
                 List<Actor> swing = scene.GetAllActors("swing");
                 Label status = scene.GetFirstActor<Label>("status");
                 Label dragon_life = scene.GetFirstActor<Label>("dragon_life");
+                Label player_life = scene.GetFirstActor<Label>("player_life");
                 List<Actor> walls = scene.GetAllActors("wall");
-
+                List<Actor> floors = scene.GetAllActors("floor");
+                List<Actor> lavas = scene.GetAllActors("lava");
 
                 Actor world = camera.GetWorld();
                 foreach (Actor dragon in dragons){
@@ -53,10 +55,17 @@ namespace Dragons.Game.Scripting
                 _videoService.Draw(instructions);
 
                 _videoService.Draw(dragons, camera);
+                _videoService.Draw(floors, camera);
+
+
+                _videoService.Draw(lavas, camera);
+                
+                
                 _videoService.Draw(walls, camera);
                 _videoService.Draw(projectiles, camera);
                 _videoService.Draw(status);
                 _videoService.Draw(dragon_life);
+                _videoService.Draw(player_life);
                 _videoService.Draw(swing, camera);
                 _videoService.Draw(player, camera);
                 _videoService.FlushBuffer();

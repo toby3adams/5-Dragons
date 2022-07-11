@@ -48,25 +48,10 @@ namespace Dragons.Game.Casting{
 
             //Final Boss Room 
             FinalBossRoom(SpawnlocationX-SquareRoomSize,SpawnlocationY-SquareRoomSize*4);
-
-            // LeftCap(5000+SquareRoomSize,5000);
-            // RightCap(5000-SquareRoomSize,5000);
-            // TopCap(5000,5000+2*SquareRoomSize);
-            // BottomCap(5000,5000-2*SquareRoomSize);
-
-            //TopRightElbow(4500,5000-3*SquareRoomSize);
-             
-             
-            //  WallVectorList.Add(new List<int>  {800,20}); // Wall 6 
-            // WallSizeList.Add(new List<int>  {50,20}); // Wall 6
-            //  WallVectorList.Add(new List<int>  {900,20}); // Wall 7 
-            // WallSizeList.Add(new List<int>  {50,20}); // Wall 7
-            //  WallVectorList.Add(new List<int>  {10,1000}); // Wall 8 
-            // WallSizeList.Add(new List<int>  {1000,20}); // Wall 8 
             wallNumb = WallVectorList.Count();
         }
 
-        public int NumberOfWalls()              // sets the amount of walls based on the initialized amount of walls. 
+        public int NumberOfWalls()// sets the amount of walls based on the initialized amount of walls. 
         {
             wallNumb = WallVectorList.Count();
             return wallNumb;
@@ -76,14 +61,8 @@ namespace Dragons.Game.Casting{
         {
             List<int> Info = WallVectorList[i].Concat(WallSizeList[i]).ToList();
             return Info; // 0 -> x 1-> y 2 -> sizeX 3 -> sizeY
-            // We can either create a list of coordinates or try makeing an equation to fit our positions.
         }
 
-
-        //spawn 4 doors
-        //Left,Right,Up,Down Caps
-        //Horizontal and Vertical Threw
-        //(Bottom,Right),(Left,Top),(Top,Right) Elbows
 // 500X500 Cubes  20x20 Matrix //10000/500 = 20  20x20  middle 5000,5000                                        //middle 5000,5000
         public void FinalBossRoom(int MatrixPositionX, int MatrixPositionY)
         {
