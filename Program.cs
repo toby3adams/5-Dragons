@@ -98,6 +98,17 @@ namespace Dragons
             //dragon_shadow.MoveTo(2600, 1800);
             dragon_shadow.MoveTo(dragon_shadow_pos.GetX(), dragon_shadow_pos.GetY());
             dragon_shadow.Tint(Color.Purple());
+
+            // Traps
+            BuildTraps traps = new BuildTraps();
+            traps.GenTraps();
+            List<Actor> AllTraps = traps.GetAllTraps();
+            foreach(Actor actor in AllTraps)
+            {
+                actor.SizeTo(actor.GetHeight(), actor.GetWidth());
+                actor.MoveTo(actor.GetX(), actor.GetY());
+                actor.Tint(Color.Black());
+            }
             
 
             Wall GetNumberOfWalls = new Wall();
@@ -194,6 +205,10 @@ namespace Dragons
             scene.AddActor("dragon", dragon_air);
             scene.AddActor("dragon", dragon_shadow);
             scene.AddActor("dragon", dragon_fire);
+            foreach(Actor actor in AllTraps)
+            {
+                scene.AddActor("Trap", actor);
+            }
             // scene.AddActor("player_texture", player_texture);
             foreach (Actor walled in WallList){   scene.AddActor("wall",walled);   }
             foreach (Actor tiler in TileList){   scene.AddActor("floor",tiler);   }

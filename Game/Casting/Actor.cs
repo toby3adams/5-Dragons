@@ -9,6 +9,8 @@ namespace Dragons.Game.Casting
     /// </summary> 
     public class Actor
     {
+        private int x;
+        private int y;
         private bool _enabled = true;
         private Vector2 _position = Vector2.Zero;
         private float _rotation = 0f;
@@ -162,6 +164,16 @@ namespace Dragons.Game.Casting
         public virtual float GetWidth()
         {
             return _size.X;
+        }
+
+        public virtual int GetX()
+        {
+            return x;
+        }
+
+        public virtual int GetY()
+        {
+            return y;
         }
 
         public virtual void Move()
