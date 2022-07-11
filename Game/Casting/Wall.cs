@@ -37,14 +37,14 @@ namespace Dragons.Game.Casting{
             BottomCap(SpawnlocationX+SquareRoomSize,SpawnlocationY-SquareRoomSize);
 
             //Add 3 walls to block off exit. These Will be commented out.
-            // WallVectorList.Add(new List<int>  {SpawnlocationX+SquareRoomSize*2,SpawnlocationY});  //Top Wall
-            // WallSizeList.Add(new List<int>  {WallThickness,SquareRoomSize});  
+            WallVectorList.Add(new List<int>  {SpawnlocationX+SquareRoomSize*2,SpawnlocationY});  //Top Wall
+            WallSizeList.Add(new List<int>  {WallThickness,SquareRoomSize});  
                 
-            //  WallVectorList.Add(new List<int>  {SpawnlocationX-SquareRoomSize,SpawnlocationY}); 
-            // WallSizeList.Add(new List<int>  {WallThickness,SquareRoomSize}); 
+             WallVectorList.Add(new List<int>  {SpawnlocationX-SquareRoomSize,SpawnlocationY}); 
+            WallSizeList.Add(new List<int>  {WallThickness,SquareRoomSize}); 
 
-            //  WallVectorList.Add(new List<int>  {SpawnlocationX,SpawnlocationY+SquareRoomSize*2});//Bottom wall
-            // WallSizeList.Add(new List<int>  {SquareRoomSize,WallThickness}); 
+             WallVectorList.Add(new List<int>  {SpawnlocationX,SpawnlocationY+SquareRoomSize*2});//Bottom wall
+            WallSizeList.Add(new List<int>  {SquareRoomSize,WallThickness}); 
 
             //Final Boss Room 
             FinalBossRoom(SpawnlocationX-SquareRoomSize/2,SpawnlocationY-SquareRoomSize*(3)-500);

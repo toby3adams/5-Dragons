@@ -54,13 +54,13 @@ namespace Dragons.Game.Scripting
                 _videoService.DrawGrid(100, Color.Gray(), camera);
                 _videoService.Draw(instructions);
 
-                _videoService.Draw(dragons, camera);
+                
                 _videoService.Draw(floors, camera);
 
 
                 _videoService.Draw(lavas, camera);
                 
-                
+                _videoService.Draw(dragons, camera);
                 _videoService.Draw(walls, camera);
                 _videoService.Draw(projectiles, camera);
                 _videoService.Draw(status);
