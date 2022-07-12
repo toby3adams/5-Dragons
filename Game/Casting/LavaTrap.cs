@@ -22,13 +22,13 @@ namespace Dragons.Game.Casting{
             // keep the size of the trap perportional to the wall size. off set right wallLava by the size / 20 = x, remove x from for loop
             // goes around the Top Left Room
             // it may be easier to dispaly floor above lava so that we can fill an entire room with lava???? Collision may not work like that.
-            for (int i =0; i<=17;i+=17)
+            /*for (int i =0; i<=17;i+=17)
             {
                 for(int b =0; b<20; b++)
                 {
                     CreateLava(2600+TileSize*i+WallSize,2600+TileSize*b,40,40); 
                 }
-            }
+            }*/
 
             LavaNumb = LavaVectorList.Count();
         }

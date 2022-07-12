@@ -22,6 +22,8 @@ namespace Dragons
             bool AddToList = true; // used to Add generated Point to list in RandomPos class
             bool DontAddToList = false; // used to indicate that point is NOT to be added to list in RandomPos class
             
+            Scene scene = new Scene();
+
             // Instantiate a service factory for other objects to use.
             IServiceFactory serviceFactory = new RaylibServiceFactory();
             Random rand = new Random();
@@ -54,13 +56,13 @@ namespace Dragons
             RandomPos rdp = new RandomPos();
             // params: min x value, max x value, min y value, max y value, Add to list for randomization, make number divisible by spec int.
             // pos1            
-            rdp.GeneratePosition(400,600,2900,3100,AddToList,5); 
+            rdp.GeneratePosition(465,465,2965,2965,AddToList,5); 
             // pos 2
-            rdp.GeneratePosition(2400,2600,2900,3100,AddToList,5);
+            rdp.GeneratePosition(465,465,4975,4975,AddToList,5);
             // pos 3
-            rdp.GeneratePosition(400,600,4900,5100,AddToList,5);
+            rdp.GeneratePosition(2480,2480,2965,2965,AddToList,5);
             // pos 4
-            rdp.GeneratePosition(2400,2600,4900,5100,AddToList,5);
+            rdp.GeneratePosition(2480,2480,4975,4975,AddToList,5);
             
             rdp.ShufflePoints();
             // water, earth, air, fire dragons added to list for randomzing of position.
@@ -102,13 +104,29 @@ namespace Dragons
             // Traps
             BuildTraps traps = new BuildTraps();
             traps.GenTraps();
-            List<Actor> AllTraps = traps.GetAllTraps();
-            foreach(Actor actor in AllTraps)
+            List<Trap> AllTraps = traps.GetAllTraps();
+            List<Actor> Pits = new List<Actor>();
+            List<Actor> Lava = new List<Actor>();
+            foreach(Actor trap in AllTraps)
             {
-                actor.SizeTo(actor.GetHeight(), actor.GetWidth());
-                actor.MoveTo(actor.GetX(), actor.GetY());
-                actor.Tint(Color.Black());
+                int TrapType = trap.GetTrapType();
+                trap.SizeTo(trap.GetWidth(), trap.GetHeight());
+                trap.MoveTo(trap.GetX(), trap.GetY());
+                if(TrapType == 1)
+                {
+                    trap.Tint(Color.Black());
+                    Pits.Add(trap);
+                    scene.AddActor("pit", trap);
+                }  
+                if(TrapType == 2)              
+                {
+                    trap.Tint(Color.Orange());
+                    Lava.Add(trap);
+                    scene.AddActor("lava", trap);
+                }
             }
+            
+
             
 
             Wall GetNumberOfWalls = new Wall();
@@ -124,7 +142,7 @@ namespace Dragons
                 int ySize = WallInfo[3];
                 wall.SizeTo(xSize,ySize);
                 wall.MoveTo(xVector,yVector);
-                wall.Tint(Color.Orange());
+                wall.Tint(Color.Gray());
                 WallList.Add(wall);
             }
             //This is a test code. 
@@ -193,7 +211,7 @@ namespace Dragons
 
 
             // Instantiate a new scene, add the actors and actions.
-            Scene scene = new Scene();
+            
             scene.AddActor("instructions", instructions);
             scene.AddActor("status", status);
             scene.AddActor("dragon_life", dragon_life);
@@ -204,11 +222,7 @@ namespace Dragons
             scene.AddActor("dragon", dragon_earth);
             scene.AddActor("dragon", dragon_air);
             scene.AddActor("dragon", dragon_shadow);
-            scene.AddActor("dragon", dragon_fire);
-            foreach(Actor actor in AllTraps)
-            {
-                scene.AddActor("Trap", actor);
-            }
+            scene.AddActor("dragon", dragon_fire);            
             // scene.AddActor("player_texture", player_texture);
             foreach (Actor walled in WallList){   scene.AddActor("wall",walled);   }
             foreach (Actor tiler in TileList){   scene.AddActor("floor",tiler);   }

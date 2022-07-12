@@ -4,6 +4,6 @@ namespace Dragons.Game.Casting{
 
     public class Turret : Image 
     {
-        public Turret
+        public Turret(){}
     }
 }

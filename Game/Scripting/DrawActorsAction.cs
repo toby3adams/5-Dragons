@@ -35,7 +35,9 @@ namespace Dragons.Game.Scripting
                 Label player_life = scene.GetFirstActor<Label>("player_life");
                 List<Actor> walls = scene.GetAllActors("wall");
                 List<Actor> floors = scene.GetAllActors("floor");
-                List<Actor> lavas = scene.GetAllActors("lava");
+                //List<Actor> lavas = scene.GetAllActors("lava");
+                List<Actor> pits = scene.GetAllActors("pit");
+                List<Actor> lava = scene.GetAllActors<Actor>("lava"); // will need to be changed to Image for texture application
 
                 Actor world = camera.GetWorld();
                 foreach (Actor dragon in dragons){
@@ -52,25 +54,25 @@ namespace Dragons.Game.Scripting
                 // parameter when drawing the player. The videoservice uses the camera to translate
                 // the player's position within the world to its position on the screen.
                 _videoService.ClearBuffer();
-                _videoService.DrawGrid(100, Color.Gray(), camera);
-                
-
-                
-                _videoService.Draw(floors, camera);
-
-
-                _videoService.Draw(lavas, camera);
-                
+                _videoService.DrawGrid(10, Color.Gray(), camera);   
+               // _videoService.DrawGrid(50, Color.Red(), camera);      
+               // _videoService.DrawGrid(100, Color.Blue(), camera);         
+                //_videoService.Draw(floors, camera);
+               // _videoService.Draw(lavas, camera);                
                 _videoService.Draw(dragons, camera);
                 _videoService.Draw(walls, camera);
                 _videoService.Draw(projectiles, camera);
                 _videoService.Draw(trackers, camera);
                 _videoService.Draw(swing, camera);
+                
+                
+                _videoService.Draw(pits,camera);
+                _videoService.Draw(lava, camera);
+                _videoService.Draw(player, camera); 
                 _videoService.Draw(status);
                 _videoService.Draw(instructions);
                 _videoService.Draw(dragon_life);
-                _videoService.Draw(player_life);
-                _videoService.Draw(player, camera);
+                _videoService.Draw(player_life);                        
                 _videoService.FlushBuffer();
             }
             catch (Exception exception)
