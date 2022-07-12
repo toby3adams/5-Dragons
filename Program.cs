@@ -48,7 +48,7 @@ namespace Dragons
             
             Player player = new Player();
             player.SizeTo(50, 50);
-            player.MoveTo(3250, 3250); //5250,5250 SpawnLocation
+            player.MoveTo(1480, 5450); //5250,5250 SpawnLocation
             // player.Tint(Color.Red());
             player.Display("Game/Assets/fighter.png");
 
