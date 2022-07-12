@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 
 namespace Dragons.Game.Casting{
-    public class Wall : Actor{
+    public class Wall : Image{
 
         public int wallNumb = 0; 
         private int SquareRoomSize = 1000; // This will scale all of the structures on a map
