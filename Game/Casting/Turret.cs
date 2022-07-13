@@ -4,7 +4,8 @@ namespace Dragons.Game.Casting{
 
     public class Turret : Image 
     {
-        
+        public int turret_counter = 0;
+        public int expect_count = 60;
         private int TurretDirection;
         private float Height;
         private float Width;
