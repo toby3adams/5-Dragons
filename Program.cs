@@ -210,6 +210,7 @@ namespace Dragons
             ProjectileCollisions projectile_collisions = new ProjectileCollisions();
             DragonCombat dragon_combat = new DragonCombat();
             TrapActions trap_action = new TrapActions();
+            PlayMusicAction playMusicAction = new PlayMusicAction(serviceFactory);
 //            DrawImageAction drawImageAction = new DrawImageAction(serviceFactory);
 
 
@@ -239,10 +240,13 @@ namespace Dragons
             scene.AddAction(Phase.Update, movePlayerAction);
             scene.AddAction(Phase.Update, updateStatusAction);
             scene.AddAction(Phase.Update, projectile_movement);
-            scene.AddAction(Phase.Output, drawActorsAction);
             scene.AddAction(Phase.Update, projectile_collisions);
             scene.AddAction(Phase.Update, dragon_combat);
             scene.AddAction(Phase.Update, trap_action);
+            scene.AddAction(Phase.Output, drawActorsAction);
+            scene.AddAction(Phase.Output, playMusicAction);
+            
+            
 //            scene.AddAction(Phase.Update, drawImageAction);
 
             // Start the game.
