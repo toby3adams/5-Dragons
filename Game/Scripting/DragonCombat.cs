@@ -15,6 +15,7 @@ namespace Dragons.Game.Scripting{
         int tracking_counter = 0;
         int melee_counter = 0;
         int wave_counter = 0;
+        bool initial = true;
         DirectionAndTracking tracking = new DirectionAndTracking();
         
 
@@ -24,7 +25,11 @@ namespace Dragons.Game.Scripting{
             List<Dragon> dragons = scene.GetAllActors<Dragon>("dragon");
             Player player = scene.GetFirstActor<Player>("player");
 
-                
+            if (initial){
+                // foreach()
+
+                initial = false;
+            }
 
             foreach (Dragon dragon in dragons){
                 check_health_death(scene, dragon, player);

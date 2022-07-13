@@ -1,5 +1,5 @@
 namespace Dragons.Game.Casting{
-    public class Projectile : Image {
+    public class Projectile : Image{
 
         public Projectile(int damage, int speed, int direction){
             this.damage = damage;
