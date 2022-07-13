@@ -54,9 +54,7 @@ namespace Dragons.Game.Scripting {
             {
                 
             }
-        }
-
-        
+        }    
         
 
         public void GenTrapsRoom_2()
