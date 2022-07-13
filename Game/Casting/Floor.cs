@@ -18,6 +18,8 @@ namespace Dragons.Game.Casting{
         public Floor()
         {
             
+            CreateFloor(SpawnlocationX,SpawnlocationY-RoomSize*2);
+
 
             for (int i=0; i<=2;i++)
             {
@@ -27,7 +29,7 @@ namespace Dragons.Game.Casting{
             }
             }
             
-            CreateFloor(SpawnlocationX,SpawnlocationY-RoomSize*2);
+            
 
             for (int i=0; i<=1;i++)
             {
