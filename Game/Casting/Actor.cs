@@ -221,6 +221,12 @@ namespace Dragons.Game.Casting
                 && this.GetTop() < other.GetBottom() && this.GetBottom() > other.GetTop());
         }
 
+        public virtual bool FullyOverlaps(Actor other,int TopOffSet=0,int BottomOffSet=0,int LeftOffSet=0,int RightOffSet=0)
+        {
+            return (this.GetCenterX() < other.GetRight()+RightOffSet && this.GetCenterX() < other.GetRight()+RightOffSet && this.GetCenterX() > other.GetLeft()+LeftOffSet && this.GetCenterX() > other.GetLeft()+LeftOffSet
+                && this.GetCenterY() < other.GetBottom()+BottomOffSet && this.GetCenterY() < other.GetBottom()+BottomOffSet&& this.GetCenterY() > other.GetTop()+TopOffSet && this.GetCenterY() > other.GetTop()+TopOffSet);
+        }
+
         public virtual bool Overlaps(Vector2 point)
         {
             return (this.GetLeft() <= point.X && this.GetRight() >= point.X
