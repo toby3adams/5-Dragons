@@ -424,7 +424,9 @@ namespace Dragons.Game.Scripting {
                 int top_arrow_x_start = 1040;
                 int top_arrow_counter = 0;
                 Trap pit = new Trap(740,740,1150,4650, 1);
-                Traps.Add(pit);                
+                Traps.Add(pit);  
+                //Trap arrow_bottom = new Trap(110,40,bottom_arrow_x_start,5500, 1); // 1 = positive verticle projectile
+                //Traps.Add(arrow_bottom);              
                 for(int i = 0; i < 4; i++)
                 {
                     Trap arrow_bottom = new Trap(110,40,bottom_arrow_x_start,5500, 1); // 1 = positive verticle projectile
