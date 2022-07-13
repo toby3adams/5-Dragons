@@ -8,62 +8,32 @@ namespace Dragons.Game.Scripting
 {
 
     public class TrapActions : Action
-    {
-        private int lava_counter;
-
-        private int pit_fallBottom =-20;
-        private int pit_fallTop =-21;
-
-        private int pit_fallLeft=0;
-        private int pit_fallRight =0;
-              
+    {   
         Random rnd = new Random();
         public TrapActions(){}
 
 
         public override void Execute(Scene scene, float deltaTime, IActionCallback callback)
         {
+            List<Floor>Room = scene.GetAllActors<Floor>("floor");
             List<Trap>Traps = scene.GetAllActors<Trap>("Trap");
             List<Turret>Turrets = scene.GetAllActors<Turret>("ArrowTrap");
             Player player = scene.GetFirstActor<Player>("player");
             
-
-            foreach (Turret turret in Turrets)
+            //if(player.Get)
+            foreach(Floor floor in Room)
             {
-                turret_attack(scene, turret, player);
-                Console.WriteLine("pow");
-            }
-
-            //Player player = scene.GetFirstActor<Player>("player");
-            
-
-                if (this.lava_counter > 65)
+                // example code: int index = myList.FindIndex(a => a.Contains("Tennis"));
+                int room_num = Room.IndexOf(floor);
+                foreach (Turret turret in Turrets)
                 {
-                    List<Trap> Lava = scene.GetAllActors<Trap>("lava"); 
-
-
-                    foreach (Trap lavaBlock in Lava){
-                        if (player.Overlaps(lavaBlock)){
-                            player.takes_damage(player.damage);
-                        }
-                    }
-                    this.lava_counter=0;
-                }
-                this.lava_counter++;
-
-                //Doesn't need counter
-                    List<Trap> pit_fall = scene.GetAllActors<Trap>("pit");
-
-                    foreach (Trap pit_falls in pit_fall)
+                    if(turret.GetRoom() == room_num && player.FullyOverlaps(floor))
                     {
-                        if(player.FullyOverlaps(pit_falls,pit_fallTop,pit_fallBottom,pit_fallLeft,pit_fallRight))
-                        {
-                           player.takes_damage(player.damage); 
-                        }
-
-
-
-                    }
+                        turret_attack(scene, turret, player);
+                    }                    
+                }
+            }
+            
         }
 
         public void attack_player(Scene scene, Trap trap, Player player)
@@ -78,24 +48,24 @@ namespace Dragons.Game.Scripting
             {
                 int arrow_direction = turret.GetTurretDirection();
             Projectile arrow = new Projectile(10, 4, arrow_direction);
-            arrow.SizeTo(11,11);
+            arrow.SizeTo(20,20);
             arrow.Tint(Color.Orange());
             scene.AddActor("projectile", arrow);
             arrow.Display("Game/Assets/fireball.png");
             if(arrow_direction == 1){
-                arrow.MoveTo(turret.GetRight()+15, turret.GetCenterY());
+                arrow.MoveTo(turret.GetRight()+20, turret.GetCenterY());
             }
             if(arrow_direction == 2){
-                arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+10);
+                arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+20);
             }
             if(arrow_direction == 3){
-                arrow.MoveTo(turret.GetCenterX(), turret.GetTop()-10);
+                arrow.MoveTo(turret.GetCenterX(), turret.GetTop()-20);
             }
             if(arrow_direction == 4){
-                arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+10);
+                arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+20);
             }
             if(arrow_direction == 5){
-                arrow.MoveTo(turret.GetLeft()-15, turret.GetCenterY());
+                arrow.MoveTo(turret.GetLeft()-20, turret.GetCenterY());
             }
             if(arrow_direction == 6){
                 arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+10);
