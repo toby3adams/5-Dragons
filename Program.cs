@@ -181,8 +181,8 @@ namespace Dragons
                 int ySize = FloorInfo[3];
                 Tile.SizeTo(xSize,ySize);
                 Tile.MoveTo(xVector,yVector);
-                Tile.Tint(Color.Gray());
-                Tile.Display("Game/Assets/floor_cobble.png");
+                //Tile.Tint(Color.Gray());
+                Tile.Display("Game/Assets/brick_floor.png");
                 TileList.Add(Tile);
             }
 
