@@ -23,6 +23,7 @@ namespace Dragons
             bool DontAddToList = false; // used to indicate that point is NOT to be added to list in RandomPos class
             
             Scene scene = new Scene();
+            TrapActions trap_actions = new TrapActions();
 
             // Instantiate a service factory for other objects to use.
             IServiceFactory serviceFactory = new RaylibServiceFactory();
@@ -219,6 +220,7 @@ namespace Dragons
             ProjectilePositionAction projectile_movement = new ProjectilePositionAction();
             ProjectileCollisions projectile_collisions = new ProjectileCollisions();
             DragonCombat dragon_combat = new DragonCombat();
+            TrapActions trap_action = new TrapActions();
 //            DrawImageAction drawImageAction = new DrawImageAction(serviceFactory);
 
 
@@ -251,6 +253,7 @@ namespace Dragons
             scene.AddAction(Phase.Output, drawActorsAction);
             scene.AddAction(Phase.Update, projectile_collisions);
             scene.AddAction(Phase.Update, dragon_combat);
+            scene.AddAction(Phase.Update, trap_action);
 //            scene.AddAction(Phase.Update, drawImageAction);
 
             // Start the game.
