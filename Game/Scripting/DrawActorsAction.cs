@@ -38,6 +38,7 @@ namespace Dragons.Game.Scripting
                 //List<Actor> lavas = scene.GetAllActors("lava");
                 List<Actor> pits = scene.GetAllActors("pit");
                 List<Actor> lava = scene.GetAllActors<Actor>("lava"); // will need to be changed to Image for texture application
+                List<Actor> ArrowTraps = scene.GetAllActors<Actor>("ArrowTrap");
 
                 Actor world = camera.GetWorld();
                 foreach (Actor dragon in dragons){
@@ -55,17 +56,16 @@ namespace Dragons.Game.Scripting
                 // the player's position within the world to its position on the screen.
                 _videoService.ClearBuffer();
                 _videoService.DrawGrid(10, Color.Gray(), camera);   
-               // _videoService.DrawGrid(50, Color.Red(), camera);      
-               // _videoService.DrawGrid(100, Color.Blue(), camera);         
+                _videoService.DrawGrid(50, Color.Red(), camera);      
+                _videoService.DrawGrid(100, Color.Blue(), camera);         
                 //_videoService.Draw(floors, camera);
                // _videoService.Draw(lavas, camera);                
                 _videoService.Draw(dragons, camera);
                 _videoService.Draw(walls, camera);
+                _videoService.Draw(ArrowTraps, camera);
                 _videoService.Draw(projectiles, camera);
                 _videoService.Draw(trackers, camera);
-                _videoService.Draw(swing, camera);
-                
-                
+                _videoService.Draw(swing, camera);             
                 _videoService.Draw(pits,camera);
                 _videoService.Draw(lava, camera);
                 _videoService.Draw(player, camera); 

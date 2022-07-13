@@ -48,7 +48,7 @@ namespace Dragons
             
             Player player = new Player();
             player.SizeTo(50, 50);
-            player.MoveTo(1480, 5450); //5250,5250 SpawnLocation
+            player.MoveTo(1480, 4000); //5250,5250 SpawnLocation
             // player.Tint(Color.Red());
             player.Display("Game/Assets/fighter.png");
 
@@ -105,8 +105,10 @@ namespace Dragons
             BuildTraps traps = new BuildTraps();
             traps.GenTraps();
             List<Trap> AllTraps = traps.GetAllTraps();
+            List<Turret> AllTurrets = traps.GetTurrets();
             List<Actor> Pits = new List<Actor>();
             List<Actor> Lava = new List<Actor>();
+            List<Actor> ArrowTrap = new List<Actor>();
             foreach(Actor trap in AllTraps)
             {
                 int TrapType = trap.GetTrapType();
@@ -125,6 +127,16 @@ namespace Dragons
                     scene.AddActor("lava", trap);
                 }
             }
+            foreach(Actor turret in AllTurrets)
+            {
+                turret.SizeTo(turret.GetWidth(), turret.GetHeight());
+                turret.MoveTo(turret.GetX(), turret.GetY());
+                turret.Tint(Color.Purple());
+                ArrowTrap.Add(turret);
+                scene.AddActor("ArrowTrap", turret);
+            }
+                    
+            
             
 
             

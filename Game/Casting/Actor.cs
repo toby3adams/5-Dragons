@@ -10,6 +10,7 @@ namespace Dragons.Game.Casting
     public class Actor
     {
         private int TrapType;
+        private int TurretDirection;
         private int x;
         private int y;
         private bool _enabled = true;
@@ -160,6 +161,11 @@ namespace Dragons.Game.Casting
         public virtual int GetTrapType()
         {
             return TrapType;
+        }
+
+        public virtual int GetTurretDirection()
+        {
+            return TurretDirection;
         }
 
         public virtual Vector2 GetVelocity()
