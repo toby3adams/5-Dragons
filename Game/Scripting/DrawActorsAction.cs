@@ -26,19 +26,19 @@ namespace Dragons.Game.Scripting
                 Camera camera = scene.GetFirstActor<Camera>("camera");
                 Label instructions = scene.GetFirstActor<Label>("instructions");
                 Image player = scene.GetFirstActor<Image>("player");
-                List<Actor> dragons = scene.GetAllActors("dragon");
-                List<Actor> projectiles = scene.GetAllActors("projectile");
-                List<Actor> trackers = scene.GetAllActors("tracker");
+                List<Image> dragons = scene.GetAllActors<Image>("dragon");
+                List<Image> projectiles = scene.GetAllActors<Image>("projectile");
+                List<Image> trackers = scene.GetAllActors<Image>("tracker");
                 List<Actor> swing = scene.GetAllActors("swing");
                 Label status = scene.GetFirstActor<Label>("status");
                 Label dragon_life = scene.GetFirstActor<Label>("dragon_life");
                 Label player_life = scene.GetFirstActor<Label>("player_life");
-                List<Actor> walls = scene.GetAllActors("wall");
-                List<Actor> floors = scene.GetAllActors("floor");
-                //List<Actor> lavas = scene.GetAllActors("lava");
+                List<Image> walls = scene.GetAllActors<Image>("wall");
+                List<Image> floors = scene.GetAllActors<Image>("floor");
                 List<Actor> pits = scene.GetAllActors("pit");
-                List<Actor> lava = scene.GetAllActors<Actor>("lava"); // will need to be changed to Image for texture application
+                List<Image> lava = scene.GetAllActors<Image>("lava"); // will need to be changed to Image for texture application
                 List<Actor> ArrowTraps = scene.GetAllActors<Actor>("ArrowTrap");
+                List<Actor> Arrows = scene.GetAllActors<Actor>("arrow");
 
                 Actor world = camera.GetWorld();
                 foreach (Actor dragon in dragons){
@@ -59,15 +59,18 @@ namespace Dragons.Game.Scripting
                 _videoService.DrawGrid(50, Color.Red(), camera);      
                 _videoService.DrawGrid(100, Color.Blue(), camera);         
                 _videoService.Draw(floors, camera);
-               // _videoService.Draw(lavas, camera);                
-                _videoService.Draw(dragons, camera);
-                _videoService.Draw(walls, camera);
-                _videoService.Draw(ArrowTraps, camera);
-                _videoService.Draw(projectiles, camera);
-                _videoService.Draw(trackers, camera);
-                _videoService.Draw(swing, camera);             
                 _videoService.Draw(pits,camera);
-                _videoService.Draw(lava, camera);
+                _videoService.Draw(lava, camera);             
+                _videoService.Draw(dragons, camera);
+                
+                
+                _videoService.Draw(ArrowTraps, camera);
+                _videoService.Draw(walls, camera);
+                _videoService.Draw(projectiles, camera);
+                _videoService.Draw(Arrows, camera);
+                _videoService.Draw(trackers, camera);
+                _videoService.Draw(swing, camera);
+
                 _videoService.Draw(player, camera); 
                 _videoService.Draw(status);
                 _videoService.Draw(instructions);

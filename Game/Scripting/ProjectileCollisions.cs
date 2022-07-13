@@ -22,7 +22,7 @@ namespace Dragons.Game.Scripting{
 
             wall_tracker_collision(scene, trackers);
             player_tracker_collision(scene, trackers);
-            // dragon_tracker_collision(scene, trackers);            
+            dragon_tracker_collision(scene, trackers);            
 
         }
 
@@ -85,6 +85,23 @@ namespace Dragons.Game.Scripting{
                             dragon.takes_damage(projectile.damage);
                         }
                         scene.RemoveActor("projectile", projectile);
+                    }
+
+                }
+            }
+        }
+
+        public void dragon_tracker_collision(Scene scene, List<Projectile> projectiles){
+
+            List<Dragon> dragons = scene.GetAllActors<Dragon>("dragon");
+
+            foreach (Dragon dragon in dragons){
+                foreach(Projectile projectile in projectiles){
+                    if (projectile.Overlaps(dragon)){
+                        if (dragon.is_near_player){
+                            dragon.takes_damage(projectile.damage);
+                        }
+                        scene.RemoveActor("tracker", projectile);
                     }
 
                 }

@@ -23,6 +23,7 @@ namespace Dragons
             bool DontAddToList = false; // used to indicate that point is NOT to be added to list in RandomPos class
             
             Scene scene = new Scene();
+            TrapActions trap_actions = new TrapActions();
 
             // Instantiate a service factory for other objects to use.
             IServiceFactory serviceFactory = new RaylibServiceFactory();
@@ -71,6 +72,7 @@ namespace Dragons
             dragon_water.SizeTo(100, 100);
             dragon_water.MoveTo(dragon_water_pos.GetX(), dragon_water_pos.GetY());
             dragon_water.Tint(Color.Blue());
+            dragon_water.Display("Game/Assets/temp_dragon.png");
 
             
             Dragon dragon_earth = new Dragon(40, 150, 12, 8, 550);
@@ -78,6 +80,7 @@ namespace Dragons
             dragon_earth.SizeTo(100, 100);            
             dragon_earth.MoveTo(dragon_earth_pos.GetX(), dragon_earth_pos.GetY());
             dragon_earth.Tint(Color.Gray());
+            dragon_earth.Display("Game/Assets/temp_dragon.png");
             
             Dragon dragon_air = new Dragon(40, 150, 12, 8, 550);
             Point dragon_air_pos = rdp.GetPosition(); // retrieves randomized point, randomly placing dragon at one of 4 possible positions
@@ -85,6 +88,7 @@ namespace Dragons
             //dragon_air.MoveTo(700, 700);
             dragon_air.MoveTo(dragon_air_pos.GetX(), dragon_air_pos.GetY());
             dragon_air.Tint(Color.Green());
+            dragon_air.Display("Game/Assets/temp_dragon.png");
             
             Dragon dragon_fire = new Dragon(40, 150, 12, 8, 550);
             Point dragon_fire_pos = rdp.GetPosition(); // retrieves randomized point, randomly placing dragon at one of 4 possible positions
@@ -92,6 +96,7 @@ namespace Dragons
             //dragon_fire.MoveTo(900, 900);
             dragon_fire.MoveTo(dragon_fire_pos.GetX(), dragon_fire_pos.GetY());            
             dragon_fire.Tint(Color.Orange());
+            dragon_fire.Display("Game/Assets/temp_dragon.png");
 
             // shadow dragon "Boss" static position
             Dragon dragon_shadow = new Dragon(40, 150, 12, 8, 900);
@@ -109,7 +114,7 @@ namespace Dragons
             List<Actor> Pits = new List<Actor>();
             List<Actor> Lava = new List<Actor>();
             List<Actor> ArrowTrap = new List<Actor>();
-            foreach(Actor trap in AllTraps)
+            foreach(Image trap in AllTraps)
             {
                 int TrapType = trap.GetTrapType();
                 trap.SizeTo(trap.GetWidth(), trap.GetHeight());
@@ -124,7 +129,9 @@ namespace Dragons
                 {
                     trap.Tint(Color.Orange());
                     Lava.Add(trap);
+                    trap.Display("Game/Assets/lava.png");
                     scene.AddActor("lava", trap);
+                    
                 }
             }
             foreach(Actor turret in AllTurrets)
@@ -154,7 +161,8 @@ namespace Dragons
                 int ySize = WallInfo[3];
                 wall.SizeTo(xSize,ySize);
                 wall.MoveTo(xVector,yVector);
-                wall.Tint(Color.Gray());
+                // wall.Tint(Color.Gray());
+                wall.Display("Game/Assets/brick.png");
                 WallList.Add(wall);
             }
             //This is a test code. 
@@ -173,28 +181,30 @@ namespace Dragons
                 int ySize = FloorInfo[3];
                 Tile.SizeTo(xSize,ySize);
                 Tile.MoveTo(xVector,yVector);
-                Tile.Tint(Color.Red());
+                Tile.Tint(Color.Gray());
+                Tile.Display("Game/Assets/floor_cobble.png");
                 TileList.Add(Tile);
             }
 
 
             // THis is Jsut for Lava Will need to be modified for all traps.
-            // Lava GetTraps = new Lava();
-            // List<Lava> LavaList = new List<Lava>(); // initializes a list of the walls in the program. 
-            // int NumbTraps = GetTraps.LavaNumb;//wall.NumberOfWalls(); need to set this to be related to the amount of wall that their are.
-            // for (int i = 0; i<NumbTraps; i++)
-            // {
-            //     Lava lava = new Lava(); 
-            //     List<int> LavaInfo = lava.GetLavaInformation(i);
-            //     int xVector = LavaInfo[0];
-            //     int yVector = LavaInfo[1];
-            //     int xSize = LavaInfo[2];
-            //     int ySize = LavaInfo[3];
-            //     lava.SizeTo(xSize,ySize);
-            //     lava.MoveTo(xVector,yVector);
-            //     lava.Tint(Color.Red());
-            //     LavaList.Add(lava);
-            // }
+            Lava GetTraps = new Lava();
+            List<Lava> LavaList = new List<Lava>(); // initializes a list of the walls in the program. 
+            int NumbTraps = GetTraps.LavaNumb;//wall.NumberOfWalls(); need to set this to be related to the amount of wall that their are.
+            for (int i = 0; i<NumbTraps; i++)
+            {
+                Lava lava = new Lava(); 
+                List<int> LavaInfo = lava.GetLavaInformation(i);
+                int xVector = LavaInfo[0];
+                int yVector = LavaInfo[1];
+                int xSize = LavaInfo[2];
+                int ySize = LavaInfo[3];
+                lava.SizeTo(xSize,ySize);
+                lava.MoveTo(xVector,yVector);
+                lava.Tint(Color.Red());
+                // lava.Display("Game/Assets/lava.png");
+                LavaList.Add(lava);
+            }
 
 
 
@@ -219,7 +229,7 @@ namespace Dragons
             ProjectilePositionAction projectile_movement = new ProjectilePositionAction();
             ProjectileCollisions projectile_collisions = new ProjectileCollisions();
             DragonCombat dragon_combat = new DragonCombat();
-            TrapActions trap_actions = new TrapActions();
+            TrapActions trap_action = new TrapActions();
 //            DrawImageAction drawImageAction = new DrawImageAction(serviceFactory);
 
 
@@ -238,8 +248,8 @@ namespace Dragons
             scene.AddActor("dragon", dragon_fire);            
             // scene.AddActor("player_texture", player_texture);
             foreach (Actor walled in WallList){   scene.AddActor("wall",walled);   }
-            foreach (Actor tiler in TileList){   scene.AddActor("floor",tiler);   }
-            // foreach (Actor lavaTile in LavaList){   scene.AddActor("lava",lavaTile);   }
+            foreach (Actor tile in TileList){   scene.AddActor("floor",tile);   }
+            foreach (Actor lavaTile in LavaList){   scene.AddActor("lava",lavaTile);   }
 
 
 
@@ -252,7 +262,7 @@ namespace Dragons
             scene.AddAction(Phase.Output, drawActorsAction);
             scene.AddAction(Phase.Update, projectile_collisions);
             scene.AddAction(Phase.Update, dragon_combat);
-            scene.AddAction(Phase.Update, trap_actions);
+            scene.AddAction(Phase.Update, trap_action);
 //            scene.AddAction(Phase.Update, drawImageAction);
 
             // Start the game.

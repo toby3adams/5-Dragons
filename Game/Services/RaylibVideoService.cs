@@ -86,8 +86,8 @@ namespace Dragons.Game.Services
             Actor focus = camera.GetFocus();
             Actor screen = camera.GetScreen();
 
-            if (image == focus || image.Overlaps(screen))
-            {
+            // if (image == focus || image.Overlaps(screen))
+            // {
                 Vector2 position = image.GetCenter() - camera.GetPosition();
                 Vector2 originalSize = image.GetOriginalSize();
                 Vector2 size = image.GetSize();
@@ -100,7 +100,7 @@ namespace Dragons.Game.Services
                 Raylib_cs.Color tint = GetRaylibColor(image.GetTint());
                 
                 Raylib.DrawTexturePro(texture, source, destination, origin, rotation, tint);
-            }
+            // }
         }
 
         public void Draw(Label label)
