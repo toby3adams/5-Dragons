@@ -127,7 +127,7 @@ namespace Dragons
                 }  
                 if(TrapType == 2)              
                 {
-                    trap.Tint(Color.Orange());
+                    trap.Tint(Color.Yellow());
                     Lava.Add(trap);
                     trap.Display("Game/Assets/lava.png");
                     scene.AddActor("lava", trap);
