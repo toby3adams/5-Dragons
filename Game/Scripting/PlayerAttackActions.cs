@@ -74,6 +74,7 @@ namespace Dragons.Game.Scripting
                 if (_keyboardService.IsKeyDown(KeyboardKey.L)){
 
                     this.sheild = new Wall();
+                    this.sheild.Display("Game/Assets/shield.png");
                     sheild.Tint(Color.Gray());
                     
                     scene.AddActor("wall", sheild);
