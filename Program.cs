@@ -174,6 +174,7 @@ namespace Dragons
                 Tile.SizeTo(xSize,ySize);
                 Tile.MoveTo(xVector,yVector);
                 Tile.Tint(Color.Black());
+                Tile.Display("/Game/Assets/floor_cobble.png");
                 TileList.Add(Tile);
             }
 
