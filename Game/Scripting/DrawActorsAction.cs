@@ -26,16 +26,15 @@ namespace Dragons.Game.Scripting
                 Camera camera = scene.GetFirstActor<Camera>("camera");
                 Label instructions = scene.GetFirstActor<Label>("instructions");
                 Image player = scene.GetFirstActor<Image>("player");
-                List<Actor> dragons = scene.GetAllActors("dragon");
+                List<Image> dragons = scene.GetAllActors<Image>("dragon");
                 List<Image> projectiles = scene.GetAllActors<Image>("projectile");
                 List<Actor> trackers = scene.GetAllActors("tracker");
                 List<Actor> swing = scene.GetAllActors("swing");
                 Label status = scene.GetFirstActor<Label>("status");
                 Label dragon_life = scene.GetFirstActor<Label>("dragon_life");
                 Label player_life = scene.GetFirstActor<Label>("player_life");
-                List<Actor> walls = scene.GetAllActors("wall");
-                List<Actor> floors = scene.GetAllActors("floor");
-                //List<Actor> lavas = scene.GetAllActors("lava");
+                List<Image> walls = scene.GetAllActors<Image>("wall");
+                List<Image> floors = scene.GetAllActors<Image>("floor");
                 List<Actor> pits = scene.GetAllActors("pit");
                 List<Actor> lava = scene.GetAllActors<Actor>("lava"); // will need to be changed to Image for texture application
                 List<Actor> ArrowTraps = scene.GetAllActors<Actor>("ArrowTrap");
@@ -58,8 +57,7 @@ namespace Dragons.Game.Scripting
                 _videoService.DrawGrid(10, Color.Gray(), camera);   
                 _videoService.DrawGrid(50, Color.Red(), camera);      
                 _videoService.DrawGrid(100, Color.Blue(), camera);         
-                //_videoService.Draw(floors, camera);
-               // _videoService.Draw(lavas, camera); 
+                _videoService.Draw(floors, camera);
                 _videoService.Draw(pits,camera);
                 _videoService.Draw(lava, camera);               
                 _videoService.Draw(dragons, camera);
