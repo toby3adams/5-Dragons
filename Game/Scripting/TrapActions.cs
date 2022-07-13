@@ -37,11 +37,14 @@ namespace Dragons.Game.Scripting
         {
             int arrow_direction = turret.GetTurretDirection();
             Projectile arrow = new Projectile(10, 4, arrow_direction);
+            arrow.SizeTo(10,10);
+            arrow.Tint(Color.White());
+            scene.AddActor("arrow", arrow);
             if(arrow_direction == 1){
                 arrow.MoveTo(turret.GetRight()+2, turret.GetCenterY());
             }
             if(arrow_direction == 3){
-                arrow.MoveTo(turret.GetCenterX()+2, turret.GetTop()+2);
+                arrow.MoveTo(turret.GetCenterX(), turret.GetTop()+2);
             }
             if(arrow_direction == 5){
                 arrow.MoveTo(turret.GetLeft()+2, turret.GetCenterY());
