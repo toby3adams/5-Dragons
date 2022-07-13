@@ -199,32 +199,39 @@ namespace Dragons.Game.Scripting
                 if (_keyboardService.IsKeyDown(KeyboardKey.J))
                 {
               
-                        Projectile projectile1 = new Projectile(10, 7, last_direction);
+                        Projectile projectile1 = new Projectile(5, 7, last_direction);
                         if (last_direction == 1){
                             projectile1.MoveTo(player.GetRight()+2, player.GetCenterY());
                         }
                         if (last_direction == 2){
-                            projectile1.MoveTo(player.GetRight()+2, player.GetTop()-2);
+                            projectile1.MoveTo(player.GetRight()+2, player.GetTop()-5);
+                            projectile1.Rotate(-45);
                         }
                         if (last_direction == 3){
-                            projectile1.MoveTo(player.GetCenterX(), player.GetTop()-2);
+                            projectile1.MoveTo(player.GetCenterX(), player.GetTop()-5);
+                            projectile1.Rotate(-90);
                         }
                         if (last_direction == 4){
-                            projectile1.MoveTo(player.GetLeft()-2, player.GetTop()-2);
+                            projectile1.MoveTo(player.GetLeft()-5, player.GetTop()-5);
+                            projectile1.Rotate(-135);
                         }
                         if (last_direction == 5){
-                            projectile1.MoveTo(player.GetLeft()-2, player.GetCenterY());
+                            projectile1.MoveTo(player.GetLeft()-8, player.GetCenterY());
+                            projectile1.Rotate(-180);
                         }
                         if (last_direction == 6){
-                            projectile1.MoveTo(player.GetLeft()-2, player.GetBottom()+2);
+                            projectile1.MoveTo(player.GetLeft()-5, player.GetBottom()+2);
+                            projectile1.Rotate(-225);
                         }
                         if (last_direction == 7){
                             projectile1.MoveTo(player.GetCenterX(), player.GetBottom()+2);
+                            projectile1.Rotate(-270);
                         }
                         if (last_direction == 8){
                             projectile1.MoveTo(player.GetRight()+2, player.GetBottom()+2);
+                            projectile1.Rotate(-315);
                         }
-                        projectile1.SizeTo(4, 4);
+                        projectile1.SizeTo(10, 5);
                         scene.AddActor("projectile", projectile1);
                         counter_ranged = 0;
                 }
