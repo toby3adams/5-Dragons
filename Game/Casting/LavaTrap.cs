@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 
 namespace Dragons.Game.Casting{
-    public class Lava : Actor{
+    public class Lava : Image{
 
         public int LavaNumb = 0; 
         private int WallSize = 20;

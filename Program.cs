@@ -72,6 +72,7 @@ namespace Dragons
             dragon_water.SizeTo(100, 100);
             dragon_water.MoveTo(dragon_water_pos.GetX(), dragon_water_pos.GetY());
             dragon_water.Tint(Color.Blue());
+            dragon_water.Display("Game/Assets/temp_dragon.png");
 
             
             Dragon dragon_earth = new Dragon(40, 150, 12, 8, 550);
@@ -79,6 +80,7 @@ namespace Dragons
             dragon_earth.SizeTo(100, 100);            
             dragon_earth.MoveTo(dragon_earth_pos.GetX(), dragon_earth_pos.GetY());
             dragon_earth.Tint(Color.Gray());
+            dragon_earth.Display("Game/Assets/temp_dragon.png");
             
             Dragon dragon_air = new Dragon(40, 150, 12, 8, 550);
             Point dragon_air_pos = rdp.GetPosition(); // retrieves randomized point, randomly placing dragon at one of 4 possible positions
@@ -86,6 +88,7 @@ namespace Dragons
             //dragon_air.MoveTo(700, 700);
             dragon_air.MoveTo(dragon_air_pos.GetX(), dragon_air_pos.GetY());
             dragon_air.Tint(Color.Green());
+            dragon_air.Display("Game/Assets/temp_dragon.png");
             
             Dragon dragon_fire = new Dragon(40, 150, 12, 8, 550);
             Point dragon_fire_pos = rdp.GetPosition(); // retrieves randomized point, randomly placing dragon at one of 4 possible positions
@@ -93,6 +96,7 @@ namespace Dragons
             //dragon_fire.MoveTo(900, 900);
             dragon_fire.MoveTo(dragon_fire_pos.GetX(), dragon_fire_pos.GetY());            
             dragon_fire.Tint(Color.Orange());
+            dragon_fire.Display("Game/Assets/temp_dragon.png");
 
             // shadow dragon "Boss" static position
             Dragon dragon_shadow = new Dragon(40, 150, 12, 8, 900);
@@ -126,6 +130,7 @@ namespace Dragons
                     trap.Tint(Color.Orange());
                     Lava.Add(trap);
                     scene.AddActor("lava", trap);
+                    
                 }
             }
             foreach(Actor turret in AllTurrets)
@@ -156,6 +161,7 @@ namespace Dragons
                 wall.SizeTo(xSize,ySize);
                 wall.MoveTo(xVector,yVector);
                 wall.Tint(Color.Gray());
+                wall.Display("Game/Assets/brick.png");
                 WallList.Add(wall);
             }
             //This is a test code. 
@@ -175,7 +181,7 @@ namespace Dragons
                 Tile.SizeTo(xSize,ySize);
                 Tile.MoveTo(xVector,yVector);
                 Tile.Tint(Color.Black());
-                Tile.Display("/Game/Assets/floor_cobble.png");
+                Tile.Display("Game/Assets/floor_cobble.png");
                 TileList.Add(Tile);
             }
 
@@ -195,6 +201,7 @@ namespace Dragons
                 lava.SizeTo(xSize,ySize);
                 lava.MoveTo(xVector,yVector);
                 lava.Tint(Color.Red());
+                lava.Display("Game/Assets/lava.png");
                 LavaList.Add(lava);
             }
 
@@ -240,7 +247,7 @@ namespace Dragons
             scene.AddActor("dragon", dragon_fire);            
             // scene.AddActor("player_texture", player_texture);
             foreach (Actor walled in WallList){   scene.AddActor("wall",walled);   }
-            foreach (Actor tiler in TileList){   scene.AddActor("floor",tiler);   }
+            foreach (Actor tile in TileList){   scene.AddActor("floor",tile);   }
             foreach (Actor lavaTile in LavaList){   scene.AddActor("lava",lavaTile);   }
 
 
