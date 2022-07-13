@@ -200,6 +200,7 @@ namespace Dragons.Game.Scripting
                 {
               
                         Projectile projectile1 = new Projectile(5, 7, last_direction);
+                        
                         if (last_direction == 1){
                             projectile1.MoveTo(player.GetRight()+2, player.GetCenterY());
                         }
@@ -233,6 +234,7 @@ namespace Dragons.Game.Scripting
                         }
                         projectile1.SizeTo(10, 5);
                         scene.AddActor("projectile", projectile1);
+                        projectile1.Display("../Assets/arrow.png");
                         counter_ranged = 0;
                 }
                 }
