@@ -15,16 +15,14 @@ namespace Dragons.Game.Scripting
         public override void Execute(Scene scene, float deltaTime, IActionCallback callback)
         {
             List<Trap>Traps = scene.GetAllActors<Trap>("Trap");
-            List<Turret>Turrets = scene.GetAllActors<Turret>("Turret");
+            List<Turret>Turrets = scene.GetAllActors<Turret>("turret");
             Player player = scene.GetFirstActor<Player>("player");
+            
 
-           /* foreach(Trap trap in Traps)
-            {           
-                attack_player(scene, trap, player);
-            }*/
-            foreach(Turret turret in Turrets)
+            foreach (Turret turret in Turrets)
             {
                 turret_attack(scene, turret, player);
+                Console.WriteLine("pow");
             }
         }
 
@@ -40,17 +38,18 @@ namespace Dragons.Game.Scripting
             arrow.SizeTo(10,10);
             arrow.Tint(Color.White());
             scene.AddActor("arrow", arrow);
+            arrow.Display("Game/Assets/fireball.png");
             if(arrow_direction == 1){
-                arrow.MoveTo(turret.GetRight()+2, turret.GetCenterY());
+                arrow.MoveTo(turret.GetRight()+15, turret.GetCenterY());
             }
             if(arrow_direction == 3){
-                arrow.MoveTo(turret.GetCenterX(), turret.GetTop()+2);
+                arrow.MoveTo(turret.GetCenterX(), turret.GetTop()-10);
             }
             if(arrow_direction == 5){
-                arrow.MoveTo(turret.GetLeft()+2, turret.GetCenterY());
+                arrow.MoveTo(turret.GetLeft()-15, turret.GetCenterY());
             }
             if(arrow_direction == 7){
-                arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+2);
+                arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+10);
             }
         }
 
