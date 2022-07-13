@@ -78,8 +78,8 @@ namespace Dragons.Game.Scripting
             {
                 int arrow_direction = turret.GetTurretDirection();
             Projectile arrow = new Projectile(10, 4, arrow_direction);
-            arrow.SizeTo(10,10);
-            arrow.Tint(Color.Red());
+            arrow.SizeTo(11,11);
+            arrow.Tint(Color.Orange());
             scene.AddActor("projectile", arrow);
             arrow.Display("Game/Assets/fireball.png");
             if(arrow_direction == 1){
