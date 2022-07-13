@@ -27,6 +27,12 @@ namespace Dragons.Game.Scripting{
                 MoveProjectile(projectile, projectile.GetDirection());
                 update_projectile_image(projectile);
             }
+
+            List<Projectile> waves = scene.GetAllActors<Projectile>("wave");
+            foreach (Projectile projectile in waves){
+                MoveProjectile(projectile, projectile.GetDirection());
+                update_projectile_image(projectile);
+            }            
         }
 
         void MoveProjectile(Projectile projectile, int direction){

@@ -15,6 +15,7 @@ namespace Dragons.Game.Scripting{
             
             List<Projectile> projectiles = scene.GetAllActors<Projectile>("projectile");
             List<Projectile> trackers = scene.GetAllActors<Projectile>("tracker");
+            List<Projectile> waves = scene.GetAllActors<Projectile>("wave");
 
             wall_projectile_collision(scene, projectiles);
             player_projectile_collision(scene, projectiles);
@@ -22,7 +23,10 @@ namespace Dragons.Game.Scripting{
 
             wall_tracker_collision(scene, trackers);
             player_tracker_collision(scene, trackers);
-            dragon_tracker_collision(scene, trackers);            
+            dragon_tracker_collision(scene, trackers);
+
+            wall_wave_collision(scene, waves);
+            player_wave_collision(scene, waves);
 
         }
 
@@ -34,6 +38,19 @@ namespace Dragons.Game.Scripting{
                     if (projectile.Overlaps(wall))
                     {
                         scene.RemoveActor("projectile", projectile);
+                    }
+                }
+            }
+        }
+
+        public void wall_wave_collision(Scene scene, List<Projectile> projectiles){
+            List<Wall> walls = scene.GetAllActors<Wall>("wall");
+            
+            foreach (Projectile projectile in projectiles){
+                foreach (Wall wall in walls){
+                    if (projectile.Overlaps(wall))
+                    {
+                        scene.RemoveActor("wave", projectile);
                     }
                 }
             }
@@ -59,6 +76,17 @@ namespace Dragons.Game.Scripting{
                 if (projectile.Overlaps(player)){
                     player.takes_damage(projectile.damage);
                     scene.RemoveActor("projectile", projectile);
+                }
+            }
+        }
+
+        public void player_wave_collision(Scene scene, List<Projectile> projectiles){
+            Player player = scene.GetFirstActor<Player>("player");
+
+            foreach (Projectile projectile in projectiles){
+                if (projectile.Overlaps(player)){
+                    player.takes_damage(projectile.damage);
+                    scene.RemoveActor("wave", projectile);
                 }
             }
         }

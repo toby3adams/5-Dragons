@@ -31,12 +31,12 @@ namespace Dragons.Game.Scripting
             foreach (Turret turret in Turrets)
             {
                 turret_attack(scene, turret, player);
-                Console.WriteLine("pow");
+                // Console.WriteLine("pow");
             }
 
             //Player player = scene.GetFirstActor<Player>("player");
             
-
+ 
                 if (this.lava_counter > 65)
                 {
                     List<Trap> Lava = scene.GetAllActors<Trap>("lava"); 

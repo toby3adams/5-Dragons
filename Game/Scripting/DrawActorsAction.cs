@@ -29,6 +29,7 @@ namespace Dragons.Game.Scripting
                 List<Image> dragons = scene.GetAllActors<Image>("dragon");
                 List<Image> projectiles = scene.GetAllActors<Image>("projectile");
                 List<Image> trackers = scene.GetAllActors<Image>("tracker");
+                List<Image> waves = scene.GetAllActors<Image>("wave");
                 List<Actor> swing = scene.GetAllActors("swing");
                 Label status = scene.GetFirstActor<Label>("status");
                 Label dragon_life = scene.GetFirstActor<Label>("dragon_life");
@@ -69,6 +70,7 @@ namespace Dragons.Game.Scripting
                 _videoService.Draw(projectiles, camera);
                 _videoService.Draw(Arrows, camera);
                 _videoService.Draw(trackers, camera);
+                _videoService.Draw(waves, camera);
                 _videoService.Draw(swing, camera);
 
                 _videoService.Draw(player, camera); 
