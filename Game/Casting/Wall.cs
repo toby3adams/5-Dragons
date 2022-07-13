@@ -46,6 +46,17 @@ namespace Dragons.Game.Casting{
              WallVectorList.Add(new List<int>  {SpawnlocationX,SpawnlocationY+SquareRoomSize*2});//Bottom wall
             WallSizeList.Add(new List<int>  {SquareRoomSize,WallThickness}); 
 
+            //filling null space
+            WallVectorList.Add(new List<int>  {SpawnlocationX-SquareRoomSize,SpawnlocationY-SquareRoomSize*2});//Cover Walls
+            WallSizeList.Add(new List<int>  {SquareRoomSize,SquareRoomSize}); 
+             WallVectorList.Add(new List<int>  {SpawnlocationX+SquareRoomSize,SpawnlocationY-SquareRoomSize*2});//Cover Walls
+            WallSizeList.Add(new List<int>  {SquareRoomSize,SquareRoomSize}); 
+
+             WallVectorList.Add(new List<int>  {0,0});//Cover Walls
+            WallSizeList.Add(new List<int>  {SquareRoomSize/2+250,SquareRoomSize*2-500}); 
+             WallVectorList.Add(new List<int>  {SquareRoomSize*2+500,0});//Cover Walls
+            WallSizeList.Add(new List<int>  {SquareRoomSize/2+250,SquareRoomSize*2-500}); 
+
             //Final Boss Room 
             FinalBossRoom(SpawnlocationX-SquareRoomSize/2,SpawnlocationY-SquareRoomSize*(3)-500);
             wallNumb = WallVectorList.Count();
