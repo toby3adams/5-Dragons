@@ -15,6 +15,10 @@ namespace Dragons.Game.Scripting{
         int tracking_counter = 0;
         int melee_counter = 0;
         int wave_counter = 0;
+        int lava_counter = 0;
+        int lava_counter_remove = 0;
+        bool first_placement = true;
+        bool first_placement2 = true;
         bool initial = true;
         DirectionAndTracking tracking = new DirectionAndTracking();
         
@@ -69,6 +73,8 @@ namespace Dragons.Game.Scripting{
             tracking_counter +=1;
             wave_counter +=1;
             melee_counter +=1;
+            lava_counter +=1;
+            lava_counter_remove +=1;
 
             if (tracking_counter > 360){
                 int players_direction = tracking.get_player_direction(player, dragon);
@@ -116,43 +122,81 @@ namespace Dragons.Game.Scripting{
 
 
 
-            if (wave_counter > 120){
-                int players_direction = tracking.get_player_direction(player, dragon);
-                
-                Projectile wave = new Projectile(dragon.ranged_damage, 1, players_direction);
-                wave.SizeTo(20,20);
-                wave.Tint(dragon.GetTint());
-                wave.Display("Game/Assets/fireball.png");
-                scene.AddActor("projectile", wave);
 
-                if (players_direction == 1){
-                    wave.MoveTo(dragon.GetRight()+2, dragon.GetCenterY());
+            if (lava_counter > 600 && dragon.dragon_health < 75){
+                dragon.lava1 = new Trap(1,1,1,1,2);
+                dragon.lava1.MoveTo(dragon.GetCenterX()-(960/2), dragon.GetCenterY()-25);
+                dragon.lava1.SizeTo(960,50);
+                dragon.lava1.Display("Game/Assets/lava.png");
+                scene.AddActor("lava", dragon.lava1);
+                first_placement = false;
+                
+                if (dragon.dragon_health < 50){
+                    dragon.lava2 = new Trap(30,980,1,1,2);
+                    dragon.lava2.MoveTo(dragon.GetCenterX()-25, dragon.GetCenterY()-(960/2));
+                    dragon.lava2.SizeTo(50,960);
+                    dragon.lava2.Display("Game/Assets/lava.png");
+                    scene.AddActor("lava", dragon.lava2);
+                    first_placement2 = false;
                 }
-                if (players_direction == 2){
-                    wave.MoveTo(dragon.GetRight()+2, dragon.GetTop()-20);
-                }
-                if (players_direction == 3){
-                    wave.MoveTo(dragon.GetCenterX(), dragon.GetTop()-20);
-                }
-                if (players_direction == 4){
-                    wave.MoveTo(dragon.GetLeft()-20, dragon.GetTop()-20);
-                }
-                if (players_direction == 5){
-                    wave.MoveTo(dragon.GetLeft()-20, dragon.GetCenterY());
-                }
-                if (players_direction == 6){
-                    wave.MoveTo(dragon.GetLeft()-20, dragon.GetBottom()+2);
-                }
-                if (players_direction == 7){
-                    wave.MoveTo(dragon.GetCenterX(), dragon.GetBottom()+2);
-                }
-                if (players_direction == 8){
-                    wave.MoveTo(dragon.GetRight()+2, dragon.GetBottom()+2);
-                }
-                wave_counter = 0;
+                lava_counter = 0;
             }
 
-            
+
+
+            if (lava_counter >= 450 && !first_placement){
+                scene.RemoveActor("lava", dragon.lava1);
+                
+                if (!first_placement2){
+                    scene.RemoveActor("lava", dragon.lava2);
+                }
+            }
+
+
+
+
+
+            // if (wave_counter > 120){
+            //     int players_direction = tracking.get_player_direction(player, dragon);
+                
+            //     Projectile wave = new Projectile(dragon.ranged_damage, 1, players_direction);
+            //     wave.SizeTo(20,20);
+            //     wave.Tint(dragon.GetTint());
+            //     wave.Display("Game/Assets/fireball.png");
+            //     scene.AddActor("wave", wave);
+
+            //     if (players_direction == 1){
+            //         wave.MoveTo(dragon.GetRight()+2, dragon.GetCenterY());
+            //     }
+            //     if (players_direction == 2){
+            //         wave.MoveTo(dragon.GetRight()+2, dragon.GetTop()-20);
+            //     }
+            //     if (players_direction == 3){
+            //         wave.MoveTo(dragon.GetCenterX(), dragon.GetTop()-20);
+            //     }
+            //     if (players_direction == 4){
+            //         wave.MoveTo(dragon.GetLeft()-20, dragon.GetTop()-20);
+            //     }
+            //     if (players_direction == 5){
+            //         wave.MoveTo(dragon.GetLeft()-20, dragon.GetCenterY());
+            //     }
+            //     if (players_direction == 6){
+            //         wave.MoveTo(dragon.GetLeft()-20, dragon.GetBottom()+2);
+            //     }
+            //     if (players_direction == 7){
+            //         wave.MoveTo(dragon.GetCenterX(), dragon.GetBottom()+2);
+            //     }
+            //     if (players_direction == 8){
+            //         wave.MoveTo(dragon.GetRight()+2, dragon.GetBottom()+2);
+            //     }
+            //     wave_counter = 0;
+            // }
+
+            // List<Projectile> waves = scene.GetAllActors<Projectile>("wave");
+            // foreach (Projectile wave in waves){
+            //     wave.SizeTo(wave.GetWidth()+2, wave.GetHeight()+2);
+            //     wave.MoveTo(wave.GetLeft()-1, wave.GetTop()-1);
+            // }
             
 
 

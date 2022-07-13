@@ -8,6 +8,7 @@ namespace Dragons.Game.Scripting
 {
 
     public class TrapActions : Action
+
     {   
         private int lava_counter;
 
@@ -16,30 +17,24 @@ namespace Dragons.Game.Scripting
 
         private int pit_fallLeft = 0;
         private int pit_fallRight = 0;
+
         Random rnd = new Random();
         public TrapActions(){}
 
 
         public override void Execute(Scene scene, float deltaTime, IActionCallback callback)
         {
-            List<Floor>Room = scene.GetAllActors<Floor>("floor");
             List<Trap>Traps = scene.GetAllActors<Trap>("Trap");
             List<Turret>Turrets = scene.GetAllActors<Turret>("ArrowTrap");
             Player player = scene.GetFirstActor<Player>("player");
             
-            //if(player.Get)
-            foreach(Floor floor in Room)
+
+            foreach (Turret turret in Turrets)
             {
-                // example code: int index = myList.FindIndex(a => a.Contains("Tennis"));
-                int room_num = Room.IndexOf(floor);
-                foreach (Turret turret in Turrets)
-                {
-                    if(turret.GetRoom() == room_num && player.FullyOverlaps(floor))
-                    {
-                        turret_attack(scene, turret, player);
-                    }                    
-                }
+                turret_attack(scene, turret, player);
+                Console.WriteLine("pow");
             }
+
              if (this.lava_counter > 65)
                 {
                     List<Trap> Lava = scene.GetAllActors<Trap>("lava"); 
@@ -67,7 +62,10 @@ namespace Dragons.Game.Scripting
 
 
                     }
+
             
+
+                
         }
 
         public void attack_player(Scene scene, Trap trap, Player player)
@@ -82,24 +80,24 @@ namespace Dragons.Game.Scripting
             {
                 int arrow_direction = turret.GetTurretDirection();
             Projectile arrow = new Projectile(10, 4, arrow_direction);
-            arrow.SizeTo(20,20);
+            arrow.SizeTo(11,11);
             arrow.Tint(Color.Orange());
             scene.AddActor("projectile", arrow);
             arrow.Display("Game/Assets/fireball.png");
             if(arrow_direction == 1){
-                arrow.MoveTo(turret.GetRight()+20, turret.GetCenterY());
+                arrow.MoveTo(turret.GetRight()+15, turret.GetCenterY());
             }
             if(arrow_direction == 2){
-                arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+20);
+                arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+10);
             }
             if(arrow_direction == 3){
-                arrow.MoveTo(turret.GetCenterX(), turret.GetTop()-20);
+                arrow.MoveTo(turret.GetCenterX(), turret.GetTop()-10);
             }
             if(arrow_direction == 4){
-                arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+20);
+                arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+10);
             }
             if(arrow_direction == 5){
-                arrow.MoveTo(turret.GetLeft()-20, turret.GetCenterY());
+                arrow.MoveTo(turret.GetLeft()-15, turret.GetCenterY());
             }
             if(arrow_direction == 6){
                 arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+10);
