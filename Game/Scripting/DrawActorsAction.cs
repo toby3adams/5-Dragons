@@ -68,7 +68,7 @@ namespace Dragons.Game.Scripting
                 _videoService.Draw(projectiles, camera);
                 _videoService.Draw(trackers, camera);
                 _videoService.Draw(swing, camera);
-                            
+
                 _videoService.Draw(player, camera); 
                 _videoService.Draw(status);
                 _videoService.Draw(instructions);

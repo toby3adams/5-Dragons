@@ -234,7 +234,7 @@ namespace Dragons.Game.Scripting
                         }
                         projectile1.SizeTo(10, 5);
                         scene.AddActor("projectile", projectile1);
-                        projectile1.Display("../Assets/arrow.png");
+                        projectile1.Display("Game/Assets/arrow.png");
                         counter_ranged = 0;
                 }
                 }
