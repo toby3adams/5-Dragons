@@ -61,7 +61,7 @@ namespace Dragons.Game.Scripting {
 
         public void GenTrapsRoom_2()
         {
-            Trap_Room_Type = rnd.Next(1,3);
+            Trap_Room_Type = rnd.Next(1,1);
             int bottom_arrow_x_start = 1040;
             int left_arrow_y_start = 2540;
             int right_arrow_y_start = 2540;
@@ -92,16 +92,16 @@ namespace Dragons.Game.Scripting {
                 
                 for(int i = 0; i < 4; i++)
                 {                    
-                    Turret arrow_left = new Turret(40,110,1000,left_arrow_y_start, 3);
+                    Turret arrow_left = new Turret(40,110,1000,left_arrow_y_start, 1);
                     Turrets.Add(arrow_left);                    
                     left_arrow_y_start += 210;                     
                 }
-                Turret Arrow_left_2 = new Turret(40,110,1000,3390,3);
+                Turret Arrow_left_2 = new Turret(40,110,1000,3390,1);
                 Turrets.Add(Arrow_left_2);
                 // top arrow trap
                 for(int i = 0; i < 3; i++)
                 {                    
-                    Turret arrow_top = new Turret(110,40,top_arrow_x_start,2500, 3);
+                    Turret arrow_top = new Turret(110,40,top_arrow_x_start,2500, 7);
                     Turrets.Add(arrow_top);
                     if(top_door_offset_counter == 0)
                     {
@@ -111,17 +111,17 @@ namespace Dragons.Game.Scripting {
                     }                       
                     top_door_offset_counter++;                    
                 }
-                Turret Arrow_Top_2 = new Turret(110,40,1890,2500,3);
+                Turret Arrow_Top_2 = new Turret(110,40,1890,2500,7);
                 Turrets.Add(Arrow_Top_2);              
                 //right arrow traps
                 
                  for(int i = 0; i < 4; i++)
                 {                    
-                    Turret arrow_right = new Turret(40,110,2000,right_arrow_y_start, 3);
+                    Turret arrow_right = new Turret(40,110,2000,right_arrow_y_start, 5);
                     Turrets.Add(arrow_right);                    
                     right_arrow_y_start += 210;                       
                  }
-                Turret Arrow_right_2 = new Turret(40,110,2000,3390, 3);
+                Turret Arrow_right_2 = new Turret(40,110,2000,3390, 5);
                 Turrets.Add(Arrow_right_2);
             }
             if(Trap_Room_Type == 2) // + shaped walk way connecting rooms. lava in each corner. Mines spawning randomly on walkway.
