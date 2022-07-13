@@ -114,7 +114,7 @@ namespace Dragons
             List<Actor> Pits = new List<Actor>();
             List<Actor> Lava = new List<Actor>();
             List<Actor> ArrowTrap = new List<Actor>();
-            foreach(Actor trap in AllTraps)
+            foreach(Image trap in AllTraps)
             {
                 int TrapType = trap.GetTrapType();
                 trap.SizeTo(trap.GetWidth(), trap.GetHeight());
@@ -129,6 +129,7 @@ namespace Dragons
                 {
                     trap.Tint(Color.Orange());
                     Lava.Add(trap);
+                    trap.Display("Game/Assets/lava.png");
                     scene.AddActor("lava", trap);
                     
                 }
@@ -160,7 +161,7 @@ namespace Dragons
                 int ySize = WallInfo[3];
                 wall.SizeTo(xSize,ySize);
                 wall.MoveTo(xVector,yVector);
-                wall.Tint(Color.Gray());
+                // wall.Tint(Color.Gray());
                 wall.Display("Game/Assets/brick.png");
                 WallList.Add(wall);
             }
@@ -180,7 +181,7 @@ namespace Dragons
                 int ySize = FloorInfo[3];
                 Tile.SizeTo(xSize,ySize);
                 Tile.MoveTo(xVector,yVector);
-                Tile.Tint(Color.Black());
+                Tile.Tint(Color.Gray());
                 Tile.Display("Game/Assets/floor_cobble.png");
                 TileList.Add(Tile);
             }
@@ -201,7 +202,7 @@ namespace Dragons
                 lava.SizeTo(xSize,ySize);
                 lava.MoveTo(xVector,yVector);
                 lava.Tint(Color.Red());
-                lava.Display("Game/Assets/lava.png");
+                // lava.Display("Game/Assets/lava.png");
                 LavaList.Add(lava);
             }
 

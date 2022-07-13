@@ -83,13 +83,13 @@ namespace Dragons.Game.Scripting{
                     tracker.MoveTo(dragon.GetRight()+2, dragon.GetCenterY());
                 }
                 if (players_direction == 2){
-                    tracker.MoveTo(dragon.GetRight()+2, dragon.GetTop()-5);
+                    tracker.MoveTo(dragon.GetRight()+2, dragon.GetTop()-7);
                 }
                 if (players_direction == 3){
-                    tracker.MoveTo(dragon.GetCenterX(), dragon.GetTop()-5);
+                    tracker.MoveTo(dragon.GetCenterX(), dragon.GetTop()-7);
                 }
                 if (players_direction == 4){
-                    tracker.MoveTo(dragon.GetLeft()-7, dragon.GetTop()-5);
+                    tracker.MoveTo(dragon.GetLeft()-7, dragon.GetTop()-7);
                 }
                 if (players_direction == 5){
                     tracker.MoveTo(dragon.GetLeft()-7, dragon.GetCenterY());
@@ -116,9 +116,43 @@ namespace Dragons.Game.Scripting{
 
 
 
-            if (wave_counter > 60){
+            if (wave_counter > 120){
+                int players_direction = tracking.get_player_direction(player, dragon);
+                
+                Projectile wave = new Projectile(dragon.ranged_damage, 1, players_direction);
+                wave.SizeTo(10,10);
+                wave.Tint(dragon.GetTint());
+                wave.Display("Game/Assets/fireball.png");
+                scene.AddActor("projectile", wave);
 
+                if (players_direction == 1){
+                    wave.MoveTo(dragon.GetRight()+2, dragon.GetCenterY());
+                }
+                if (players_direction == 2){
+                    wave.MoveTo(dragon.GetRight()+2, dragon.GetTop()-10);
+                }
+                if (players_direction == 3){
+                    wave.MoveTo(dragon.GetCenterX(), dragon.GetTop()-10);
+                }
+                if (players_direction == 4){
+                    wave.MoveTo(dragon.GetLeft()-10, dragon.GetTop()-10);
+                }
+                if (players_direction == 5){
+                    wave.MoveTo(dragon.GetLeft()-10, dragon.GetCenterY());
+                }
+                if (players_direction == 6){
+                    wave.MoveTo(dragon.GetLeft()-10, dragon.GetBottom()+2);
+                }
+                if (players_direction == 7){
+                    wave.MoveTo(dragon.GetCenterX(), dragon.GetBottom()+2);
+                }
+                if (players_direction == 8){
+                    wave.MoveTo(dragon.GetRight()+2, dragon.GetBottom()+2);
+                }
+                wave_counter = 0;
             }
+
+            
             
 
 
