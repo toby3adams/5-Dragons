@@ -187,26 +187,6 @@ namespace Dragons
             }
 
 
-            // THis is Jsut for Lava Will need to be modified for all traps.
-            Lava GetTraps = new Lava();
-            List<Lava> LavaList = new List<Lava>(); // initializes a list of the walls in the program. 
-            int NumbTraps = GetTraps.LavaNumb;//wall.NumberOfWalls(); need to set this to be related to the amount of wall that their are.
-            for (int i = 0; i<NumbTraps; i++)
-            {
-                Lava lava = new Lava(); 
-                List<int> LavaInfo = lava.GetLavaInformation(i);
-                int xVector = LavaInfo[0];
-                int yVector = LavaInfo[1];
-                int xSize = LavaInfo[2];
-                int ySize = LavaInfo[3];
-                lava.SizeTo(xSize,ySize);
-                lava.MoveTo(xVector,yVector);
-                lava.Tint(Color.Red());
-                // lava.Display("Game/Assets/lava.png");
-                LavaList.Add(lava);
-            }
-
-
 
             Actor screen = new Actor();
             screen.SizeTo(1860, 980);
@@ -249,7 +229,7 @@ namespace Dragons
             // scene.AddActor("player_texture", player_texture);
             foreach (Actor walled in WallList){   scene.AddActor("wall",walled);   }
             foreach (Actor tile in TileList){   scene.AddActor("floor",tile);   }
-            foreach (Actor lavaTile in LavaList){   scene.AddActor("lava",lavaTile);   }
+          
 
 
 

@@ -74,7 +74,7 @@ namespace Dragons.Game.Scripting{
                 int players_direction = tracking.get_player_direction(player, dragon);
                 
                 Projectile tracker = new Projectile(dragon.ranged_damage, 4, players_direction);
-                tracker.SizeTo(11,11);
+                tracker.SizeTo(20,20);
                 tracker.Tint(dragon.GetTint());
                 tracker.Display("Game/Assets/fireball.png");
                 scene.AddActor("tracker", tracker);
@@ -83,19 +83,19 @@ namespace Dragons.Game.Scripting{
                     tracker.MoveTo(dragon.GetRight()+2, dragon.GetCenterY());
                 }
                 if (players_direction == 2){
-                    tracker.MoveTo(dragon.GetRight()+2, dragon.GetTop()-7);
+                    tracker.MoveTo(dragon.GetRight()+2, dragon.GetTop()-20);
                 }
                 if (players_direction == 3){
-                    tracker.MoveTo(dragon.GetCenterX(), dragon.GetTop()-7);
+                    tracker.MoveTo(dragon.GetCenterX(), dragon.GetTop()-20);
                 }
                 if (players_direction == 4){
-                    tracker.MoveTo(dragon.GetLeft()-7, dragon.GetTop()-7);
+                    tracker.MoveTo(dragon.GetLeft()-20, dragon.GetTop()-20);
                 }
                 if (players_direction == 5){
-                    tracker.MoveTo(dragon.GetLeft()-7, dragon.GetCenterY());
+                    tracker.MoveTo(dragon.GetLeft()-20, dragon.GetCenterY());
                 }
                 if (players_direction == 6){
-                    tracker.MoveTo(dragon.GetLeft()-7, dragon.GetBottom()+2);
+                    tracker.MoveTo(dragon.GetLeft()-20, dragon.GetBottom()+2);
                 }
                 if (players_direction == 7){
                     tracker.MoveTo(dragon.GetCenterX(), dragon.GetBottom()+2);
@@ -120,7 +120,7 @@ namespace Dragons.Game.Scripting{
                 int players_direction = tracking.get_player_direction(player, dragon);
                 
                 Projectile wave = new Projectile(dragon.ranged_damage, 1, players_direction);
-                wave.SizeTo(10,10);
+                wave.SizeTo(20,20);
                 wave.Tint(dragon.GetTint());
                 wave.Display("Game/Assets/fireball.png");
                 scene.AddActor("projectile", wave);
@@ -129,19 +129,19 @@ namespace Dragons.Game.Scripting{
                     wave.MoveTo(dragon.GetRight()+2, dragon.GetCenterY());
                 }
                 if (players_direction == 2){
-                    wave.MoveTo(dragon.GetRight()+2, dragon.GetTop()-10);
+                    wave.MoveTo(dragon.GetRight()+2, dragon.GetTop()-20);
                 }
                 if (players_direction == 3){
-                    wave.MoveTo(dragon.GetCenterX(), dragon.GetTop()-10);
+                    wave.MoveTo(dragon.GetCenterX(), dragon.GetTop()-20);
                 }
                 if (players_direction == 4){
-                    wave.MoveTo(dragon.GetLeft()-10, dragon.GetTop()-10);
+                    wave.MoveTo(dragon.GetLeft()-20, dragon.GetTop()-20);
                 }
                 if (players_direction == 5){
-                    wave.MoveTo(dragon.GetLeft()-10, dragon.GetCenterY());
+                    wave.MoveTo(dragon.GetLeft()-20, dragon.GetCenterY());
                 }
                 if (players_direction == 6){
-                    wave.MoveTo(dragon.GetLeft()-10, dragon.GetBottom()+2);
+                    wave.MoveTo(dragon.GetLeft()-20, dragon.GetBottom()+2);
                 }
                 if (players_direction == 7){
                     wave.MoveTo(dragon.GetCenterX(), dragon.GetBottom()+2);
@@ -159,7 +159,7 @@ namespace Dragons.Game.Scripting{
 
             if (spin_counter == 190){
                 Projectile projectile = new Projectile(dragon.ranged_damage, 6, 1);
-                projectile.SizeTo(11,11);
+                projectile.SizeTo(20,20);
                 projectile.MoveTo(dragon.GetRight()+2, dragon.GetCenterY());
                 projectile.Tint(dragon.GetTint());
                 projectile.Display("Game/Assets/fireball.png");
@@ -167,47 +167,47 @@ namespace Dragons.Game.Scripting{
             }
             if (spin_counter == 195){
                 Projectile projectile = new Projectile(dragon.ranged_damage, 6, 2);
-                projectile.SizeTo(11,11);
-                projectile.MoveTo(dragon.GetRight()+2, dragon.GetTop()-5);
+                projectile.SizeTo(20,20);
+                projectile.MoveTo(dragon.GetRight()+2, dragon.GetTop()-20);
                 projectile.Tint(dragon.GetTint());
                 projectile.Display("Game/Assets/fireball.png");
                 scene.AddActor("projectile", projectile);
             }
             if (spin_counter == 200){
                 Projectile projectile = new Projectile(dragon.ranged_damage, 6, 3);
-                projectile.SizeTo(11,11);
-                projectile.MoveTo(dragon.GetCenterX(), dragon.GetTop()-5);
+                projectile.SizeTo(20,20);
+                projectile.MoveTo(dragon.GetCenterX(), dragon.GetTop()-20);
                 projectile.Tint(dragon.GetTint());
                 projectile.Display("Game/Assets/fireball.png");
                 scene.AddActor("projectile", projectile);                
             }
             if (spin_counter == 205){
                 Projectile projectile = new Projectile(dragon.ranged_damage, 6, 4);
-                projectile.SizeTo(11,11);
-                projectile.MoveTo(dragon.GetLeft()-5, dragon.GetTop()-5);
+                projectile.SizeTo(20,20);
+                projectile.MoveTo(dragon.GetLeft()-20, dragon.GetTop()-20);
                 projectile.Tint(dragon.GetTint());
                 projectile.Display("Game/Assets/fireball.png");
                 scene.AddActor("projectile", projectile);                
             }
             if (spin_counter == 210){
                 Projectile projectile = new Projectile(dragon.ranged_damage, 6, 5);
-                projectile.SizeTo(11,11);
-                projectile.MoveTo(dragon.GetLeft()-5, dragon.GetCenterY());
+                projectile.SizeTo(20,20);
+                projectile.MoveTo(dragon.GetLeft()-20, dragon.GetCenterY());
                 projectile.Tint(dragon.GetTint());
                 projectile.Display("Game/Assets/fireball.png");
                 scene.AddActor("projectile", projectile);                
             }
             if (spin_counter == 215){
                 Projectile projectile = new Projectile(dragon.ranged_damage, 6, 6);
-                projectile.SizeTo(11,11);
-                projectile.MoveTo(dragon.GetLeft()-5, dragon.GetBottom()+2);
+                projectile.SizeTo(20,20);
+                projectile.MoveTo(dragon.GetLeft()-20, dragon.GetBottom()+2);
                 projectile.Tint(dragon.GetTint());
                 projectile.Display("Game/Assets/fireball.png");
                 scene.AddActor("projectile", projectile);                
             }
             if (spin_counter == 220){
                 Projectile projectile = new Projectile(dragon.ranged_damage, 6, 7);
-                projectile.SizeTo(11,11);
+                projectile.SizeTo(20,20);
                 projectile.MoveTo(dragon.GetCenterX(), dragon.GetBottom()+2);
                 projectile.Tint(dragon.GetTint());
                 projectile.Display("Game/Assets/fireball.png");
@@ -215,7 +215,7 @@ namespace Dragons.Game.Scripting{
             }
             if (spin_counter == 225){
                 Projectile projectile = new Projectile(dragon.ranged_damage, 6, 8);
-                projectile.SizeTo(11,11);
+                projectile.SizeTo(20,20);
                 projectile.MoveTo(dragon.GetRight()+2, dragon.GetBottom()+2);
                 projectile.Tint(dragon.GetTint());
                 projectile.Display("Game/Assets/fireball.png");
