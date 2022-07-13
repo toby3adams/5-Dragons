@@ -3,6 +3,6 @@
   "screenCaption": "CSE210 Scrolling Example",
   "screenWidth": 1860,
   "screenHeight": 980,
-  "backgroundMusic": "Assets/spinning-monkeys.mp3",
+  "backgroundMusic": "Game/Assets/spinning-monkeys.mp3",
   "bounceSound": "Assets/bounce.wav"
 }
