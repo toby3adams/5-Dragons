@@ -40,6 +40,7 @@ namespace Dragons.Game.Scripting
                 List<Image> lava = scene.GetAllActors<Image>("lava"); // will need to be changed to Image for texture application
                 List<Actor> ArrowTraps = scene.GetAllActors<Actor>("ArrowTrap");
                 List<Actor> Arrows = scene.GetAllActors<Actor>("arrow");
+                List<Image> WallTraps = scene.GetAllActors<Image>("wall_trap");
 
                 Actor world = camera.GetWorld();
                 foreach (Actor dragon in dragons){
@@ -63,6 +64,7 @@ namespace Dragons.Game.Scripting
                 _videoService.Draw(pits,camera);
                 _videoService.Draw(lava, camera);             
                 _videoService.Draw(dragons, camera);
+                _videoService.Draw(WallTraps, camera);
                 
                 
                 _videoService.Draw(ArrowTraps, camera);
