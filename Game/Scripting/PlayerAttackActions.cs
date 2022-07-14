@@ -258,7 +258,18 @@ namespace Dragons.Game.Scripting
                 }
                 }
                 counter_ranged += 1;
-            }
+
+
+                player.ticks_since_damage +=1;
+
+                if (player.ticks_since_damage > 600 && player.ticks_since_damage % 30 == 0){
+                    player.Player_Life +=1;
+                    if (player.Player_Life > 20){
+                        player.Player_Life = 20;
+                    }
+                }
+
+        }
 
         }
     }

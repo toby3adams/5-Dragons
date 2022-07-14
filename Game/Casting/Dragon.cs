@@ -23,6 +23,7 @@ namespace Dragons.Game.Casting{
         public Trap lava2;
         public bool first_placement = true;
         public bool first_placement2 = true;
+        public string type;
 
         public bool CheckDragonDead()
         {
