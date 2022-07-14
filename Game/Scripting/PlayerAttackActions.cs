@@ -139,13 +139,21 @@ namespace Dragons.Game.Scripting
                 if (_keyboardService.IsKeyDown(KeyboardKey.K)){
 
                     List<Dragon> dragons = scene.GetAllActors<Dragon>("dragon");
-                    Actor swing = new Actor();
+                    Actor swing = new Image();
                     
                     scene.AddActor("swing", swing);
 
                     if (last_direction == 1){
                         swing.SizeTo(player.melee_range, 50);
                         swing.MoveTo(player.GetRight(), player.GetTop());
+                        // if (Player.sword == false) //Trying to add the sword texture
+                        // {
+                        //     swing.Display("Game/Assets/dagger_horizontal.png");
+                        // }
+                        // else
+                        // {
+                        //     swing.Display("Game/Assets/sword_horizontal.png");
+                        // }
                         
                     }
                     if (last_direction == 2){
