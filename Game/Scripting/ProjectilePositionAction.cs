@@ -1,3 +1,4 @@
+
 using Dragons.Game.Casting;
 using System.Collections.Generic;
 
@@ -31,7 +32,7 @@ namespace Dragons.Game.Scripting{
             List<Projectile> waves = scene.GetAllActors<Projectile>("wave");
             foreach (Projectile projectile in waves){
                 MoveProjectile(projectile, projectile.GetDirection());
-                update_projectile_image(projectile);
+                
             }            
         }
 

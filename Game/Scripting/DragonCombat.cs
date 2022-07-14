@@ -127,7 +127,7 @@ namespace Dragons.Game.Scripting{
                 lava_counter +=1;
 
                 if (lava_counter > 600 && dragon.dragon_health < 75){
-                    dragon.lava1 = new Trap(1,1,1,1,2);
+                    dragon.lava1 = new Trap(1,1,1,1,2,0);
                     dragon.lava1.MoveTo(dragon.GetCenterX()-(960/2), dragon.GetCenterY()-25);
                     dragon.lava1.SizeTo(960,50);
                     dragon.lava1.Display("Game/Assets/lava.png");
@@ -135,7 +135,7 @@ namespace Dragons.Game.Scripting{
                     dragon.first_placement = false;
                     
                     if (dragon.dragon_health < 50){
-                        dragon.lava2 = new Trap(30,980,1,1,2);
+                        dragon.lava2 = new Trap(30,980,1,1,2,0);
                         dragon.lava2.MoveTo(dragon.GetCenterX()-25, dragon.GetCenterY()-(960/2));
                         dragon.lava2.SizeTo(50,960);
                         dragon.lava2.Display("Game/Assets/lava.png");
@@ -155,36 +155,15 @@ namespace Dragons.Game.Scripting{
 
         }
 
-<<<<<<< HEAD
-            if (lava_counter > 600 && dragon.dragon_health < 75){
-                dragon.lava1 = new Trap(1,1,1,1,2,5); // Trap now takes a 6th param for room 
-                dragon.lava1.MoveTo(dragon.GetCenterX()-(960/2), dragon.GetCenterY()-25);
-                dragon.lava1.SizeTo(960,50);
-                dragon.lava1.Display("Game/Assets/lava.png");
-                scene.AddActor("lava", dragon.lava1);
-                first_placement = false;
-                
-                if (dragon.dragon_health < 50){
-                    dragon.lava2 = new Trap(30,980,1,1,2,5); // Trap now takes a 6th param for room
-                    dragon.lava2.MoveTo(dragon.GetCenterX()-25, dragon.GetCenterY()-(960/2));
-                    dragon.lava2.SizeTo(50,960);
-                    dragon.lava2.Display("Game/Assets/lava.png");
-                    scene.AddActor("lava", dragon.lava2);
-                    first_placement2 = false;
-                }
-                lava_counter = 0;
-            }
-=======
->>>>>>> dc1c1f28fd64b6e4e6c2aba304317cd027446552
 
 
             if (dragon.type != "fire"){
 
                 wave_counter += 1;
-  
+
                 if (wave_counter > 300){
                     
-                      
+                    
                     Projectile wave = new Projectile(dragon.ranged_damage, 1, wave_direction);
                     wave.SizeTo(20,20);
                     wave.Tint(dragon.GetTint());
