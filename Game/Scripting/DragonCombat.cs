@@ -124,7 +124,7 @@ namespace Dragons.Game.Scripting{
 
 
             if (lava_counter > 600 && dragon.dragon_health < 75){
-                dragon.lava1 = new Trap(1,1,1,1,2);
+                dragon.lava1 = new Trap(1,1,1,1,2,5); // Trap now takes a 6th param for room 
                 dragon.lava1.MoveTo(dragon.GetCenterX()-(960/2), dragon.GetCenterY()-25);
                 dragon.lava1.SizeTo(960,50);
                 dragon.lava1.Display("Game/Assets/lava.png");
@@ -132,7 +132,7 @@ namespace Dragons.Game.Scripting{
                 first_placement = false;
                 
                 if (dragon.dragon_health < 50){
-                    dragon.lava2 = new Trap(30,980,1,1,2);
+                    dragon.lava2 = new Trap(30,980,1,1,2,5); // Trap now takes a 6th param for room
                     dragon.lava2.MoveTo(dragon.GetCenterX()-25, dragon.GetCenterY()-(960/2));
                     dragon.lava2.SizeTo(50,960);
                     dragon.lava2.Display("Game/Assets/lava.png");

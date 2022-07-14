@@ -27,32 +27,105 @@ namespace Dragons.Game.Scripting
             List<Floor>Rooms = scene.GetAllActors<Floor>("floor");
             List<Trap>Traps = scene.GetAllActors<Trap>("Trap");
             List<Turret>Turrets = scene.GetAllActors<Turret>("ArrowTrap");
+            List<Trap> Lava = scene.GetAllActors<Trap>("lava");
             Player player = scene.GetFirstActor<Player>("player");
             
             foreach(Floor floor in Rooms)
-            {
-                
+            {        
                 int Room_num = Rooms.IndexOf(floor);
+                if(player.FullyOverlaps(floor))
+                {   
+                    foreach(Trap lava in Lava)
+                    {
+                        float initial_dimension = lava.GetWidth(); 
+                        if(lava.GetRoom() == Room_num)
+                        {
+                            int lava_grow_counter = 60;
+                            float lava_width = lava.GetWidth();
+                            float lava_height = lava.GetHeight();     
+                            int max_dimension = 900;
+                            lava_grow_counter++;                          
+                            if(lava_grow_counter > 60)
+                            {
+                                for(int i = 0; i < 2; i++)
+                                {
+                                    if(lava_width < max_dimension)
+                                    {
+                                        lava.IncWidth(2);                                    
+                                    }
+                                    if(lava_width < max_dimension)
+                                    {
+                                        lava.IncHeight(2);                                        
+                                    } 
+                                    lava.SizeTo(lava.GetWidth(), lava.GetHeight()); 
+                                }                             
+                                if(lava_width < max_dimension)
+                                {                                    
+                                    lava.DecX(2);
+                                }
+                                if(lava_width < max_dimension)
+                                {                                    
+                                    lava.DecY(2);
+                                }                                        
+                                lava.MoveTo(lava.GetX(), lava.GetY());                                                       
+                            }
+                            lava_grow_counter = 0;                              
+                        }
+                    }
+                }       // lava trap shrinks
+                        if(!player.FullyOverlaps(floor))
+                        {
+                            foreach(Trap lava in Lava)
+                            {    
+                                if(lava.GetRoom() == Room_num)
+                                {
+                                    int lava_grow_counter = 60;
+                                    lava_grow_counter++;
+                                    int initial_dimension = 280;
+                                    if(lava_grow_counter > 60)
+                                    {
+                                        for(int i = 0; i < 2; i++)
+                                        {                                            
+                                            if(lava.GetWidth() > initial_dimension)
+                                            {
+                                                lava.DecWidth(1);                                    
+                                            }
+                                            if(lava.GetWidth() > initial_dimension)
+                                            {
+                                                lava.DecHeight(1);                                        
+                                            } 
+                                            lava.SizeTo(lava.GetWidth(), lava.GetHeight()); 
+                                        }                             
+                                        if(lava.GetWidth() > initial_dimension)
+                                        {                                    
+                                            lava.IncX(1);
+                                        }
+                                        if(lava.GetWidth() > initial_dimension)
+                                        {                                    
+                                            lava.IncY(1);
+                                        }                                        
+                                        lava.MoveTo(lava.GetX(), lava.GetY());                                                       
+                                    }
+                                }                        
+                            }
+                        }
+                 
                 foreach (Turret turret in Turrets)
                 {
                     
                     if(turret.GetRoom() == Room_num && player.FullyOverlaps(floor))
                     {
-                        Console.WriteLine("Test");
                         turret_attack(scene, turret, player);
                     }                
                 
                 }
-            }
-
-             if (this.lava_counter > 65)
-                {
-                    List<Trap> Lava = scene.GetAllActors<Trap>("lava"); 
-
-
-                    foreach (Trap lavaBlock in Lava){
-                        if (player.Overlaps(lavaBlock)){
-                            player.takes_damage(player.damage);
+            }            
+            if (this.lava_counter > 45)
+                {               
+                foreach (Trap lavaBlock in Lava)
+                {                       
+                    if (player.Overlaps(lavaBlock)){
+                          player.takes_damage(player.damage);
                         }
                     }
                     this.lava_counter=0;
@@ -114,7 +187,7 @@ namespace Dragons.Game.Scripting
                 arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+20);
             }
             turret.turret_counter = 0;
-            turret.expect_count = rnd.Next(45,90);
+            //turret.expect_count = rnd.Next(75,90);
             }
             
         }
