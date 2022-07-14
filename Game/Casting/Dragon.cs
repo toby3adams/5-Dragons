@@ -19,6 +19,11 @@ namespace Dragons.Game.Casting{
         public bool is_near_player;
         public int aggro_distance;
         private bool dragon_alive = true;
+        public Trap lava1;
+        public Trap lava2;
+        public bool first_placement = true;
+        public bool first_placement2 = true;
+        public string type;
 
         public bool CheckDragonDead()
         {

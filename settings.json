@@ -2,5 +2,7 @@
   "frameRate": 60,
   "screenCaption": "CSE210 Scrolling Example",
   "screenWidth": 1860,
-  "screenHeight": 980
+  "screenHeight": 980,
+  "backgroundMusic": "Game/Assets/Gastly.mp3",
+  "bounceSound": "Assets/bounce.wav"
 }

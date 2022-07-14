@@ -4,10 +4,11 @@ namespace Dragons.Game.Casting
 {
     public class Player : Image 
     {
-        private int Player_Life = 20; 
-        public int Player_Armor = 12;
+        public int Player_Life = 20; 
+        public int Player_Armor = 0;
         public int damage = 5;
         public int melee_range = 30;
+        public int ticks_since_damage = 0;
 
 
         // bool indicates if item has been unlocked
@@ -26,8 +27,9 @@ namespace Dragons.Game.Casting
         }
 
         public void takes_damage(int damage){
-            this.Player_Life -= (damage * (1-(Player_Armor/100))); 
-            // Will Player_Armor ever be able to get the number to round down? Stored as an int.
+            this.Player_Life -= (damage -Player_Armor); 
+            ticks_since_damage = 0;
+            
         }
     }
 }

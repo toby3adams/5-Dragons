@@ -49,7 +49,7 @@ namespace Dragons
             
             Player player = new Player();
             player.SizeTo(50, 50);
-            player.MoveTo(1480, 4000); //5250,5250 SpawnLocation
+            player.MoveTo(1480, 5000); //5250,5250 SpawnLocation
             // player.Tint(Color.Red());
             player.Display("Game/Assets/fighter.png");
 
@@ -73,14 +73,16 @@ namespace Dragons
             dragon_water.MoveTo(dragon_water_pos.GetX(), dragon_water_pos.GetY());
             dragon_water.Tint(Color.Blue());
             dragon_water.Display("Game/Assets/dragon_2.png");
+            dragon_water.type = "water";
 
             
             Dragon dragon_earth = new Dragon(40, 150, 12, 8, 550);
             Point dragon_earth_pos = rdp.GetPosition(); // retrieves randomized point, randomly placing dragon at one of 4 possible positions
-            dragon_earth.SizeTo(100, 100);            
+            dragon_earth.SizeTo(100, 100);
             dragon_earth.MoveTo(dragon_earth_pos.GetX(), dragon_earth_pos.GetY());
             dragon_earth.Tint(Color.Gray());
             dragon_earth.Display("Game/Assets/dragon_2.png");
+            dragon_earth.type = "earth";
             
             Dragon dragon_air = new Dragon(40, 150, 12, 8, 550);
             Point dragon_air_pos = rdp.GetPosition(); // retrieves randomized point, randomly placing dragon at one of 4 possible positions
@@ -89,6 +91,7 @@ namespace Dragons
             dragon_air.MoveTo(dragon_air_pos.GetX(), dragon_air_pos.GetY());
             dragon_air.Tint(Color.Green());
             dragon_air.Display("Game/Assets/dragon_2.png");
+            dragon_air.type = "air";
             
             Dragon dragon_fire = new Dragon(40, 150, 12, 8, 550);
             Point dragon_fire_pos = rdp.GetPosition(); // retrieves randomized point, randomly placing dragon at one of 4 possible positions
@@ -97,6 +100,7 @@ namespace Dragons
             dragon_fire.MoveTo(dragon_fire_pos.GetX(), dragon_fire_pos.GetY());            
             dragon_fire.Tint(Color.Orange());
             dragon_fire.Display("Game/Assets/dragon_2.png");
+            dragon_fire.type = "fire";
 
             // shadow dragon "Boss" static position
             Dragon dragon_shadow = new Dragon(40, 150, 12, 8, 900);
@@ -105,6 +109,8 @@ namespace Dragons
             //dragon_shadow.MoveTo(2600, 1800);
             dragon_shadow.MoveTo(dragon_shadow_pos.GetX(), dragon_shadow_pos.GetY());
             dragon_shadow.Tint(Color.Purple());
+            dragon_shadow.Display("Game/Assets/dragon_2.png");
+            dragon_shadow.type = "shadow";
 
             // Traps
             BuildTraps traps = new BuildTraps();
@@ -114,6 +120,7 @@ namespace Dragons
             List<Actor> Pits = new List<Actor>();
             List<Actor> Lava = new List<Actor>();
             List<Actor> ArrowTrap = new List<Actor>();
+            List<Actor> Wall_traps = new List<Actor>();
             foreach(Image trap in AllTraps)
             {
                 int TrapType = trap.GetTrapType();
@@ -125,14 +132,20 @@ namespace Dragons
                     Pits.Add(trap);
                     scene.AddActor("pit", trap);
                 }  
-                if(TrapType == 2)              
+                 else if(TrapType == 2)              
                 {
                     trap.Tint(Color.Yellow());
                     Lava.Add(trap);
-                    trap.Display("Game/Assets/lava.png");
-                    scene.AddActor("lava", trap);
-                    
+                    trap.Display("Game/Assets/lava_2.png");
+                    scene.AddActor("lava", trap);                    
+                } else if(TrapType == 3)
+                {
+                    trap.Tint(Color.White());
+                    Wall_traps.Add(trap);
+                    trap.Display("Game/Assets/brick.png");
+                    scene.AddActor("wall_trap", trap);
                 }
+
             }
             foreach(Actor turret in AllTurrets)
             {
@@ -210,6 +223,7 @@ namespace Dragons
             ProjectileCollisions projectile_collisions = new ProjectileCollisions();
             DragonCombat dragon_combat = new DragonCombat();
             TrapActions trap_action = new TrapActions();
+            PlayMusicAction playMusicAction = new PlayMusicAction(serviceFactory);
 //            DrawImageAction drawImageAction = new DrawImageAction(serviceFactory);
 
 
@@ -239,10 +253,13 @@ namespace Dragons
             scene.AddAction(Phase.Update, movePlayerAction);
             scene.AddAction(Phase.Update, updateStatusAction);
             scene.AddAction(Phase.Update, projectile_movement);
-            scene.AddAction(Phase.Output, drawActorsAction);
             scene.AddAction(Phase.Update, projectile_collisions);
             scene.AddAction(Phase.Update, dragon_combat);
             scene.AddAction(Phase.Update, trap_action);
+            scene.AddAction(Phase.Output, drawActorsAction);
+            scene.AddAction(Phase.Output, playMusicAction);
+            
+            
 //            scene.AddAction(Phase.Update, drawImageAction);
 
             // Start the game.

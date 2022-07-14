@@ -263,7 +263,7 @@ namespace Dragons.Game.Casting
         {
             _size = size;
         }
-
+        
         public virtual void SizeTo(float width, float height) 
         {
             _size = new Vector2(width, height);

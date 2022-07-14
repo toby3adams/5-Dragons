@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using Dragons.Game.Casting;
 using Dragons.Game.Services;
@@ -20,6 +21,7 @@ namespace Dragons.Game.Scripting
         private int counter_sheild = 65;
         private int last_direction = 1;
         private int last_sheild_direction = 1;
+        bool sheild_is_up = false;
         Wall sheild;
         private bool first_sheild = true;
 
@@ -68,67 +70,84 @@ namespace Dragons.Game.Scripting
 
 
             //sheild
-            if (counter_sheild > 65)//has to be larger than the amount required before it is removed
-            {
+            // if (counter_sheild > 65)//has to be larger than the amount required before it is removed
+            // {
 
                 if (_keyboardService.IsKeyDown(KeyboardKey.L)){
 
+                    if (!sheild_is_up){
+
+                    
                     this.sheild = new Wall();
                     this.sheild.Display("Game/Assets/shield.png");
-                    sheild.Tint(Color.Gray());
+                    // sheild.Tint(Color.Gray());
                     
                     scene.AddActor("wall", sheild);
+                    sheild.SizeTo(15, 60);
 
                     if (last_direction == 1){
-                        sheild.SizeTo(15, 60);
+                        // sheild.SizeTo(15, 60);
                         sheild.MoveTo(player.GetRight(), player.GetTop()-5);
                         
                     }
                     if (last_direction == 2){
-                        sheild.SizeTo(15, 60);
+                        // sheild.SizeTo(15, 60);
                         sheild.MoveTo(player.GetRight(), player.GetTop()-35);
-                        sheild.Rotate(-45);
+                        sheild.RotateTo(-45);
                     }
                     if (last_direction == 3){
-                        sheild.SizeTo(60, 15);
-                        sheild.MoveTo(player.GetLeft()-5, player.GetTop()-15);
+                        // sheild.SizeTo(60, 15);
+                        sheild.RotateTo(-90);
+                        sheild.MoveTo(player.GetLeft()+20, player.GetTop()-40);
                     }
                     if (last_direction == 4){
-                        sheild.SizeTo(15, 60);
+                        // sheild.SizeTo(15, 60);
                         sheild.MoveTo(player.GetLeft()-15, player.GetTop()-35);
-                        sheild.Rotate(45);
+                        sheild.Rotate(-135);
                     }
                     if (last_direction == 5){
-                        sheild.SizeTo(15, 60);
+                        // sheild.SizeTo(15, 60);
+                        sheild.RotateTo(180);
                         sheild.MoveTo(player.GetLeft()-15, player.GetTop()-5);
                     }
                     if (last_direction == 6){
-                        sheild.SizeTo(15, 60);
-                        sheild.MoveTo(player.GetLeft()-15, player.GetBottom()-25);
-                        sheild.Rotate(-45);
+                        // sheild.SizeTo(15, 60);
+                        sheild.MoveTo(player.GetLeft()-15, player.GetBottom()-20);
+                        sheild.Rotate(-225);
                     }
                     if (last_direction == 7){
-                        sheild.SizeTo(60, 15);
-                        sheild.MoveTo(player.GetLeft()-5, player.GetBottom());
+                        // sheild.SizeTo(60, 15);
+                        sheild.MoveTo(player.GetLeft()+17, player.GetBottom()-15);
+                        sheild.RotateTo(90);
                     }
                     if (last_direction == 8){
-                        sheild.SizeTo(15, 60);
-                        sheild.MoveTo(player.GetRight(), player.GetBottom()-20);
+                        // sheild.SizeTo(15, 60);
+                        sheild.MoveTo(player.GetRight()-5, player.GetBottom()-15);
                         sheild.Rotate(45);
                     }
                     counter_sheild = 0;
                     first_sheild = false;
+                    sheild_is_up = true;
                 }
-            }
-            if (counter_sheild < 60){
-                player.Steer(0,0);
-            }
-            if (!first_sheild){
-            if (counter_sheild > 60){
+                    player.Steer(0,0);
+                }
+            // }
+
+            if (_keyboardService.IsKeyReleased(KeyboardKey.L)){
                 scene.RemoveActor("wall", this.sheild);
+                sheild_is_up = false;
             }
-            }
-            counter_sheild += 1;
+
+
+            // if (counter_sheild < 60){
+            //     player.Steer(0,0);
+            // }
+            // if (!first_sheild){
+            // if (counter_sheild > 60){
+            //     scene.RemoveActor("wall", this.sheild);
+            // }
+            // }
+            // counter_sheild += 1;
 
 
 
@@ -248,8 +267,18 @@ namespace Dragons.Game.Scripting
                 }
                 }
                 counter_ranged += 1;
-            }
+
+
+                player.ticks_since_damage +=1;
+
+                if (player.ticks_since_damage > 600 && player.ticks_since_damage % 30 == 0){
+                    player.Player_Life +=1;
+                    if (player.Player_Life > 20){
+                        player.Player_Life = 20;
+                    }
+                }
+
+        }
 
         }
     }
-
