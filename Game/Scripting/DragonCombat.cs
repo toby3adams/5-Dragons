@@ -160,10 +160,10 @@ namespace Dragons.Game.Scripting{
             if (dragon.type != "fire"){
 
                 wave_counter += 1;
-
+  
                 if (wave_counter > 300){
                     
-                    
+                      
                     Projectile wave = new Projectile(dragon.ranged_damage, 1, wave_direction);
                     wave.SizeTo(20,20);
                     wave.Tint(dragon.GetTint());
