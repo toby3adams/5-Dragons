@@ -38,6 +38,7 @@ namespace Dragons.Game.Scripting
                 List<Image> floors = scene.GetAllActors<Image>("floor");
                 List<Actor> pits = scene.GetAllActors("pit");
                 List<Image> lava = scene.GetAllActors<Image>("lava"); // will need to be changed to Image for texture application
+                List<Image> dragon_lava = scene.GetAllActors<Image>("dragon_lava");
                 List<Actor> ArrowTraps = scene.GetAllActors<Actor>("ArrowTrap");
                 List<Actor> Arrows = scene.GetAllActors<Actor>("arrow");
                 List<Image> WallTraps = scene.GetAllActors<Image>("wall_trap");
@@ -62,7 +63,8 @@ namespace Dragons.Game.Scripting
                 _videoService.DrawGrid(100, Color.Blue(), camera);         
                 _videoService.Draw(floors, camera);
                 _videoService.Draw(pits,camera);
-                _videoService.Draw(lava, camera);             
+                _videoService.Draw(lava, camera); 
+                _videoService.Draw(dragon_lava, camera);            
                 _videoService.Draw(dragons, camera);
                 _videoService.Draw(WallTraps, camera);
                 
