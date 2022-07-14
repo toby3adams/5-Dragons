@@ -35,10 +35,10 @@ namespace Dragons.Game.Scripting
         public void GenTraps()
         {
             //GenTrapsRoom_1();
-           // GenTrapsRoom_2();
-            //GenTrapsRoom_3();
+            GenTrapsRoom_2();
+            GenTrapsRoom_3();
             GenTrapsRoom_4();
-            //GenTrapsRoom_5();
+            GenTrapsRoom_5();
             //GenTrapsRoom_6();
         }
         
@@ -64,7 +64,7 @@ namespace Dragons.Game.Scripting
 
         public void GenTrapsRoom_2()
         {
-            Trap_Room_Type = rnd.Next(1,1);
+            Trap_Room_Type = rnd.Next(1,2);
             int bottom_arrow_x_start = 1040;
             int left_arrow_y_start = 2540;
             int right_arrow_y_start = 2540;
@@ -149,7 +149,7 @@ namespace Dragons.Game.Scripting
 
         public void GenTrapsRoom_3()
         {
-            Trap_Room_Type = rnd.Next(1,1);
+            Trap_Room_Type = rnd.Next(1,2);
             int bottom_arrow_x_start = 40;
             int left_arrow_y_start = 3540;
             int right_arrow_y_start = 3540;
@@ -239,7 +239,7 @@ namespace Dragons.Game.Scripting
 
         public void GenTrapsRoom_4()
         {
-            Trap_Room_Type = rnd.Next(2,2);
+            Trap_Room_Type = rnd.Next(1,2);
             int bottom_arrow_x_start = 1040;
             int left_arrow_y_start = 3540;
             int right_arrow_y_start = 3540;
@@ -356,7 +356,7 @@ namespace Dragons.Game.Scripting
 
         public void GenTrapsRoom_5()
         {
-            Trap_Room_Type = rnd.Next(1,1);
+            Trap_Room_Type = rnd.Next(1,2);
             int bottom_arrow_x_start = 2040;
             int left_arrow_y_start = 3540;
             int right_arrow_y_start = 3540;
@@ -446,7 +446,7 @@ namespace Dragons.Game.Scripting
 
         public void GenTrapsRoom_6()
         {
-            Trap_Room_Type = rnd.Next(1,1);
+            Trap_Room_Type = rnd.Next(1,2);
             if(Trap_Room_Type == 1)// Central pit, walk way, with wall traps that fire projectiles
             {
                 int bottom_arrow_x_start = 1040;
