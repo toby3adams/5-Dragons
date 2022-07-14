@@ -16,9 +16,6 @@ namespace Dragons.Game.Scripting{
         int melee_counter = 0;
         int wave_counter = 0;
         int lava_counter = 0;
-        int lava_counter_remove = 0;
-        bool first_placement = true;
-        bool first_placement2 = true;
         bool initial = true;
         DirectionAndTracking tracking = new DirectionAndTracking();
         
@@ -74,7 +71,7 @@ namespace Dragons.Game.Scripting{
             wave_counter +=1;
             melee_counter +=1;
             lava_counter +=1;
-            lava_counter_remove +=1;
+ 
 
             if (tracking_counter > 360){
                 int players_direction = tracking.get_player_direction(player, dragon);
@@ -129,7 +126,7 @@ namespace Dragons.Game.Scripting{
                 dragon.lava1.SizeTo(960,50);
                 dragon.lava1.Display("Game/Assets/lava.png");
                 scene.AddActor("lava", dragon.lava1);
-                first_placement = false;
+                dragon.first_placement = false;
                 
                 if (dragon.dragon_health < 50){
                     dragon.lava2 = new Trap(30,980,1,1,2);
@@ -137,17 +134,17 @@ namespace Dragons.Game.Scripting{
                     dragon.lava2.SizeTo(50,960);
                     dragon.lava2.Display("Game/Assets/lava.png");
                     scene.AddActor("lava", dragon.lava2);
-                    first_placement2 = false;
+                    dragon.first_placement2 = false;
                 }
                 lava_counter = 0;
             }
 
 
 
-            if (lava_counter >= 450 && !first_placement){
+            if (lava_counter >= 450 && !dragon.first_placement){
                 scene.RemoveActor("lava", dragon.lava1);
                 
-                if (!first_placement2){
+                if (!dragon.first_placement2){
                     scene.RemoveActor("lava", dragon.lava2);
                 }
             }

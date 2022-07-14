@@ -105,6 +105,7 @@ namespace Dragons
             //dragon_shadow.MoveTo(2600, 1800);
             dragon_shadow.MoveTo(dragon_shadow_pos.GetX(), dragon_shadow_pos.GetY());
             dragon_shadow.Tint(Color.Purple());
+            dragon_shadow.Display("Game/Assets/dragon_2.png");
 
             // Traps
             BuildTraps traps = new BuildTraps();
