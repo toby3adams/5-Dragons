@@ -18,6 +18,7 @@ namespace Dragons.Game.Scripting{
         int lava_counter = 0;
         bool initial = true;
         int wave_direction = 1;
+        int lava_damage_ticks = 0;
         DirectionAndTracking tracking = new DirectionAndTracking();
         
 
@@ -26,6 +27,7 @@ namespace Dragons.Game.Scripting{
 
             List<Dragon> dragons = scene.GetAllActors<Dragon>("dragon");
             Player player = scene.GetFirstActor<Player>("player");
+            List<Actor> dragon_lavas = scene.GetAllActors<Actor>("dragon_lava");
 
             if (initial){
                 // foreach()
@@ -41,6 +43,16 @@ namespace Dragons.Game.Scripting{
                     attack_player(scene, dragon, player);
                 }
                 
+                
+            }
+
+            foreach (Actor lava in dragon_lavas){
+                if (player.Overlaps(lava)){
+                    if (lava_damage_ticks % 10 == 0){
+                        player.takes_damage(1);
+                    }
+                    lava_damage_ticks += 1;
+                }
             }
 
 
@@ -127,29 +139,44 @@ namespace Dragons.Game.Scripting{
                 lava_counter +=1;
 
                 if (lava_counter > 600 && dragon.dragon_health < 75){
-                    dragon.lava1 = new Trap(1,1,1,1,2,0);
-                    dragon.lava1.MoveTo(dragon.GetCenterX()-(960/2), dragon.GetCenterY()-25);
-                    dragon.lava1.SizeTo(960,50);
+                    dragon.lava1 = new Image();
+                    if (dragon.type != "shadow"){
+                        dragon.lava1.MoveTo(dragon.GetCenterX()-(980/2), dragon.GetCenterY()-25);
+                        dragon.lava1.SizeTo(980,50);  
+                    }
+                    else{
+                        dragon.lava1.MoveTo(dragon.GetCenterX()-(2000/2), dragon.GetCenterY()-50);
+                        dragon.lava1.SizeTo(2000,100);
+                    }
+                    
                     dragon.lava1.Display("Game/Assets/lava.png");
-                    scene.AddActor("lava", dragon.lava1);
+                    scene.AddActor("dragon_lava", dragon.lava1);
                     dragon.first_placement = false;
                     
                     if (dragon.dragon_health < 50){
-                        dragon.lava2 = new Trap(30,980,1,1,2,0);
-                        dragon.lava2.MoveTo(dragon.GetCenterX()-25, dragon.GetCenterY()-(960/2));
-                        dragon.lava2.SizeTo(50,960);
+                        dragon.lava2 = new Image();
+                        
+                        if (dragon.type != "shadow"){
+                            dragon.lava2.SizeTo(50,980);
+                            dragon.lava2.MoveTo(dragon.GetCenterX()-25, dragon.GetCenterY()-(980/2));
+                        }
+                        else{
+                            dragon.lava2.SizeTo(100, 1500);
+                            dragon.lava2.MoveTo(dragon.GetCenterX()-50, dragon.GetCenterY()-(1550/2));
+                        }
+                        
                         dragon.lava2.Display("Game/Assets/lava.png");
-                        scene.AddActor("lava", dragon.lava2);
+                        scene.AddActor("dragon_lava", dragon.lava2);
                         dragon.first_placement2 = false;
                     }
                     lava_counter = 0;
                 }
 
                 if (lava_counter >= 450 && !dragon.first_placement){
-                    scene.RemoveActor("lava", dragon.lava1);
+                    scene.RemoveActor("dragon_lava", dragon.lava1);
                     
                     if (!dragon.first_placement2){
-                        scene.RemoveActor("lava", dragon.lava2);
+                        scene.RemoveActor("dragon_lava", dragon.lava2);
                     }
                 }
 
@@ -169,18 +196,21 @@ namespace Dragons.Game.Scripting{
                     wave.Tint(dragon.GetTint());
                     wave.Display("Game/Assets/wave_attempt1.png");
                     scene.AddActor("wave", wave);
+                    if (dragon.type == "shadow"){
+                        wave.SizeTo(40,40);
+                    }
 
                     if (wave_direction == 1){
-                        wave.MoveTo(dragon.GetRight()+2, dragon.GetCenterY());
+                        wave.MoveTo(dragon.GetRight()+2, dragon.GetCenterY()-10);
                     }
                     if (wave_direction == 3){
-                        wave.MoveTo(dragon.GetCenterX(), dragon.GetTop()-20);
+                        wave.MoveTo(dragon.GetCenterX()-10, dragon.GetTop()-20);
                     }
                     if (wave_direction == 5){
-                        wave.MoveTo(dragon.GetLeft()-20, dragon.GetCenterY());
+                        wave.MoveTo(dragon.GetLeft()-20, dragon.GetCenterY()-10);
                     }
                     if (wave_direction == 7){
-                        wave.MoveTo(dragon.GetCenterX(), dragon.GetBottom()+2);
+                        wave.MoveTo(dragon.GetCenterX()-10, dragon.GetBottom()+2);
                     }
                     wave_counter = 0;
                 }
@@ -279,23 +309,34 @@ namespace Dragons.Game.Scripting{
 
                 melee_counter +=1;
 
-                if (melee_counter > 60){
+                if (melee_counter > 75){
                     if (player.GetCenterX() < dragon.GetCenterX() + 150 && player.GetCenterX() > dragon.GetCenterX() -150){
                         if (player.GetCenterY() < dragon.GetCenterY() + 150 && player.GetCenterY() > dragon.GetCenterY() -150){
-                            Actor swing = new Actor();
-                            scene.AddActor("swing", swing);
-                            swing.MoveTo(dragon.GetLeft()-50, dragon.GetTop()-50);
-                            swing.SizeTo(200,200);
-                            if (swing.Overlaps(player)){
+                            dragon.swing = new Image();
+                            dragon.swing.Display("Game/Assets/flame_dragon_swing.png");
+                            dragon.swing.Tint(dragon.GetTint());
+                            scene.AddActor("swing", dragon.swing);
+                            dragon.swing.MoveTo(dragon.GetLeft()-50, dragon.GetTop()-50);
+                            dragon.swing.SizeTo(200,200);
+                            if (dragon.swing.Overlaps(player)){
                                 player.takes_damage(dragon.melee_damage);
                             }
-                            scene.RemoveActor("swing",swing);
+                            // scene.RemoveActor("swing",swing);
                             melee_counter = 0;
+                            dragon.attack_is_displayed = true;
                         }
                     }
                 }
                 if (!(player.GetCenterX() < dragon.GetCenterX() + 150 && player.GetCenterX() > dragon.GetCenterX() -150) || (!(player.GetCenterY() < dragon.GetCenterY() + 150 && player.GetCenterY() > dragon.GetCenterY() -150))){
                         melee_counter = 0;
+                }
+                if (dragon.attack_is_displayed){
+                    if (dragon.ticks_since_displayed % 20 == 0){
+                        scene.RemoveActor("swing", dragon.swing);
+                        dragon.attack_is_displayed = false;
+                    }
+                    dragon.ticks_since_displayed += 1;
+                    
                 }
 
             }
@@ -329,6 +370,9 @@ namespace Dragons.Game.Scripting{
                 }
                 if (dragon.type == "shadow"){
                     // Game_ends
+                }
+                if (dragon.attack_is_displayed){
+                    scene.RemoveActor("swing", dragon.swing);
                 }
                 scene.RemoveActor("dragon", dragon);
             }

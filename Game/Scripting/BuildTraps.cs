@@ -239,7 +239,7 @@ namespace Dragons.Game.Scripting
 
         public void GenTrapsRoom_4()
         {
-            Trap_Room_Type = rnd.Next(1,2);
+            Trap_Room_Type = rnd.Next(2,2);
             int bottom_arrow_x_start = 1040;
             int left_arrow_y_start = 3540;
             int right_arrow_y_start = 3540;
@@ -333,6 +333,24 @@ namespace Dragons.Game.Scripting
                 int coord_shift_index = 0;
                 int wall_trap_x = 1040;
                 int wall_trap_y = 3540;
+                Trap Center_Block = new Trap(360,360,wall_trap_x+300,wall_trap_y+300,4,5);
+                Traps.Add(Center_Block);
+                Trap Left_Block_Top = new Trap(200,410,wall_trap_x,wall_trap_y,4,5);
+                Traps.Add(Left_Block_Top);
+                Trap Left_Block_Bottom = new Trap(200,450,wall_trap_x,wall_trap_y+510,4,5);
+                Traps.Add(Left_Block_Bottom);
+                Trap Top_Block_Left = new Trap(410,200,wall_trap_x, wall_trap_y,4,5);
+                Traps.Add(Top_Block_Left);
+                Trap Top_Block_Right = new Trap(450,200,wall_trap_x+510,wall_trap_y,4,5);
+                Traps.Add(Top_Block_Right);
+                Trap Bottom_Block_Left = new Trap(410,200,wall_trap_x,wall_trap_y+760,4,5);
+                Traps.Add(Bottom_Block_Left);
+                Trap Bottom_Block_Right = new Trap(450,200,wall_trap_x+510,wall_trap_y+760,4,5);
+                Traps.Add(Bottom_Block_Right);
+                Trap Right_Block_Top = new Trap(200,410,wall_trap_x+760,wall_trap_y,4,5);
+                Traps.Add(Right_Block_Top);
+                Trap Right_Block_Bottom = new Trap(200,450,wall_trap_x+760,wall_trap_y+510,4,5);
+                Traps.Add(Right_Block_Bottom);
                 for(int i = 0; i < 4; i++)
                 {
                     Trap wall_trap_left = new Trap(300,300,wall_trap_x, wall_trap_y, 3, 5);

@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 
 namespace Dragons.Game.Casting{
-    public class Trap : Image
+    public class Trap : Wall
     {
 
         private int TrapType;
@@ -82,35 +82,35 @@ namespace Dragons.Game.Casting{
         {
             return Room;
         }
-        public void IncX(int growth_index)
+        public void IncX(int growth_interval, int growth_rate)
         {
-            for(int i = 0; i < growth_index; i++)
+            for(int i = 0; i < growth_interval; i++)
             {
-                x++;
+                x+=growth_rate;
             }
             
         }
-        public void IncY(int growth_index)
+        public void IncY(int growth_interval, int growth_rate)
         {
-            for(int i = 0; i < growth_index; i++)
+            for(int i = 0; i < growth_interval; i++)
             {
-                y++;
+                y+=growth_rate;
             }
             
         }
-        public void DecX(int shrink_index)
+        public void DecX(int shrink_interval, int shrink_rate)
         {
-            for(int i = 0; i < shrink_index; i++)
+            for(int i = 0; i < shrink_interval; i++)
             {
-               x -= 1;
+               x -= shrink_rate;
             }
             
         }
-        public void DecY(int shrink_index)
+        public void DecY(int shrink_interval, int shrink_rate)
         {
-             for(int i = 0; i < shrink_index; i++)
+             for(int i = 0; i < shrink_interval; i++)
             {
-               y -= 1;
+               y -= shrink_rate;
             }
         }
 

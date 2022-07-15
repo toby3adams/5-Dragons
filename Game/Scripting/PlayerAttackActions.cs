@@ -18,7 +18,7 @@ namespace Dragons.Game.Scripting
             
         private int counter_ranged;
         private int counter_melee;
-        private int counter_sheild = 65;
+        private int counter_sheild = 0;
         private int last_direction = 1;
         private int last_sheild_direction = 1;
         bool sheild_is_up = false;
@@ -70,84 +70,77 @@ namespace Dragons.Game.Scripting
 
 
             //sheild
-            // if (counter_sheild > 65)//has to be larger than the amount required before it is removed
-            // {
+            if (player.shield){
+                if (counter_sheild > 60)
+                {
 
-                if (_keyboardService.IsKeyDown(KeyboardKey.L)){
+                    if (_keyboardService.IsKeyDown(KeyboardKey.L)){
 
-                    if (!sheild_is_up){
+                        if (!sheild_is_up){
 
-                    
-                    this.sheild = new Wall();
-                    this.sheild.Display("Game/Assets/shield.png");
-                    // sheild.Tint(Color.Gray());
-                    
-                    scene.AddActor("wall", sheild);
-                    sheild.SizeTo(15, 60);
-
-                    if (last_direction == 1){
-                        // sheild.SizeTo(15, 60);
-                        sheild.MoveTo(player.GetRight(), player.GetTop()-5);
                         
-                    }
-                    if (last_direction == 2){
-                        // sheild.SizeTo(15, 60);
-                        sheild.MoveTo(player.GetRight(), player.GetTop()-35);
-                        sheild.RotateTo(-45);
-                    }
-                    if (last_direction == 3){
-                        // sheild.SizeTo(60, 15);
-                        sheild.RotateTo(-90);
-                        sheild.MoveTo(player.GetLeft()+20, player.GetTop()-40);
-                    }
-                    if (last_direction == 4){
-                        // sheild.SizeTo(15, 60);
-                        sheild.MoveTo(player.GetLeft()-15, player.GetTop()-35);
-                        sheild.Rotate(-135);
-                    }
-                    if (last_direction == 5){
-                        // sheild.SizeTo(15, 60);
-                        sheild.RotateTo(180);
-                        sheild.MoveTo(player.GetLeft()-15, player.GetTop()-5);
-                    }
-                    if (last_direction == 6){
-                        // sheild.SizeTo(15, 60);
-                        sheild.MoveTo(player.GetLeft()-15, player.GetBottom()-20);
-                        sheild.Rotate(-225);
-                    }
-                    if (last_direction == 7){
-                        // sheild.SizeTo(60, 15);
-                        sheild.MoveTo(player.GetLeft()+17, player.GetBottom()-15);
-                        sheild.RotateTo(90);
-                    }
-                    if (last_direction == 8){
-                        // sheild.SizeTo(15, 60);
-                        sheild.MoveTo(player.GetRight()-5, player.GetBottom()-15);
-                        sheild.Rotate(45);
-                    }
-                    counter_sheild = 0;
-                    first_sheild = false;
-                    sheild_is_up = true;
-                }
-                    player.Steer(0,0);
-                }
-            // }
+                        player.sheild_wall = new Wall();
+                        player.sheild_wall.Display("Game/Assets/shield.png");
+                        // sheild.Tint(Color.Gray());
+                        
+                        scene.AddActor("wall", player.sheild_wall);
+                        player.sheild_wall.SizeTo(15, 60);
 
-            if (_keyboardService.IsKeyReleased(KeyboardKey.L)){
-                scene.RemoveActor("wall", this.sheild);
-                sheild_is_up = false;
+                        if (last_direction == 1){
+                            player.sheild_wall.MoveTo(player.GetRight(), player.GetTop()-5);
+                            
+                        }
+                        if (last_direction == 2){
+                            player.sheild_wall.MoveTo(player.GetRight(), player.GetTop()-35);
+                            player.sheild_wall.RotateTo(-45);
+                        }
+                        if (last_direction == 3){
+                            player.sheild_wall.RotateTo(-90);
+                            player.sheild_wall.MoveTo(player.GetLeft()+20, player.GetTop()-40);
+                        }
+                        if (last_direction == 4){
+                            player.sheild_wall.MoveTo(player.GetLeft()-15, player.GetTop()-35);
+                            player.sheild_wall.Rotate(-135);
+                        }
+                        if (last_direction == 5){
+                            player.sheild_wall.RotateTo(180);
+                            player.sheild_wall.MoveTo(player.GetLeft()-15, player.GetTop()-5);
+                        }
+                        if (last_direction == 6){
+                            player.sheild_wall.MoveTo(player.GetLeft()-15, player.GetBottom()-20);
+                            player.sheild_wall.Rotate(-225);
+                        }
+                        if (last_direction == 7){
+                            player.sheild_wall.MoveTo(player.GetLeft()+17, player.GetBottom()-15);
+                            player.sheild_wall.RotateTo(90);
+                        }
+                        if (last_direction == 8){
+                            player.sheild_wall.MoveTo(player.GetRight()-5, player.GetBottom()-15);
+                            player.sheild_wall.Rotate(45);
+                        }
+                        first_sheild = false;
+                        sheild_is_up = true;
+                    }
+                        player.Steer(0,0);
+                    }
+                }
+
+                if (_keyboardService.IsKeyReleased(KeyboardKey.L)){
+                    scene.RemoveActor("wall", player.sheild_wall);
+                    if (sheild_is_up){
+                        counter_sheild = 0;
+                    }
+                    sheild_is_up = false;
+    
+                }
+                counter_sheild += 1;
+
             }
+            
 
 
-            // if (counter_sheild < 60){
-            //     player.Steer(0,0);
-            // }
-            // if (!first_sheild){
-            // if (counter_sheild > 60){
-            //     scene.RemoveActor("wall", this.sheild);
-            // }
-            // }
-            // counter_sheild += 1;
+
+            
 
 
 
@@ -158,115 +151,145 @@ namespace Dragons.Game.Scripting
                 if (_keyboardService.IsKeyDown(KeyboardKey.K)){
 
                     List<Dragon> dragons = scene.GetAllActors<Dragon>("dragon");
-                    Actor swing = new Image();
+                    player.swing = new Image();
                     
-                    scene.AddActor("swing", swing);
+                    scene.AddActor("swing", player.swing);
 
-                    if (last_direction == 1){
-                        swing.SizeTo(player.melee_range, 50);
-                        swing.MoveTo(player.GetRight(), player.GetTop());
-                        // if (Player.sword == false) //Trying to add the sword texture
+                    if (last_direction == 1 || last_direction == 3 || last_direction == 5 || last_direction == 7){
+                        if (player.sword == false) //Trying to add the sword texture
+                        {
+                            player.swing.Display("Game/Assets/dagger_1.png");
+                        }
+                        else
+                        {
+                            player.swing.Display("Game/Assets/sword_horizontal.png");
+                        }
+                    }
+                    else {
+                        // if (player.sword == false) //Trying to add the sword texture
                         // {
-                        //     swing.Display("Game/Assets/dagger_horizontal.png");
+                        //     player.swing.Display("Game/Assets/dagger_horizontal.png");
                         // }
                         // else
                         // {
-                        //     swing.Display("Game/Assets/sword_horizontal.png");
-                        // }
-                        
+                        //     player.swing.Display("Game/Assets/sword_horizontal.png");
+                        // } 
+                    }
+                                               
+                    
+
+
+
+
+                    if (last_direction == 1){
+                        player.swing.SizeTo(player.melee_range, 50);
+                        player.swing.MoveTo(player.GetRight(), player.GetTop());
                     }
                     if (last_direction == 2){
-                        swing.SizeTo(player.melee_range+25, player.melee_range+25);
-                        swing.MoveTo(player.GetRight()-25, player.GetTop()-player.melee_range);
+                        player.swing.SizeTo(player.melee_range+25, player.melee_range+25);
+                        player.swing.MoveTo(player.GetRight()-25, player.GetTop()-player.melee_range);
                     }
                     if (last_direction == 3){
-                        swing.SizeTo(50, player.melee_range);
-                        swing.MoveTo(player.GetLeft(), player.GetTop()-player.melee_range);
+                        player.swing.SizeTo(50, player.melee_range);
+                        player.swing.MoveTo(player.GetLeft(), player.GetTop()-player.melee_range);
                     }
                     if (last_direction == 4){
-                        swing.SizeTo(player.melee_range+25, player.melee_range+25);
-                        swing.MoveTo(player.GetLeft()-player.melee_range, player.GetTop()-player.melee_range);
+                        player.swing.SizeTo(player.melee_range+25, player.melee_range+25);
+                        player.swing.MoveTo(player.GetLeft()-player.melee_range, player.GetTop()-player.melee_range);
                     }
                     if (last_direction == 5){
-                        swing.SizeTo(player.melee_range, 50);
-                        swing.MoveTo(player.GetLeft()-player.melee_range, player.GetTop());
+                        player.swing.SizeTo(player.melee_range, 50);
+                        player.swing.MoveTo(player.GetLeft()-player.melee_range, player.GetTop());
                     }
                     if (last_direction == 6){
-                        swing.SizeTo(player.melee_range+25, player.melee_range+25);
-                        swing.MoveTo(player.GetLeft()-player.melee_range, player.GetBottom()-25);
+                        player.swing.SizeTo(player.melee_range+25, player.melee_range+25);
+                        player.swing.MoveTo(player.GetLeft()-player.melee_range, player.GetBottom()-25);
                     }
                     if (last_direction == 7){
-                        swing.SizeTo(50, player.melee_range);
-                        swing.MoveTo(player.GetLeft(), player.GetBottom());
+                        player.swing.SizeTo(50, player.melee_range);
+                        player.swing.MoveTo(player.GetLeft(), player.GetBottom());
                     }
                     if (last_direction == 8){
-                        swing.SizeTo(player.melee_range+25, player.melee_range+25);
-                        swing.MoveTo(player.GetRight()-25, player.GetBottom()-25);
+                        player.swing.SizeTo(player.melee_range+25, player.melee_range+25);
+                        player.swing.MoveTo(player.GetRight()-25, player.GetBottom()-25);
                     }
                     
 
 
                     foreach (Dragon dragon in dragons){
-                        if (swing.Overlaps(dragon)){
+                        if (player.swing.Overlaps(dragon)){
                             dragon.takes_damage(player.damage);
                             // Console.WriteLine(dragon.dragon_health); // debugging
                         }
                     }
-                    scene.RemoveActor("swing", swing);
 
+                
+                    
+                    player.swing_is_displayed = true;
                     counter_melee = 0;
                 }
                 
             }
             counter_melee += 1;
+            if (player.swing_is_displayed){
+                if (player.ticks_since_swing % 10 == 0){
+                    scene.RemoveActor("swing", player.swing);
+                    player.swing_is_displayed = false;
+                }
+
+                player.ticks_since_swing += 1;
+            }
             
 
             //ranged attacks
-            if (counter_ranged > 60){
+            if (player.bow){
+                if (counter_ranged > 60){
 
-                if (_keyboardService.IsKeyDown(KeyboardKey.J))
-                {
-              
-                        Projectile projectile1 = new Projectile(5, 7, last_direction);
-                        
-                        if (last_direction == 1){
-                            projectile1.MoveTo(player.GetRight()+2, player.GetCenterY());
-                        }
-                        if (last_direction == 2){
-                            projectile1.MoveTo(player.GetRight()+2, player.GetTop()-5);
-                            projectile1.Rotate(-45);
-                        }
-                        if (last_direction == 3){
-                            projectile1.MoveTo(player.GetCenterX(), player.GetTop()-5);
-                            projectile1.Rotate(-90);
-                        }
-                        if (last_direction == 4){
-                            projectile1.MoveTo(player.GetLeft()-5, player.GetTop()-5);
-                            projectile1.Rotate(-135);
-                        }
-                        if (last_direction == 5){
-                            projectile1.MoveTo(player.GetLeft()-8, player.GetCenterY());
-                            projectile1.Rotate(-180);
-                        }
-                        if (last_direction == 6){
-                            projectile1.MoveTo(player.GetLeft()-5, player.GetBottom()+2);
-                            projectile1.Rotate(-225);
-                        }
-                        if (last_direction == 7){
-                            projectile1.MoveTo(player.GetCenterX(), player.GetBottom()+2);
-                            projectile1.Rotate(-270);
-                        }
-                        if (last_direction == 8){
-                            projectile1.MoveTo(player.GetRight()+2, player.GetBottom()+2);
-                            projectile1.Rotate(-315);
-                        }
-                        projectile1.SizeTo(10, 5);
-                        scene.AddActor("projectile", projectile1);
-                        projectile1.Display("Game/Assets/arrow.png");
-                        counter_ranged = 0;
-                }
-                }
-                counter_ranged += 1;
+                    if (_keyboardService.IsKeyDown(KeyboardKey.J))
+                    {
+                
+                            Projectile projectile1 = new Projectile(5, 7, last_direction);
+                            
+                            if (last_direction == 1){
+                                projectile1.MoveTo(player.GetRight()+2, player.GetCenterY());
+                            }
+                            if (last_direction == 2){
+                                projectile1.MoveTo(player.GetRight()+2, player.GetTop()-5);
+                                projectile1.Rotate(-45);
+                            }
+                            if (last_direction == 3){
+                                projectile1.MoveTo(player.GetCenterX(), player.GetTop()-5);
+                                projectile1.Rotate(-90);
+                            }
+                            if (last_direction == 4){
+                                projectile1.MoveTo(player.GetLeft()-5, player.GetTop()-5);
+                                projectile1.Rotate(-135);
+                            }
+                            if (last_direction == 5){
+                                projectile1.MoveTo(player.GetLeft()-8, player.GetCenterY());
+                                projectile1.Rotate(-180);
+                            }
+                            if (last_direction == 6){
+                                projectile1.MoveTo(player.GetLeft()-5, player.GetBottom()+2);
+                                projectile1.Rotate(-225);
+                            }
+                            if (last_direction == 7){
+                                projectile1.MoveTo(player.GetCenterX(), player.GetBottom()+2);
+                                projectile1.Rotate(-270);
+                            }
+                            if (last_direction == 8){
+                                projectile1.MoveTo(player.GetRight()+2, player.GetBottom()+2);
+                                projectile1.Rotate(-315);
+                            }
+                            projectile1.SizeTo(10, 5);
+                            scene.AddActor("projectile", projectile1);
+                            projectile1.Display("Game/Assets/arrow.png");
+                            counter_ranged = 0;
+                    }
+                    }
+                    counter_ranged += 1;
+            }
+
 
 
                 player.ticks_since_damage +=1;

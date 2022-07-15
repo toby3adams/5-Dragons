@@ -33,7 +33,7 @@ namespace Dragons.Game.Scripting
                 List<Image> projectiles = scene.GetAllActors<Image>("projectile");
                 List<Image> trackers = scene.GetAllActors<Image>("tracker");
                 List<Image> waves = scene.GetAllActors<Image>("wave");
-                List<Actor> swing = scene.GetAllActors("swing");
+                List<Image> swing = scene.GetAllActors<Image>("swing");
                 Label status = scene.GetFirstActor<Label>("status");
                 Label dragon_life = scene.GetFirstActor<Label>("dragon_life");
                 Label player_life = scene.GetFirstActor<Label>("player_life");
@@ -45,9 +45,12 @@ namespace Dragons.Game.Scripting
 
                 List<Actor> pits = scene.GetAllActors("pit");
                 List<Image> lava = scene.GetAllActors<Image>("lava"); // will need to be changed to Image for texture application
+                List<Image> dragon_lava = scene.GetAllActors<Image>("dragon_lava");
                 List<Actor> ArrowTraps = scene.GetAllActors<Actor>("ArrowTrap");
                 List<Actor> Arrows = scene.GetAllActors<Actor>("arrow");
                 List<Image> WallTraps = scene.GetAllActors<Image>("wall_trap");
+                List<Image> BlockTraps = scene.GetAllActors<Image>("block_trap");
+                List<Image> Stationary_block_traps = scene.GetAllActors<Image>("stationary_block_trap");
 
                 // Actor world = camera.GetWorld();
                 // foreach (Actor dragon in dragons){
