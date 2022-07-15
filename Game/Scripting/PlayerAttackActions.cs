@@ -356,8 +356,8 @@ namespace Dragons.Game.Scripting
 
                 if (player.ticks_since_damage > 600 && player.ticks_since_damage % 30 == 0 && !player.is_dead){
                     player.Player_Life +=1;
-                    if (player.Player_Life > 20){
-                        player.Player_Life = 20;
+                    if (player.Player_Life > 30){
+                        player.Player_Life = 30;
                     }
                 }
 
