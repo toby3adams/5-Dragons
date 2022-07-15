@@ -41,7 +41,15 @@ namespace Dragons.Game.Scripting
                         if(ExitMenu&&Iteration==1)
                         {
                             
-                     
+                            Actor header = scene.GetFirstActor<Actor>("header");
+                            scene.RemoveActor("header", header);
+                            List<Actor> buttons = scene.GetAllActors<Actor>("button");
+                            foreach(Actor button in buttons)
+                            {
+                               scene.RemoveActor("button", button); 
+                            }  
+
+
 
                             bool AddToList = true; // used to Add generated Point to list in RandomPos class
                             bool DontAddToList = false; // used to indicate that point is NOT to be added to list in RandomPos class
@@ -65,17 +73,17 @@ namespace Dragons.Game.Scripting
                             dragon_life.Display("Dragon Life:-");
                             dragon_life.MoveTo(200, 55);
 
-                            Label player_life = new Label();
-                            player_life.Display("Player Life:-");
-                            player_life.MoveTo(400, 55);
+                            // Label player_life = new Label();
+                            // player_life.Display("Player Life:-");
+                            // player_life.MoveTo(400, 55);
 
 
                             
-                            Player player = new Player();
-                            player.SizeTo(50, 50);
-                            player.MoveTo(1480, 5000); //5250,5250 SpawnLocation
-                            // player.Tint(Color.Red());
-                            player.Display("Game/Assets/fighter.png");
+                            // Player player = new Player();
+                            // player.SizeTo(50, 50);
+                            // player.MoveTo(1480, 5000); //5250,5250 SpawnLocation
+                            // // player.Tint(Color.Red());
+                            // player.Display("Game/Assets/fighter.png");
 
 
                             RandomPos rdp = new RandomPos();
@@ -207,44 +215,7 @@ namespace Dragons.Game.Scripting
 
 
 
-                            TitleScreen header = new TitleScreen();
-                            List<TitleScreen> HomeScreenButtons = new List<TitleScreen>();
-                            int NumbHomeScreenActors = header.GetAssetNumber();//wall.NumberOfWalls(); need to set this to be related to the amount of wall that their are.
-                            for (int i =0; i<NumbHomeScreenActors; i++)
-                            {
-                                TitleScreen titleScreen1 = new TitleScreen(); 
-                                List<int> ScreenInfo = titleScreen1.ReturnHomeScreenInfo(i);
-                                int xVector = ScreenInfo[0];
-                                int yVector = ScreenInfo[1];
-                                int xSize = ScreenInfo[2];
-                                int ySize = ScreenInfo[3];
-
-                                Console.WriteLine($"{xVector} and {yVector}"  );
-                                Console.WriteLine($"{xSize} and {ySize}"  );
-
-                                Console.WriteLine(i);
-                                titleScreen1.MoveTo(xVector,yVector);
-                                titleScreen1.SizeTo(xSize,ySize);
-                                
-                                if (i==0)
-                                {
-                                    
-                                    header=titleScreen1;
-                                    header.Tint(Color.Red());
-                                    header.Display("Game/Assets/lava_2.png");
-                                    Console.WriteLine(header);
-                                }
-                                else{
-                                    titleScreen1.Tint(Color.Blue());
-                                titleScreen1.Display("Game/Assets/lava_2.png");
-                                    HomeScreenButtons.Add(titleScreen1);
-                                    Console.WriteLine(HomeScreenButtons[i-1]);
-                                }
-                                
-                                
-                                //wall.Display("Game/Assets/brick.png");
-                                
-                            }
+                            
 
 
 
@@ -276,8 +247,8 @@ namespace Dragons.Game.Scripting
                     scene.AddActor("instructions", instructions);
                     scene.AddActor("status", status);
                     scene.AddActor("dragon_life", dragon_life);
-                    scene.AddActor("player_life", player_life);
-                    scene.AddActor("player", player);
+                    // scene.AddActor("player_life", player_life);
+                    // scene.AddActor("player", player);
                     scene.AddActor("dragon", dragon_water);
                     scene.AddActor("dragon", dragon_earth);
                     scene.AddActor("dragon", dragon_air);
@@ -286,7 +257,6 @@ namespace Dragons.Game.Scripting
                     // scene.AddActor("player_texture", player_texture);
                     foreach (Actor walled in WallList){   scene.AddActor("wall",walled);   }
                     foreach (Actor tile in TileList){   scene.AddActor("floor",tile);   }
-                    foreach (Actor Button in HomeScreenButtons){   scene.AddActor("button",Button);   }
                     scene.AddActor("header", header);  
 
 

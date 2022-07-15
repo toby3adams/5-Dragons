@@ -45,7 +45,8 @@ namespace Dragons.Game.Casting{
 
         private void StartMenuBackGround()
         {
-
+            HomeScreenActorDimensions.Add(new List<int>  {1860,980}); //1860 x 980
+            HomeScreenActorPositions.Add(new List<int>  {0,0}); 
         }
 
         public int GetAssetNumber()
