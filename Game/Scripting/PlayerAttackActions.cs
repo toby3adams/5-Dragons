@@ -151,29 +151,29 @@ namespace Dragons.Game.Scripting
                 if (_keyboardService.IsKeyDown(KeyboardKey.K)){
 
                     List<Dragon> dragons = scene.GetAllActors<Dragon>("dragon");
-                    Image swing = new Image();
+                    player.swing = new Image();
                     
-                    scene.AddActor("swing", swing);
+                    scene.AddActor("swing", player.swing);
 
                     if (last_direction == 1 || last_direction == 3 || last_direction == 5 || last_direction == 7){
                         if (player.sword == false) //Trying to add the sword texture
                         {
-                            swing.Display("Game/Assets/dagger_1.png");
+                            player.swing.Display("Game/Assets/dagger_1.png");
                         }
                         else
                         {
-                            swing.Display("Game/Assets/sword_horizontal.png");
+                            player.swing.Display("Game/Assets/sword_horizontal.png");
                         }
                     }
                     else {
-                        if (player.sword == false) //Trying to add the sword texture
-                        {
-                            swing.Display("Game/Assets/dagger_horizontal.png");
-                        }
-                        else
-                        {
-                            swing.Display("Game/Assets/sword_horizontal.png");
-                        } 
+                        // if (player.sword == false) //Trying to add the sword texture
+                        // {
+                        //     player.swing.Display("Game/Assets/dagger_horizontal.png");
+                        // }
+                        // else
+                        // {
+                        //     player.swing.Display("Game/Assets/sword_horizontal.png");
+                        // } 
                     }
                                                
                     
@@ -182,53 +182,63 @@ namespace Dragons.Game.Scripting
 
 
                     if (last_direction == 1){
-                        swing.SizeTo(player.melee_range, 50);
-                        swing.MoveTo(player.GetRight(), player.GetTop());
+                        player.swing.SizeTo(player.melee_range, 50);
+                        player.swing.MoveTo(player.GetRight(), player.GetTop());
                     }
                     if (last_direction == 2){
-                        swing.SizeTo(player.melee_range+25, player.melee_range+25);
-                        swing.MoveTo(player.GetRight()-25, player.GetTop()-player.melee_range);
+                        player.swing.SizeTo(player.melee_range+25, player.melee_range+25);
+                        player.swing.MoveTo(player.GetRight()-25, player.GetTop()-player.melee_range);
                     }
                     if (last_direction == 3){
-                        swing.SizeTo(50, player.melee_range);
-                        swing.MoveTo(player.GetLeft(), player.GetTop()-player.melee_range);
+                        player.swing.SizeTo(50, player.melee_range);
+                        player.swing.MoveTo(player.GetLeft(), player.GetTop()-player.melee_range);
                     }
                     if (last_direction == 4){
-                        swing.SizeTo(player.melee_range+25, player.melee_range+25);
-                        swing.MoveTo(player.GetLeft()-player.melee_range, player.GetTop()-player.melee_range);
+                        player.swing.SizeTo(player.melee_range+25, player.melee_range+25);
+                        player.swing.MoveTo(player.GetLeft()-player.melee_range, player.GetTop()-player.melee_range);
                     }
                     if (last_direction == 5){
-                        swing.SizeTo(player.melee_range, 50);
-                        swing.MoveTo(player.GetLeft()-player.melee_range, player.GetTop());
+                        player.swing.SizeTo(player.melee_range, 50);
+                        player.swing.MoveTo(player.GetLeft()-player.melee_range, player.GetTop());
                     }
                     if (last_direction == 6){
-                        swing.SizeTo(player.melee_range+25, player.melee_range+25);
-                        swing.MoveTo(player.GetLeft()-player.melee_range, player.GetBottom()-25);
+                        player.swing.SizeTo(player.melee_range+25, player.melee_range+25);
+                        player.swing.MoveTo(player.GetLeft()-player.melee_range, player.GetBottom()-25);
                     }
                     if (last_direction == 7){
-                        swing.SizeTo(50, player.melee_range);
-                        swing.MoveTo(player.GetLeft(), player.GetBottom());
+                        player.swing.SizeTo(50, player.melee_range);
+                        player.swing.MoveTo(player.GetLeft(), player.GetBottom());
                     }
                     if (last_direction == 8){
-                        swing.SizeTo(player.melee_range+25, player.melee_range+25);
-                        swing.MoveTo(player.GetRight()-25, player.GetBottom()-25);
+                        player.swing.SizeTo(player.melee_range+25, player.melee_range+25);
+                        player.swing.MoveTo(player.GetRight()-25, player.GetBottom()-25);
                     }
                     
 
 
                     foreach (Dragon dragon in dragons){
-                        if (swing.Overlaps(dragon)){
+                        if (player.swing.Overlaps(dragon)){
                             dragon.takes_damage(player.damage);
                             // Console.WriteLine(dragon.dragon_health); // debugging
                         }
                     }
-                    scene.RemoveActor("swing", swing);
 
+                
+                    
+                    player.swing_is_displayed = true;
                     counter_melee = 0;
                 }
                 
             }
             counter_melee += 1;
+            if (player.swing_is_displayed){
+                if (player.ticks_since_swing % 10 == 0){
+                    scene.RemoveActor("swing", player.swing);
+                    player.swing_is_displayed = false;
+                }
+
+                player.ticks_since_swing += 1;
+            }
             
 
             //ranged attacks

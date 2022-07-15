@@ -10,6 +10,9 @@ namespace Dragons.Game.Casting
         public int melee_range = 30;
         public int ticks_since_damage = 0;
         public Wall sheild_wall;
+        public int ticks_since_swing = 1;
+        public Image swing;
+        public bool swing_is_displayed = false;
 
 
         // bool indicates if item has been unlocked
