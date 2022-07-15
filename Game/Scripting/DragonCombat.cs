@@ -162,7 +162,7 @@ namespace Dragons.Game.Scripting{
                         }
                         else{
                             dragon.lava2.SizeTo(100, 1500);
-                            dragon.lava2.MoveTo(dragon.GetCenterX()-50, dragon.GetCenterY()-(1500/2));
+                            dragon.lava2.MoveTo(dragon.GetCenterX()-50, dragon.GetCenterY()-(1550/2));
                         }
                         
                         dragon.lava2.Display("Game/Assets/lava.png");
@@ -196,18 +196,21 @@ namespace Dragons.Game.Scripting{
                     wave.Tint(dragon.GetTint());
                     wave.Display("Game/Assets/wave_attempt1.png");
                     scene.AddActor("wave", wave);
+                    if (dragon.type == "shadow"){
+                        wave.SizeTo(40,40);
+                    }
 
                     if (wave_direction == 1){
-                        wave.MoveTo(dragon.GetRight()+2, dragon.GetCenterY());
+                        wave.MoveTo(dragon.GetRight()+2, dragon.GetCenterY()-10);
                     }
                     if (wave_direction == 3){
-                        wave.MoveTo(dragon.GetCenterX(), dragon.GetTop()-20);
+                        wave.MoveTo(dragon.GetCenterX()-10, dragon.GetTop()-20);
                     }
                     if (wave_direction == 5){
-                        wave.MoveTo(dragon.GetLeft()-20, dragon.GetCenterY());
+                        wave.MoveTo(dragon.GetLeft()-20, dragon.GetCenterY()-10);
                     }
                     if (wave_direction == 7){
-                        wave.MoveTo(dragon.GetCenterX(), dragon.GetBottom()+2);
+                        wave.MoveTo(dragon.GetCenterX()-10, dragon.GetBottom()+2);
                     }
                     wave_counter = 0;
                 }

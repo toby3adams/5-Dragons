@@ -30,7 +30,7 @@ namespace Dragons.Game.Scripting
                 List<Image> projectiles = scene.GetAllActors<Image>("projectile");
                 List<Image> trackers = scene.GetAllActors<Image>("tracker");
                 List<Image> waves = scene.GetAllActors<Image>("wave");
-                List<Actor> swing = scene.GetAllActors("swing");
+                List<Image> swing = scene.GetAllActors<Image>("swing");
                 Label status = scene.GetFirstActor<Label>("status");
                 Label dragon_life = scene.GetFirstActor<Label>("dragon_life");
                 Label player_life = scene.GetFirstActor<Label>("player_life");
