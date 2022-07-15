@@ -46,6 +46,7 @@ namespace Dragons.Game.Scripting
                 List<Actor> pits = scene.GetAllActors("pit");
                 List<Image> lava = scene.GetAllActors<Image>("lava"); // will need to be changed to Image for texture application
                 List<Image> dragon_lava = scene.GetAllActors<Image>("dragon_lava");
+                List<Image> dragon_swing = scene.GetAllActors<Image>("dragon_swing");
                 List<Actor> ArrowTraps = scene.GetAllActors<Actor>("ArrowTrap");
                 List<Actor> Arrows = scene.GetAllActors<Actor>("arrow");
                 List<Image> WallTraps = scene.GetAllActors<Image>("wall_trap");
@@ -75,6 +76,9 @@ namespace Dragons.Game.Scripting
                 {_videoService.Draw(pits,camera);}
                 if(lava!=null)
                 {_videoService.Draw(lava, camera);}
+                if (dragon_swing !=null){
+                    _videoService.Draw(dragon_swing, camera);
+                }
                 if(dragons!=null)
                 {_videoService.Draw(dragons, camera);}
                 if(WallTraps!=null)

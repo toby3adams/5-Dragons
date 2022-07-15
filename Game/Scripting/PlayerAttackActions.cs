@@ -20,9 +20,8 @@ namespace Dragons.Game.Scripting
         private int counter_melee;
         private int counter_sheild = 0;
         private int last_direction = 1;
-        private int last_sheild_direction = 1;
         bool sheild_is_up = false;
-        Wall sheild;
+        private int last_melee_direction;
         private bool first_sheild = true;
 
     
@@ -155,63 +154,45 @@ namespace Dragons.Game.Scripting
                     
                     scene.AddActor("swing", player.swing);
 
-                    if (last_direction == 1 || last_direction == 3 || last_direction == 5 || last_direction == 7){
-                        if (player.sword == false) //Trying to add the sword texture
-                        {
-                            player.swing.Display("Game/Assets/dagger_1.png");
-                        }
-                        else
-                        {
-                            player.swing.Display("Game/Assets/sword_horizontal.png");
-                        }
-                    }
-                    else {
-                        // if (player.sword == false) //Trying to add the sword texture
-                        // {
-                        //     player.swing.Display("Game/Assets/dagger_horizontal.png");
-                        // }
-                        // else
-                        // {
-                        //     player.swing.Display("Game/Assets/sword_horizontal.png");
-                        // } 
-                    }
-                                               
-                    
-
-
-
-
                     if (last_direction == 1){
                         player.swing.SizeTo(player.melee_range, 50);
-                        player.swing.MoveTo(player.GetRight(), player.GetTop());
+                        player.swing.Display("Game/Assets/dagger_1.png");
+                        last_melee_direction = 1;
                     }
                     if (last_direction == 2){
                         player.swing.SizeTo(player.melee_range+25, player.melee_range+25);
-                        player.swing.MoveTo(player.GetRight()-25, player.GetTop()-player.melee_range);
+                        player.swing.Display("Game/Assets/dagger_2.png");
+                        last_melee_direction = 2;
                     }
                     if (last_direction == 3){
                         player.swing.SizeTo(50, player.melee_range);
-                        player.swing.MoveTo(player.GetLeft(), player.GetTop()-player.melee_range);
+                        player.swing.Display("Game/Assets/dagger_3.png");
+                        last_melee_direction = 3;
                     }
                     if (last_direction == 4){
                         player.swing.SizeTo(player.melee_range+25, player.melee_range+25);
-                        player.swing.MoveTo(player.GetLeft()-player.melee_range, player.GetTop()-player.melee_range);
+                        player.swing.Display("Game/Assets/dagger_4.png");
+                        last_melee_direction = 4;
                     }
                     if (last_direction == 5){
                         player.swing.SizeTo(player.melee_range, 50);
-                        player.swing.MoveTo(player.GetLeft()-player.melee_range, player.GetTop());
+                        player.swing.Display("Game/Assets/dagger_5.png");
+                        last_melee_direction = 5;
                     }
                     if (last_direction == 6){
                         player.swing.SizeTo(player.melee_range+25, player.melee_range+25);
-                        player.swing.MoveTo(player.GetLeft()-player.melee_range, player.GetBottom()-25);
+                        player.swing.Display("Game/Assets/dagger_6.png");
+                        last_melee_direction = 6;
                     }
                     if (last_direction == 7){
                         player.swing.SizeTo(50, player.melee_range);
-                        player.swing.MoveTo(player.GetLeft(), player.GetBottom());
+                        player.swing.Display("Game/Assets/dagger_7.png");
+                        last_melee_direction = 7;
                     }
                     if (last_direction == 8){
                         player.swing.SizeTo(player.melee_range+25, player.melee_range+25);
-                        player.swing.MoveTo(player.GetRight()-25, player.GetBottom()-25);
+                        player.swing.Display("Game/Assets/dagger_8.png");
+                        last_melee_direction = 8;
                     }
                     
 
@@ -231,6 +212,36 @@ namespace Dragons.Game.Scripting
                 
             }
             counter_melee += 1;
+
+
+            if (player.swing_is_displayed){
+                if (last_melee_direction == 1){
+                    player.swing.MoveTo(player.GetRight(), player.GetTop());   
+                } 
+                if (last_melee_direction == 2){
+                    player.swing.MoveTo(player.GetRight()-25, player.GetTop()-player.melee_range);
+                }
+                if (last_melee_direction == 3){
+                    player.swing.MoveTo(player.GetLeft(), player.GetTop()-player.melee_range);
+                }
+                if (last_melee_direction == 4){
+                    player.swing.MoveTo(player.GetLeft()-player.melee_range, player.GetTop()-player.melee_range);
+                }
+                if (last_melee_direction == 5){
+                    player.swing.MoveTo(player.GetLeft()-player.melee_range, player.GetTop());
+                }
+                if (last_melee_direction == 6){
+                    player.swing.MoveTo(player.GetLeft()-player.melee_range, player.GetBottom()-25);
+                }
+                if (last_melee_direction == 7){
+                    player.swing.MoveTo(player.GetLeft(), player.GetBottom());
+                }
+                if (last_melee_direction == 8){
+                    player.swing.MoveTo(player.GetRight()-25, player.GetBottom()-25);
+                }
+            }
+            
+            
             if (player.swing_is_displayed){
                 if (player.ticks_since_swing % 10 == 0){
                     scene.RemoveActor("swing", player.swing);
