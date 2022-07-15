@@ -83,7 +83,7 @@ namespace Dragons
                     if (i==1)
                     {
                         titleScreen1.Display("Game/Assets/easy_button.png");
-                        titleScreen1.Display("Game/Assets/hard_button.png");
+                        //titleScreen1.Display("Game/Assets/hard_button.png");
                     }
                     else 
                     {
