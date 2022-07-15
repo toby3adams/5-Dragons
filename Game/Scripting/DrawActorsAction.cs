@@ -73,6 +73,17 @@ namespace Dragons.Game.Scripting
                 // _videoService.DrawGrid(50, Color.Red(), camera);      
                 // _videoService.DrawGrid(100, Color.Blue(), camera);         
                 
+                if(header!=null)
+                {_videoService.Draw(header);}
+
+                if(header!=null)
+                {_videoService.Draw(StartBck);}
+
+                if(titlescreenbuttons!=null)
+                {_videoService.Draw(titlescreenbuttons);}  
+
+
+
                 if(floors!=null)
                 {_videoService.Draw(floors, camera);}
                 if(pits!=null)
@@ -127,15 +138,10 @@ namespace Dragons.Game.Scripting
                 if(player_life!=null)
                 {_videoService.Draw(player_life);} 
 
-                if(header!=null)
-                {_videoService.Draw(header);}
-
-                if(header!=null)
-                {_videoService.Draw(StartBck);}
                 
                 
-                if(titlescreenbuttons!=null)
-                {_videoService.Draw(titlescreenbuttons);}                       
+                
+                                     
                 _videoService.FlushBuffer();
             }
             catch (Exception exception)

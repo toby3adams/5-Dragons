@@ -43,6 +43,8 @@ namespace Dragons.Game.Scripting
                             
                             Actor header = scene.GetFirstActor<Actor>("header");
                             scene.RemoveActor("header", header);
+                            Actor stBack = scene.GetFirstActor<Actor>("stback");
+                            scene.RemoveActor("stback", stBack);
                             List<Actor> buttons = scene.GetAllActors<Actor>("button");
                             foreach(Actor button in buttons)
                             {
@@ -73,11 +75,15 @@ namespace Dragons.Game.Scripting
                             dragon_life.Display("Dragon Life:-");
                             dragon_life.MoveTo(200, 55);
 
-                            // Label player_life = new Label();
-                            // player_life.Display("Player Life:-");
-                            // player_life.MoveTo(400, 55);
+                            Label player_life = new Label();
+                            player_life.Display("Player Life:-");
+                            player_life.MoveTo(400, 55);
 
+                            scene.AddActor("dragon_life", dragon_life);
 
+                            scene.AddActor("player_life", player_life);
+
+                            scene.AddActor("status", status);
                             
                             // Player player = new Player();
                             // player.SizeTo(50, 50);
