@@ -40,6 +40,13 @@ namespace Dragons.Game.Scripting
             GenTrapsRoom_4();
             GenTrapsRoom_5();
             //GenTrapsRoom_6();
+            Trap invis_door_left = new Trap(80,100,1000,3950,0,0);
+            Traps.Add(invis_door_left);
+            invis_door_left.MoveTo(invis_door_left.GetX(), invis_door_left.GetY());
+            Trap invis_door_right = new Trap(80,100,2000,3950,0,0);
+            Traps.Add(invis_door_right);
+            invis_door_right.MoveTo(invis_door_right.GetX(), invis_door_right.GetY());
+
         }
         
         //  1 = Pit,   2 = Lava, 3 = mine,   4 = turret,  5 = ?

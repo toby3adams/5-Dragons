@@ -33,6 +33,7 @@ namespace Dragons.Game.Scripting
                 List<Image> projectiles = scene.GetAllActors<Image>("projectile");
                 List<Image> trackers = scene.GetAllActors<Image>("tracker");
                 List<Image> waves = scene.GetAllActors<Image>("wave");
+                List<Image> fireball_traps = scene.GetAllActors<Image>("fireball_trap");
                 List<Image> swing = scene.GetAllActors<Image>("swing");
                 Label status = scene.GetFirstActor<Label>("status");
                 Label dragon_life = scene.GetFirstActor<Label>("dragon_life");
@@ -52,6 +53,7 @@ namespace Dragons.Game.Scripting
                 List<Image> WallTraps = scene.GetAllActors<Image>("wall_trap");
                 List<Image> BlockTraps = scene.GetAllActors<Image>("block_trap");
                 List<Image> Stationary_block_traps = scene.GetAllActors<Image>("stationary_block_trap");
+                List<Actor> invis_doors = scene.GetAllActors<Actor>("invis_doors");
 
                 // Actor world = camera.GetWorld();
                 // foreach (Actor dragon in dragons){
@@ -79,6 +81,9 @@ namespace Dragons.Game.Scripting
                 if (dragon_swing !=null){
                     _videoService.Draw(dragon_swing, camera);
                 }
+                if(invis_doors!=null){
+                    //_videoService.Draw(invis_doors, camera);
+                }
                 if(dragons!=null)
                 {_videoService.Draw(dragons, camera);}
                 if(WallTraps!=null)
@@ -96,8 +101,8 @@ namespace Dragons.Game.Scripting
                 {_videoService.Draw(walls, camera);}
                 if(projectiles!=null)
                 {_videoService.Draw(projectiles, camera);}
-                if(Arrows!=null)
-                {_videoService.Draw(Arrows, camera);}
+                if(fireball_traps!=null)
+                {_videoService.Draw(fireball_traps, camera);}
                 if(trackers!=null)
                 {_videoService.Draw(trackers, camera);}
                 if(waves!=null)
