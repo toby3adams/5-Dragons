@@ -9,6 +9,7 @@ namespace Dragons.Game.Casting
         public int damage = 5;
         public int melee_range = 30;
         public int ticks_since_damage = 0;
+        public Wall sheild_wall;
 
 
         // bool indicates if item has been unlocked
@@ -27,8 +28,11 @@ namespace Dragons.Game.Casting
         }
 
         public void takes_damage(int damage){
-            this.Player_Life -= (damage -Player_Armor); 
-            ticks_since_damage = 0;
+            if (damage - Player_Armor > 0){
+                this.Player_Life -= (damage -Player_Armor);
+                ticks_since_damage = 0;
+            }
+            
             
         }
     }

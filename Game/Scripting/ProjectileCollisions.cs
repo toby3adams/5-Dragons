@@ -45,13 +45,17 @@ namespace Dragons.Game.Scripting{
 
         public void wall_wave_collision(Scene scene, List<Projectile> projectiles){
             List<Wall> walls = scene.GetAllActors<Wall>("wall");
+            Player player = scene.GetFirstActor<Player>("player");
             
             foreach (Projectile projectile in projectiles){
                 foreach (Wall wall in walls){
-                    if (projectile.Overlaps(wall))
-                    {
-                        scene.RemoveActor("wave", projectile);
+                    if (wall != player.sheild_wall){
+                        if (projectile.Overlaps(wall))
+                        {
+                            scene.RemoveActor("wave", projectile);
+                        }
                     }
+
                 }
             }
         }
