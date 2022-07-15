@@ -53,7 +53,7 @@ namespace Dragons.Game.Casting{
             WallSizeList.Add(new List<int>  {SquareRoomSize,SquareRoomSize}); 
 
              WallVectorList.Add(new List<int>  {0,0});//Cover Walls
-            WallSizeList.Add(new List<int>  {SquareRoomSize/2+250,SquareRoomSize*2-500}); 
+            WallSizeList.Add(new List<int>  {SquareRoomSize/2,SquareRoomSize*2-500}); 
              WallVectorList.Add(new List<int>  {SquareRoomSize*2+500,0});//Cover Walls
             WallSizeList.Add(new List<int>  {SquareRoomSize/2+250,SquareRoomSize*2-500}); 
 

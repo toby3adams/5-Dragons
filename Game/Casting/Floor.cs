@@ -31,7 +31,7 @@ namespace Dragons.Game.Casting{
             
             
 
-           /* for (int i=0; i<=1;i++)
+            for (int i=0; i<=1;i++)
             {
                 for(int b = 0; b<1; b++)
             {    
@@ -45,7 +45,7 @@ namespace Dragons.Game.Casting{
             {    
                 CreateFloor(SpawnlocationX-RoomSize/2+RoomSize*i,SpawnlocationY-RoomSize*3-500+RoomSize*b);
             }
-            }*/
+            }
 
              
             FloorNumb = FloorVectorList.Count();

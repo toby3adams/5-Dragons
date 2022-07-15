@@ -145,6 +145,8 @@ namespace Dragons.Game.Services
             }
         }
 
+        
+
         public void Draw(List<Actor> actors)
         {
             foreach (Actor actor in actors)
