@@ -156,42 +156,91 @@ namespace Dragons.Game.Scripting
 
                     if (last_direction == 1){
                         player.swing.SizeTo(player.melee_range, 50);
-                        player.swing.Display("Game/Assets/dagger_1.png");
+                        player.swing.MoveTo(player.GetRight(), player.GetTop()); 
+                        if (!player.sword){
+                            player.swing.Display("Game/Assets/dagger_1.png");
+                        }
+                        else{
+                            player.swing.Display("Game/Assets/sword_1.png");
+                        }
                         last_melee_direction = 1;
                     }
                     if (last_direction == 2){
                         player.swing.SizeTo(player.melee_range+25, player.melee_range+25);
-                        player.swing.Display("Game/Assets/dagger_2.png");
+                        player.swing.MoveTo(player.GetRight()-25, player.GetTop()-player.melee_range);
+                        if (!player.sword){
+                            player.swing.Display("Game/Assets/dagger_2.png");
+                        }
+                        else{
+                            player.swing.Display("Game/Assets/sword_2.png");
+                        }
                         last_melee_direction = 2;
                     }
                     if (last_direction == 3){
                         player.swing.SizeTo(50, player.melee_range);
-                        player.swing.Display("Game/Assets/dagger_3.png");
+                        player.swing.MoveTo(player.GetLeft(), player.GetTop()-player.melee_range);
+                        if (!player.sword){
+                            player.swing.Display("Game/Assets/dagger_3.png");
+                        }
+                        else{
+                            player.swing.Display("Game/Assets/sword_3.png");
+                        }
                         last_melee_direction = 3;
                     }
                     if (last_direction == 4){
                         player.swing.SizeTo(player.melee_range+25, player.melee_range+25);
-                        player.swing.Display("Game/Assets/dagger_4.png");
+                        player.swing.MoveTo(player.GetLeft()-player.melee_range, player.GetTop()-player.melee_range);
+                        if (!player.sword){
+                            player.swing.Display("Game/Assets/dagger_4.png");
+                        }
+                        else{
+                            player.swing.Display("Game/Assets/sword_4.png");
+                        }
                         last_melee_direction = 4;
                     }
                     if (last_direction == 5){
                         player.swing.SizeTo(player.melee_range, 50);
-                        player.swing.Display("Game/Assets/dagger_5.png");
+                        player.swing.MoveTo(player.GetLeft()-player.melee_range, player.GetTop());
+                        if (!player.sword){
+                            player.swing.Display("Game/Assets/dagger_5.png");
+                        }
+                        else{
+                            player.swing.Display("Game/Assets/sword_5.png");
+                        }
                         last_melee_direction = 5;
                     }
                     if (last_direction == 6){
                         player.swing.SizeTo(player.melee_range+25, player.melee_range+25);
-                        player.swing.Display("Game/Assets/dagger_6.png");
+                        player.swing.MoveTo(player.GetLeft()-player.melee_range, player.GetBottom()-25);
+                        if (!player.sword){
+                            player.swing.Display("Game/Assets/dagger_6.png");
+                        }
+                        else{
+                            player.swing.Display("Game/Assets/sword_6.png");
+                        }
                         last_melee_direction = 6;
                     }
                     if (last_direction == 7){
                         player.swing.SizeTo(50, player.melee_range);
-                        player.swing.Display("Game/Assets/dagger_7.png");
+                        player.swing.MoveTo(player.GetLeft(), player.GetBottom());
+                        if (!player.sword){
+                            player.swing.Display("Game/Assets/dagger_7.png");
+                        }
+                        else{
+                            player.swing.Display("Game/Assets/sword_7.png");
+                        }
                         last_melee_direction = 7;
                     }
                     if (last_direction == 8){
                         player.swing.SizeTo(player.melee_range+25, player.melee_range+25);
-                        player.swing.Display("Game/Assets/dagger_8.png");
+                        player.swing.MoveTo(player.GetRight()-25, player.GetBottom()-25);
+                        if (!player.sword){
+                            player.swing.Display("Game/Assets/dagger_8.png");
+                        }
+                        else{
+                            player.swing.Display("Game/Assets/sword_8.png");
+                        }
+                        
                         last_melee_direction = 8;
                     }
                     
@@ -200,7 +249,7 @@ namespace Dragons.Game.Scripting
                     foreach (Dragon dragon in dragons){
                         if (player.swing.Overlaps(dragon)){
                             dragon.takes_damage(player.damage);
-                            // Console.WriteLine(dragon.dragon_health); // debugging
+                            Console.WriteLine(dragon.dragon_health); // debugging
                         }
                     }
 

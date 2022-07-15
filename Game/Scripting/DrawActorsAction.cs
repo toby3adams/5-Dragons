@@ -81,8 +81,12 @@ namespace Dragons.Game.Scripting
                 if (dragon_swing !=null){
                     _videoService.Draw(dragon_swing, camera);
                 }
-                if(invis_doors!=null){
-                    //_videoService.Draw(invis_doors, camera);
+
+                
+
+                if (dragon_lava!=null){
+                    _videoService.Draw(dragon_lava, camera);
+
                 }
                 if(dragons!=null)
                 {_videoService.Draw(dragons, camera);}
