@@ -69,7 +69,7 @@ namespace Dragons.Game.Scripting
 
 
             //sheild
-            if (player.shield){
+            if (player.shield && !player.is_dead){
                 if (counter_sheild > 60)
                 {
 
@@ -145,7 +145,7 @@ namespace Dragons.Game.Scripting
 
 
             // melee attacks
-            if (counter_melee > 30){
+            if (counter_melee > 30 && !player.is_dead){
 
                 if (_keyboardService.IsKeyDown(KeyboardKey.K)){
 
@@ -302,7 +302,7 @@ namespace Dragons.Game.Scripting
             
 
             //ranged attacks
-            if (player.bow){
+            if (player.bow && !player.is_dead){
                 if (counter_ranged > 60){
 
                     if (_keyboardService.IsKeyDown(KeyboardKey.J))
@@ -354,7 +354,7 @@ namespace Dragons.Game.Scripting
 
                 player.ticks_since_damage +=1;
 
-                if (player.ticks_since_damage > 600 && player.ticks_since_damage % 30 == 0){
+                if (player.ticks_since_damage > 600 && player.ticks_since_damage % 30 == 0 && !player.is_dead){
                     player.Player_Life +=1;
                     if (player.Player_Life > 20){
                         player.Player_Life = 20;

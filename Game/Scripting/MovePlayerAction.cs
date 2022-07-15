@@ -20,7 +20,7 @@ namespace Dragons.Game.Scripting
 
         public override void Execute(Scene scene, float deltaTime, IActionCallback callback)
         {
-            Actor player = scene.GetFirstActor("player");
+            Player player = scene.GetFirstActor<Player>("player");
             PlayerCollisions player_collisions = new PlayerCollisions();
             player_collisions.CheckCollisions(scene, player);
             try
@@ -59,9 +59,12 @@ namespace Dragons.Game.Scripting
                             player.Steer(velocity.X, 0);
                             velocity.Y = 0;
                         }
-                    }              
-                    player.Move();
-                    player.ClampTo(world);
+                    }
+                    if (!player.is_dead){
+                        player.Move();
+                        player.ClampTo(world);
+                    }  
+                    
                 
                    
             }

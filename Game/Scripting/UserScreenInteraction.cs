@@ -136,7 +136,7 @@ namespace Dragons.Game.Scripting
 
                             // shadow dragon "Boss" static position
                             Dragon dragon_shadow = new Dragon(40, 150, 12, 8, 900);
-                            Point dragon_shadow_pos = rdp.GeneratePosition(1400,1600,740,760,DontAddToList,5);
+                            Point dragon_shadow_pos = rdp.GeneratePosition(1480,1480,750,750,DontAddToList,5);
                             dragon_shadow.SizeTo(100, 100);
                             //dragon_shadow.MoveTo(2600, 1800);
                             dragon_shadow.MoveTo(dragon_shadow_pos.GetX(), dragon_shadow_pos.GetY());
