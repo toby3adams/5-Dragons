@@ -67,7 +67,7 @@ namespace Dragons
                 {
                     
                     header=titleScreen1;
-                    header.Tint(Color.Red());
+                    //header.Tint(Color.Yellow());
                     header.Display("Game/Assets/5_dragons_title.png");
                 }
                 else if (i==3)
@@ -78,23 +78,18 @@ namespace Dragons
                 }
                 else
                 {
-                    //titleScreen1.Tint(Color.Blue());
+                    
 
                     if (i==1)
                     {
                         titleScreen1.Display("Game/Assets/easy_button.png");
-                        //titleScreen1.Display("Game/Assets/hard_button.png");
                     }
                     else 
                     {
                         titleScreen1.Display("Game/Assets/hard.png");
                     }
                     HomeScreenButtons.Add(titleScreen1);
-                }
-                
-                
-                //wall.Display("Game/Assets/brick.png");
-                
+                }                
             }
 
 
@@ -124,15 +119,8 @@ namespace Dragons
             VictoryDefeat victory_defeat = new VictoryDefeat();
 
 
-//            DrawImageAction drawImageAction = new DrawImageAction(serviceFactory);
-
-
             // Instantiate a new scene, add the actors and actions.
             scene.AddActor("camera", camera);
-            //scene.AddActor("instructions", instructions);
-            //scene.AddActor("status", status);
-            //scene.AddActor("dragon_life", dragon_life);
-            //scene.AddActor("player_life", player_life);
             scene.AddActor("player", player);
 
             foreach (Actor Button in HomeScreenButtons){   scene.AddActor("button",Button);   }
@@ -141,11 +129,9 @@ namespace Dragons
 
 
 
-            scene.AddAction(Phase.Input, userScreenInteraction); // updates the actor lists so that after space is hit all actors will display.
+            scene.AddAction(Phase.Input, userScreenInteraction); // updates the actor lists 
             scene.AddAction(Phase.Input, steerPlayerAction);
             scene.AddAction(Phase.Input, player_attacks);
-                    //scene.AddAction(Phase.Update, UpdateScreen);
-            
             scene.AddAction(Phase.Update, updateStatusAction);
             scene.AddAction(Phase.Update, victory_defeat);
             scene.AddAction(Phase.Update, projectile_movement);
@@ -154,9 +140,6 @@ namespace Dragons
             scene.AddAction(Phase.Update, trap_action);
             scene.AddAction(Phase.Output, drawActorsAction);
             scene.AddAction(Phase.Output, playMusicAction);
-            
-            
-//          scene.AddAction(Phase.Update, drawImageAction);
 
             // Start the game.
             Director director = new Director(serviceFactory);
