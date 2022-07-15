@@ -33,6 +33,7 @@ namespace Dragons.Game.Scripting
                 List<Image> projectiles = scene.GetAllActors<Image>("projectile");
                 List<Image> trackers = scene.GetAllActors<Image>("tracker");
                 List<Image> waves = scene.GetAllActors<Image>("wave");
+                List<Image> fireball_traps = scene.GetAllActors<Image>("fireball_trap");
                 List<Image> swing = scene.GetAllActors<Image>("swing");
                 Label status = scene.GetFirstActor<Label>("status");
                 Label dragon_life = scene.GetFirstActor<Label>("dragon_life");
@@ -47,11 +48,13 @@ namespace Dragons.Game.Scripting
                 List<Actor> pits = scene.GetAllActors("pit");
                 List<Image> lava = scene.GetAllActors<Image>("lava"); // will need to be changed to Image for texture application
                 List<Image> dragon_lava = scene.GetAllActors<Image>("dragon_lava");
+                List<Image> dragon_swing = scene.GetAllActors<Image>("dragon_swing");
                 List<Actor> ArrowTraps = scene.GetAllActors<Actor>("ArrowTrap");
                 List<Actor> Arrows = scene.GetAllActors<Actor>("arrow");
                 List<Image> WallTraps = scene.GetAllActors<Image>("wall_trap");
                 List<Image> BlockTraps = scene.GetAllActors<Image>("block_trap");
                 List<Image> Stationary_block_traps = scene.GetAllActors<Image>("stationary_block_trap");
+                List<Actor> invis_doors = scene.GetAllActors<Actor>("invis_doors");
 
                 // Actor world = camera.GetWorld();
                 // foreach (Actor dragon in dragons){
@@ -76,10 +79,24 @@ namespace Dragons.Game.Scripting
                 {_videoService.Draw(pits,camera);}
                 if(lava!=null)
                 {_videoService.Draw(lava, camera);}
+                if (dragon_swing !=null){
+                    _videoService.Draw(dragon_swing, camera);
+                }
+
+                
+
+                if (dragon_lava!=null){
+                    _videoService.Draw(dragon_lava, camera);
+
+                }
                 if(dragons!=null)
                 {_videoService.Draw(dragons, camera);}
                 if(WallTraps!=null)
                 {_videoService.Draw(WallTraps, camera);}
+                if(BlockTraps!=null)
+                {_videoService.Draw(BlockTraps, camera);}
+                if(Stationary_block_traps!=null)
+                {_videoService.Draw(Stationary_block_traps,camera);}
                 
                 
                 
@@ -89,8 +106,8 @@ namespace Dragons.Game.Scripting
                 {_videoService.Draw(walls, camera);}
                 if(projectiles!=null)
                 {_videoService.Draw(projectiles, camera);}
-                if(Arrows!=null)
-                {_videoService.Draw(Arrows, camera);}
+                if(fireball_traps!=null)
+                {_videoService.Draw(fireball_traps, camera);}
                 if(trackers!=null)
                 {_videoService.Draw(trackers, camera);}
                 if(waves!=null)

@@ -23,6 +23,12 @@ namespace Dragons.Game.Scripting{
                 update_projectile_image(projectile);
             }
 
+            List<Projectile> fireball_traps = scene.GetAllActors<Projectile>("fireball_trap");
+            foreach (Projectile projectile in fireball_traps){
+                MoveProjectile(projectile, projectile.GetDirection());
+                update_projectile_image(projectile);
+            }
+
             List<Projectile> trackers = scene.GetAllActors<Projectile>("tracker");
             foreach (Projectile projectile in trackers){
                 MoveProjectile(projectile, projectile.GetDirection());

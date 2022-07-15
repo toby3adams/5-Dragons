@@ -29,10 +29,17 @@ namespace Dragons.Game.Scripting
             List<Trap> Lava = scene.GetAllActors<Trap>("lava");
             Player player = scene.GetFirstActor<Player>("player");
             List<Trap> wall_traps = scene.GetAllActors<Trap>("block_trap");
+            List<Projectile> fireballs = scene.GetAllActors<Projectile>("fireball_trap");
             int block_trap_shift_counter = 3;
             foreach(Floor floor in Rooms)
             {    
-                
+                /*foreach(Projectile fireball in fireballs)
+                {
+                    if(!fireball.FullyOverlaps(floor))
+                    {
+                       // scene.RemoveActor("fireball_traps", fireball);
+                    }
+                }*/
                 //block trap shifting
                 if(block_trap_shift_counter %  6 == 0)
                 {
@@ -92,21 +99,21 @@ namespace Dragons.Game.Scripting
                                 {
                                     if(lava_width < max_dimension)
                                     {
-                                        lava.IncWidth(2);                                    
+                                        lava.IncWidth(1);                                    
                                     }
                                     if(lava_width < max_dimension)
                                     {
-                                        lava.IncHeight(2);                                        
+                                        lava.IncHeight(1);                                        
                                     } 
                                     lava.SizeTo(lava.GetWidth(), lava.GetHeight()); 
                                 }                             
                                 if(lava_width < max_dimension)
                                 {                                    
-                                    lava.DecX(2,1);
+                                    lava.DecX(1,1);
                                 }
                                 if(lava_width < max_dimension)
                                 {                                    
-                                    lava.DecY(2,1);
+                                    lava.DecY(1,1);
                                 }                                        
                                 lava.MoveTo(lava.GetX(), lava.GetY());                                                       
                             }
@@ -167,7 +174,7 @@ namespace Dragons.Game.Scripting
                                     
                                 //moves upper right block left
                                 }else if(((trap.GetX()!=40)||(trap.GetX()!=1040)||(trap.GetX()!=2040))&&(trap.GetY()==3540)){
-                                    Console.WriteLine("IF 2");
+                                   
                                     // trap.MoveTo(trap.GetX()-960+trap.GetWidth(),trap.GetHeight());
                                     trap.DecX(block_shift_interval, block_shift_rate);
                                     trap.MoveTo(trap.GetX(), trap.GetY());
@@ -191,12 +198,11 @@ namespace Dragons.Game.Scripting
             
                 foreach (Turret turret in Turrets)
                 {
-                    
-                    if(turret.GetRoom() == Room_num && player.FullyOverlaps(floor))
+                    if(turret.GetRoom() == Room_num)
+                    //if(turret.GetRoom() == Room_num && player.FullyOverlaps(floor))
                     {
                         turret_attack(scene, turret, player);
-                    }                
-                
+                    } 
                 }
                 block_trap_shift_counter += 3;
             } // foreach Floor end bracket      
@@ -236,35 +242,35 @@ namespace Dragons.Game.Scripting
             turret.turret_counter++;
             if(turret.turret_counter == turret.expect_count)
             {
-                int arrow_direction = turret.GetTurretDirection();
-            Projectile arrow = new Projectile(10, 4, arrow_direction);
-            arrow.SizeTo(20,20);
-            arrow.Tint(Color.Orange());
-            scene.AddActor("projectile", arrow);
-            arrow.Display("Game/Assets/fireball.png");
-            if(arrow_direction == 1){
-                arrow.MoveTo(turret.GetRight()+20, turret.GetCenterY());
+                int fireball_direction = turret.GetTurretDirection();
+            Projectile fireball = new Projectile(10, 5, fireball_direction);
+            fireball.SizeTo(20,20);
+            fireball.Tint(Color.Orange());
+            scene.AddActor("fireball_trap", fireball);
+            fireball.Display("Game/Assets/fireball.png");
+            if(fireball_direction == 1){
+                fireball.MoveTo(turret.GetRight()+20, turret.GetCenterY());
             }
-            if(arrow_direction == 2){
-                arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+20);
+            if(fireball_direction == 2){
+                fireball.MoveTo(turret.GetCenterX(), turret.GetBottom()+20);
             }
-            if(arrow_direction == 3){
-                arrow.MoveTo(turret.GetCenterX(), turret.GetTop()-20);
+            if(fireball_direction == 3){
+                fireball.MoveTo(turret.GetCenterX(), turret.GetTop()-20);
             }
-            if(arrow_direction == 4){
-                arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+20);
+            if(fireball_direction == 4){
+                fireball.MoveTo(turret.GetCenterX(), turret.GetBottom()+20);
             }
-            if(arrow_direction == 5){
-                arrow.MoveTo(turret.GetLeft()-20, turret.GetCenterY());
+            if(fireball_direction == 5){
+                fireball.MoveTo(turret.GetLeft()-20, turret.GetCenterY());
             }
-            if(arrow_direction == 6){
-                arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+20);
+            if(fireball_direction == 6){
+                fireball.MoveTo(turret.GetCenterX(), turret.GetBottom()+20);
             }
-            if(arrow_direction == 7){
-                arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+20);
+            if(fireball_direction == 7){
+                fireball.MoveTo(turret.GetCenterX(), turret.GetBottom()+20);
             }
-            if(arrow_direction == 8){
-                arrow.MoveTo(turret.GetCenterX(), turret.GetBottom()+20);
+            if(fireball_direction == 8){
+                fireball.MoveTo(turret.GetCenterX(), turret.GetBottom()+20);
             }
             turret.turret_counter = 0;
             //turret.expect_count = rnd.Next(75,90);

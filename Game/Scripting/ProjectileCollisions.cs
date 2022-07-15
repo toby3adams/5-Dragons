@@ -16,10 +16,14 @@ namespace Dragons.Game.Scripting{
             List<Projectile> projectiles = scene.GetAllActors<Projectile>("projectile");
             List<Projectile> trackers = scene.GetAllActors<Projectile>("tracker");
             List<Projectile> waves = scene.GetAllActors<Projectile>("wave");
+            List<Projectile> fireballs = scene.GetAllActors<Projectile>("fireball_trap");
+            List<Actor>invis_doors = scene.GetAllActors<Actor>("invis_doors");
+
 
             wall_projectile_collision(scene, projectiles);
-            player_projectile_collision(scene, projectiles);
+            player_projectile_collision(scene, projectiles, fireballs);
             dragon_projectile_collision(scene, projectiles);
+            fireball_trap_collision(scene, fireballs, invis_doors);
 
             wall_tracker_collision(scene, trackers);
             player_tracker_collision(scene, trackers);
@@ -29,7 +33,24 @@ namespace Dragons.Game.Scripting{
             player_wave_collision(scene, waves);
 
         }
-
+        public void fireball_trap_collision(Scene scene, List<Projectile> fireballs, List<Actor> invis_doors)
+        {
+            List<Wall> walls = scene.GetAllActors<Wall>("wall");            
+               
+                foreach(Projectile projectile in fireballs){
+                    
+                    foreach(Trap invis_door in invis_doors){
+                        // Console.WriteLine("Invisible door recognized");
+                        if(projectile.Overlaps(invis_door)){
+                        scene.RemoveActor("fireball_trap", projectile);
+                        }
+                    } foreach(Wall wall in walls){
+                        if(projectile.Overlaps(wall)){
+                            scene.RemoveActor("fireball_trap", projectile);
+                        }
+                    }
+                }             
+        }
         public void wall_projectile_collision(Scene scene, List<Projectile> projectiles){
             List<Wall> walls = scene.GetAllActors<Wall>("wall");
             
@@ -73,13 +94,18 @@ namespace Dragons.Game.Scripting{
             }
         }
 
-        public void player_projectile_collision(Scene scene, List<Projectile> projectiles){
+        public void player_projectile_collision(Scene scene, List<Projectile> projectiles, List<Projectile> fireball_trap){
             Player player = scene.GetFirstActor<Player>("player");
 
             foreach (Projectile projectile in projectiles){
                 if (projectile.Overlaps(player)){
                     player.takes_damage(projectile.damage);
                     scene.RemoveActor("projectile", projectile);
+                }
+            } foreach (Projectile projectile in fireball_trap){
+                if (projectile.Overlaps(player)){
+                    player.takes_damage(projectile.damage);
+                    scene.RemoveActor("fireball_trap", projectile);
                 }
             }
         }

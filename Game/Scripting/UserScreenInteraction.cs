@@ -155,6 +155,7 @@ namespace Dragons.Game.Scripting
                             List<Actor> Lava = new List<Actor>();
                             List<Actor> ArrowTrap = new List<Actor>();
                             List<Actor> Wall_traps = new List<Actor>();
+                            List<Actor> invis_doors = new List<Actor>();
                             foreach(Image trap in AllTraps)
                             {
                                 int TrapType = trap.GetTrapType();
@@ -174,10 +175,21 @@ namespace Dragons.Game.Scripting
                                     scene.AddActor("lava", trap);                    
                                 } else if(TrapType == 3)
                                 {
-                                    trap.Tint(Color.White());
+                                    trap.Tint(Color.Gray());
                                     Wall_traps.Add(trap);
                                     trap.Display("Game/Assets/brick.png");
-                                    scene.AddActor("wall_trap", trap);
+                                    scene.AddActor("block_trap", trap);
+                                } 
+                                else if(TrapType == 4)
+                                {
+                                    trap.Tint(Color.Gray());
+                                    Wall_traps.Add(trap);
+                                    trap.Display("Game/Assets/brick.png");
+                                    scene.AddActor("stationary_block_trap", trap);
+                                } else if(TrapType == 0)
+                                {
+                                    invis_doors.Add(trap);
+                                    scene.AddActor("invis_doors", trap);
                                 }
 
                             }
@@ -206,6 +218,7 @@ namespace Dragons.Game.Scripting
                                 int yVector = WallInfo[1];
                                 int xSize = WallInfo[2];
                                 int ySize = WallInfo[3];
+                                wall.Tint(Color.Gray());
                                 wall.SizeTo(xSize,ySize);
                                 wall.MoveTo(xVector,yVector);
                                 // wall.Tint(Color.Gray());
