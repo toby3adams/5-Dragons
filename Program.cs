@@ -120,7 +120,7 @@ namespace Dragons
             List<Actor> Pits = new List<Actor>();
             List<Actor> Lava = new List<Actor>();
             List<Actor> ArrowTrap = new List<Actor>();
-            List<Actor> Wall_traps = new List<Actor>();
+            List<Trap> Wall_traps = new List<Trap>();
             foreach(Image trap in AllTraps)
             {
                 int TrapType = trap.GetTrapType();
@@ -141,9 +141,9 @@ namespace Dragons
                 } else if(TrapType == 3)
                 {
                     trap.Tint(Color.White());
-                    Wall_traps.Add(trap);
+                    //Wall_traps.Add(trap);
                     trap.Display("Game/Assets/brick.png");
-                    scene.AddActor("wall_trap", trap);
+                    scene.AddActor("block_trap", trap);
                 }
 
             }

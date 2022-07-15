@@ -38,6 +38,23 @@ namespace Dragons.Game.Scripting
                     collision_down = true;
                 }    
             }
+            List<Actor>Block_traps = scene.GetAllActors("block_trap");
+            foreach(Actor trap in Block_traps)
+            {
+                if (player.GetTop() <= trap.GetBottom() && player.GetBottom() > trap.GetBottom() && player.GetRight() > trap.GetLeft() && player.GetLeft() < trap.GetRight())
+                {
+                    collision_up = true;
+                }
+                if (player.GetLeft() <= trap.GetRight() && player.GetRight() > trap.GetRight() && player.GetBottom() > trap.GetTop() && player.GetTop() < trap.GetBottom()){
+                    collision_left = true;
+                }
+                if (player.GetRight() >= trap.GetLeft() && player.GetLeft() < trap.GetLeft() && player.GetBottom() > trap.GetTop() && player.GetTop() < trap.GetBottom()){
+                    collision_right = true;
+                }
+                if (player.GetBottom() >= trap.GetTop() && player.GetTop() < trap.GetTop() && player.GetRight() > trap.GetLeft() && player.GetLeft() < trap.GetRight()){
+                    collision_down = true;
+                }    
+            }
 
             List<Actor> dragons = scene.GetAllActors("dragon");
             foreach (Actor dragon in dragons){

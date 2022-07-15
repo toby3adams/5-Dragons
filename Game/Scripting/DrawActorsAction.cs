@@ -41,6 +41,7 @@ namespace Dragons.Game.Scripting
                 List<Actor> ArrowTraps = scene.GetAllActors<Actor>("ArrowTrap");
                 List<Actor> Arrows = scene.GetAllActors<Actor>("arrow");
                 List<Image> WallTraps = scene.GetAllActors<Image>("wall_trap");
+                List<Image> BlockTraps = scene.GetAllActors<Image>("block_trap");
 
                 Actor world = camera.GetWorld();
                 foreach (Actor dragon in dragons){
@@ -62,7 +63,8 @@ namespace Dragons.Game.Scripting
                 _videoService.DrawGrid(100, Color.Blue(), camera);         
                 _videoService.Draw(floors, camera);
                 _videoService.Draw(pits,camera);
-                _videoService.Draw(lava, camera);             
+                _videoService.Draw(lava, camera);   
+                _videoService.Draw(BlockTraps,camera);          
                 _videoService.Draw(dragons, camera);
                 _videoService.Draw(WallTraps, camera);
                 

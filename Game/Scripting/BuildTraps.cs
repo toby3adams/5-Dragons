@@ -239,7 +239,7 @@ namespace Dragons.Game.Scripting
 
         public void GenTrapsRoom_4()
         {
-            Trap_Room_Type = rnd.Next(1,2);
+            Trap_Room_Type = rnd.Next(2,2);
             int bottom_arrow_x_start = 1040;
             int left_arrow_y_start = 3540;
             int right_arrow_y_start = 3540;

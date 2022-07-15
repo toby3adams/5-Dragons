@@ -21,7 +21,6 @@ namespace Dragons.Game.Scripting
         Random rnd = new Random();
         public TrapActions(){}
 
-
         public override void Execute(Scene scene, float deltaTime, IActionCallback callback)
         {
             List<Floor>Rooms = scene.GetAllActors<Floor>("floor");
@@ -29,10 +28,12 @@ namespace Dragons.Game.Scripting
             List<Turret>Turrets = scene.GetAllActors<Turret>("ArrowTrap");
             List<Trap> Lava = scene.GetAllActors<Trap>("lava");
             Player player = scene.GetFirstActor<Player>("player");
+            List<Trap> wall_traps = scene.GetAllActors<Trap>("block_trap");
             
             foreach(Floor floor in Rooms)
             {        
                 int Room_num = Rooms.IndexOf(floor);
+                // grow lava
                 if(player.FullyOverlaps(floor))
                 {   
                     foreach(Trap lava in Lava)
@@ -72,7 +73,8 @@ namespace Dragons.Game.Scripting
                             lava_grow_counter = 0;                              
                         }
                     }
-                }       // lava trap shrinks
+                }   // lava grow end bracket    
+                    // lava trap shrinks
                         if(!player.FullyOverlaps(floor))
                         {
                             foreach(Trap lava in Lava)
@@ -108,8 +110,41 @@ namespace Dragons.Game.Scripting
                                     }
                                 }                        
                             }
+                        } // lava shrink end bracket
+                    // Block trap shifting
+                    if(player.FullyOverlaps(floor))
+                    {
+                        Console.WriteLine("Player in room");
+                        int block_shift_speed = 5;
+                        foreach(Trap trap in wall_traps)
+                        {  Console.WriteLine("Traps Identified");
+                             //moves upper left block down
+                            if(((trap.GetX()==40||trap.GetX()==1040||(trap.GetX()==2040))&&(trap.GetY()!= 4200))){
+                                trap.IncY(block_shift_speed);
+                                trap.MoveTo(trap.GetX(), trap.GetY());
+                               
+                            //moves upper right block left
+                            }else if(((trap.GetX()!=40)||(trap.GetX()!=1040)||(trap.GetX()!=2040))&&(trap.GetY()==3540)){
+                              Console.WriteLine("IF 2");
+                               // trap.MoveTo(trap.GetX()-960+trap.GetWidth(),trap.GetHeight());
+                                trap.DecX(block_shift_speed);
+                                trap.MoveTo(trap.GetX(), trap.GetY());
+                               
+                            //moves lower left block right
+                            }
+                            //moves lower right block up
+                            if(((trap.GetX()==40+960-trap.GetWidth())||(trap.GetX()==1040+960-trap.GetWidth())||(trap.GetX()==2040+960-trap.GetWidth()))&&(trap.GetY()!=3540)){
+                                trap.DecY(block_shift_speed);
+                                trap.MoveTo(trap.GetX(), trap.GetY());
+                                
+                            }else if(((trap.GetX()!=(40+960)-(trap.GetWidth()))||(trap.GetX()!=(1040+960-trap.GetWidth()))||(trap.GetX()!=(2040+960-trap.GetWidth())))&&(trap.GetY()==4200)){
+                                
+                                //trap.MoveTo(trap.GetX()+960-trap.GetWidth(),trap.GetWidth());
+                                trap.IncX(block_shift_speed);
+                                trap.MoveTo(trap.GetX(), trap.GetY());
+                            }
                         }
-                 
+                    }
                 foreach (Turret turret in Turrets)
                 {
                     
@@ -119,7 +154,7 @@ namespace Dragons.Game.Scripting
                     }                
                 
                 }
-            }            
+            } // foreach Floor end bracket      
             if (this.lava_counter > 45)
                 {               
                 foreach (Trap lavaBlock in Lava)
