@@ -6,16 +6,16 @@ namespace Dragons.Game.Casting{
     public class TitleScreen : Image{
 
         private int screenAssetNumber=0;
-        private int ButtonSizeX=100;
-        private int ButtonSizeY=100;
+        private int ButtonSizeX=500;
+        private int ButtonSizeY=200;
         // private int ButtonPositionX=0;
         // private int ButtonPositionY=0;
 
-        private int HeaderSizeX=100;
-        private int HeaderSizeY=100;
+        private int HeaderSizeX=600;
+        private int HeaderSizeY=150;
 
-        private int HeaderPositionX=200;
-        private int HeaderPositionY=200;
+        private int HeaderPositionX=630;  //1860 x 980 930-300 = 630
+        private int HeaderPositionY=415;   // 980 /4 =
         private List<List<int>> HomeScreenActorDimensions= new List<List<int>>();
         private List<List<int>> HomeScreenActorPositions= new List<List<int>>();
 
@@ -45,7 +45,7 @@ namespace Dragons.Game.Casting{
 
         private void StartMenuBackGround()
         {
-            HomeScreenActorDimensions.Add(new List<int>  {1860,980}); //1860 x 980
+            HomeScreenActorDimensions.Add(new List<int>  {1800,900}); //1860 x 980
             HomeScreenActorPositions.Add(new List<int>  {0,0}); 
         }
 

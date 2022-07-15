@@ -26,17 +26,17 @@ namespace Dragons
             // Instantiate a service factory for other objects to use.
             IServiceFactory serviceFactory = new RaylibServiceFactory();
 
-            Label status = new Label();
-            status.Display("x:-, y:-");
-            status.MoveTo(25, 55);
+            //Label status = new Label();
+            // status.Display("x:-, y:-");
+            // status.MoveTo(25, 55);
 
-            Label dragon_life = new Label();
-            dragon_life.Display("Dragon Life:-");
-            dragon_life.MoveTo(200, 55);
+            // Label dragon_life = new Label();
+            // dragon_life.Display("Dragon Life:-");
+            // dragon_life.MoveTo(200, 55);
 
-            Label player_life = new Label();
-            player_life.Display("Player Life:-");
-            player_life.MoveTo(400, 55);
+            // Label player_life = new Label();
+            // player_life.Display("Player Life:-");
+            // player_life.MoveTo(400, 55);
 
 
             
@@ -74,12 +74,12 @@ namespace Dragons
                 {
                     StartBackground =titleScreen1;
                     StartBackground.Tint(Color.Yellow());
-                    header.Display("Game/Assets/lava_2.png");
+                    StartBackground.Display("Game/Assets/lava_2.png");
                 }
                 else
                 {
                     titleScreen1.Tint(Color.Blue());
-                titleScreen1.Display("Game/Assets/lava_2.png");
+                    titleScreen1.Display("Game/Assets/lava_2.png");
                     HomeScreenButtons.Add(titleScreen1);
                 }
                 
@@ -120,10 +120,11 @@ namespace Dragons
             // Instantiate a new scene, add the actors and actions.
             scene.AddActor("camera", camera);
             //scene.AddActor("instructions", instructions);
-            scene.AddActor("status", status);
-            scene.AddActor("dragon_life", dragon_life);
-            scene.AddActor("player_life", player_life);
+            //scene.AddActor("status", status);
+            //scene.AddActor("dragon_life", dragon_life);
+            //scene.AddActor("player_life", player_life);
             scene.AddActor("player", player);
+
             foreach (Actor Button in HomeScreenButtons){   scene.AddActor("button",Button);   }
             scene.AddActor("header", header);  
             scene.AddActor("stback", StartBackground);  
