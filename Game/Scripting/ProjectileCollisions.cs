@@ -40,7 +40,11 @@ namespace Dragons.Game.Scripting{
                 foreach(Projectile projectile in fireballs){
                     
                     foreach(Trap invis_door in invis_doors){
+
                         
+
+                    
+
                         if(projectile.Overlaps(invis_door)){
                         scene.RemoveActor("fireball_trap", projectile);
                         }

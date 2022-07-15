@@ -6,16 +6,16 @@ namespace Dragons.Game.Casting{
     public class TitleScreen : Image{
 
         private int screenAssetNumber=0;
-        private int ButtonSizeX=100;
-        private int ButtonSizeY=100;
+        private int ButtonSizeX=500;
+        private int ButtonSizeY=200;
         // private int ButtonPositionX=0;
         // private int ButtonPositionY=0;
 
-        private int HeaderSizeX=100;
-        private int HeaderSizeY=100;
+        private int HeaderSizeX=600;
+        private int HeaderSizeY=150;
 
-        private int HeaderPositionX=200;
-        private int HeaderPositionY=200;
+        private int HeaderPositionX=630;  //1860 x 980 930-300 = 630
+        private int HeaderPositionY=50;   // 980 /5 = 98 -75 = 
         private List<List<int>> HomeScreenActorDimensions= new List<List<int>>();
         private List<List<int>> HomeScreenActorPositions= new List<List<int>>();
 
@@ -25,8 +25,8 @@ namespace Dragons.Game.Casting{
         public TitleScreen()
         {   //Header will always be the starting position on the list for the HomeScreen.
             CreateHeader();
-            CreateStartmenuButtons(400,400);
-            CreateStartmenuButtons(600,200);
+            CreateStartmenuButtons(165,600);
+            CreateStartmenuButtons(1195,600);
         }
 
         private void CreateHeader()
@@ -45,7 +45,7 @@ namespace Dragons.Game.Casting{
 
         private void StartMenuBackGround()
         {
-            HomeScreenActorDimensions.Add(new List<int>  {1860,980}); //1860 x 980
+            HomeScreenActorDimensions.Add(new List<int>  {1800,900}); //1860 x 980
             HomeScreenActorPositions.Add(new List<int>  {0,0}); 
         }
 

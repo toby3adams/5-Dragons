@@ -26,17 +26,17 @@ namespace Dragons
             // Instantiate a service factory for other objects to use.
             IServiceFactory serviceFactory = new RaylibServiceFactory();
 
-            Label status = new Label();
-            status.Display("x:-, y:-");
-            status.MoveTo(25, 55);
+            //Label status = new Label();
+            // status.Display("x:-, y:-");
+            // status.MoveTo(25, 55);
 
-            Label dragon_life = new Label();
-            dragon_life.Display("Dragon Life:-");
-            dragon_life.MoveTo(200, 55);
+            // Label dragon_life = new Label();
+            // dragon_life.Display("Dragon Life:-");
+            // dragon_life.MoveTo(200, 55);
 
-            Label player_life = new Label();
-            player_life.Display("Player Life:-");
-            player_life.MoveTo(400, 55);
+            // Label player_life = new Label();
+            // player_life.Display("Player Life:-");
+            // player_life.MoveTo(400, 55);
 
 
             
@@ -49,6 +49,7 @@ namespace Dragons
 
             
             TitleScreen header = new TitleScreen();
+            TitleScreen StartBackground = new TitleScreen();
             List<TitleScreen> HomeScreenButtons = new List<TitleScreen>();
             int NumbHomeScreenActors = header.GetAssetNumber();//wall.NumberOfWalls(); need to set this to be related to the amount of wall that their are.
             for (int i =0; i<NumbHomeScreenActors; i++)
@@ -67,11 +68,27 @@ namespace Dragons
                     
                     header=titleScreen1;
                     header.Tint(Color.Red());
-                    header.Display("Game/Assets/lava_2.png");
+                    header.Display("Game/Assets/5_dragons_title.png");
                 }
-                else{
+                else if (i==3)
+                {
+                    StartBackground =titleScreen1;
+                    StartBackground.Tint(Color.Yellow());
+                    StartBackground.Display("Game/Assets/lava_2.png");
+                }
+                else
+                {
                     titleScreen1.Tint(Color.Blue());
-                titleScreen1.Display("Game/Assets/lava_2.png");
+
+                    if (i==1)
+                    {
+                        titleScreen1.Display("Game/Assets/easy_button.png");
+                        //titleScreen1.Display("Game/Assets/hard_button.png");
+                    }
+                    else 
+                    {
+                        titleScreen1.Display("Game/Assets/hard_button.png");
+                    }
                     HomeScreenButtons.Add(titleScreen1);
                 }
                 
@@ -104,6 +121,7 @@ namespace Dragons
             DragonCombat dragon_combat = new DragonCombat();
             TrapActions trap_action = new TrapActions();
             PlayMusicAction playMusicAction = new PlayMusicAction(serviceFactory);
+            VictoryDefeat victory_defeat = new VictoryDefeat();
 
 
 //            DrawImageAction drawImageAction = new DrawImageAction(serviceFactory);
@@ -112,21 +130,24 @@ namespace Dragons
             // Instantiate a new scene, add the actors and actions.
             scene.AddActor("camera", camera);
             //scene.AddActor("instructions", instructions);
-            scene.AddActor("status", status);
-            scene.AddActor("dragon_life", dragon_life);
-            scene.AddActor("player_life", player_life);
+            //scene.AddActor("status", status);
+            //scene.AddActor("dragon_life", dragon_life);
+            //scene.AddActor("player_life", player_life);
             scene.AddActor("player", player);
+
             foreach (Actor Button in HomeScreenButtons){   scene.AddActor("button",Button);   }
-            scene.AddActor("header", header);    
+            scene.AddActor("header", header);  
+            scene.AddActor("stback", StartBackground);  
 
 
 
-            scene.AddAction(Phase.Input, userScreenInteraction);
+            scene.AddAction(Phase.Input, userScreenInteraction); // updates the actor lists so that after space is hit all actors will display.
             scene.AddAction(Phase.Input, steerPlayerAction);
             scene.AddAction(Phase.Input, player_attacks);
                     //scene.AddAction(Phase.Update, UpdateScreen);
             
             scene.AddAction(Phase.Update, updateStatusAction);
+            scene.AddAction(Phase.Update, victory_defeat);
             scene.AddAction(Phase.Update, projectile_movement);
             scene.AddAction(Phase.Update, projectile_collisions);
             scene.AddAction(Phase.Update, dragon_combat);

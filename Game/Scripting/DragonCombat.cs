@@ -374,7 +374,6 @@ namespace Dragons.Game.Scripting{
                 if (dragon.attack_is_displayed){
                     scene.RemoveActor("dragon_swing", dragon.swing);
                 }
-                scene.RemoveActor("dragon", dragon);
             }
         }
 

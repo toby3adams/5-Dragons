@@ -29,8 +29,12 @@ namespace Dragons.Game.Scripting
                 Label player_life = scene.GetFirstActor<Label>("player_life");
 
 
+                
                 int dragons_in_range = 0;
 
+
+                if (dragon_life!=null)
+                {
                 foreach (Dragon dragon in dragons){
                     if (dragon.is_near_player){
                         string new_drag_life = $"Dragon Life:{dragon.GetHealth().ToString()}";
@@ -42,15 +46,22 @@ namespace Dragons.Game.Scripting
                     string new_drag_life = $"Dragon Life: - ";
                     dragon_life.Display(new_drag_life); 
                 }
+                }
 
+
+                if (player_life!=null)
+                {
                 string new_player_life = $"Player Life:{player.GetHealth().ToString()}";
                         player_life.Display(new_player_life);  
-
+                }
 
 
                 // update the status actor with the player info
+                if (status!=null)
+                {
                 string newInfo = $"x:{player.GetPosition().X}, y:{player.GetPosition().Y}";
                 status.Display(newInfo);
+                }
                 // update Dragon health
                 
 

@@ -43,6 +43,7 @@ namespace Dragons.Game.Scripting
 
                 List<Image> titlescreenbuttons = scene.GetAllActors<Image>("button"); 
                 Image header = scene.GetFirstActor<Image>("header");
+                Image StartBck = scene.GetFirstActor<Image>("stback");
 
                 List<Image> pits = scene.GetAllActors<Image>("pit");
                 List<Image> lava = scene.GetAllActors<Image>("lava"); // will need to be changed to Image for texture application
@@ -53,8 +54,14 @@ namespace Dragons.Game.Scripting
                 List<Image> WallTraps = scene.GetAllActors<Image>("wall_trap");
                 List<Image> BlockTraps = scene.GetAllActors<Image>("block_trap");
                 List<Image> Stationary_block_traps = scene.GetAllActors<Image>("stationary_block_trap");
+
                 List<Image> invis_doors = scene.GetAllActors<Image>("invis_doors");
                 List<Actor> pit_falls = scene.GetAllActors<Actor>("pit_fall");
+
+                
+                List<Image> win_loss = scene.GetAllActors<Image>("win_loss");
+                List<Image> blood_splatters = scene.GetAllActors<Image>("blood_splatter");
+
 
                 // Actor world = camera.GetWorld();
                 // foreach (Actor dragon in dragons){
@@ -69,10 +76,21 @@ namespace Dragons.Game.Scripting
                 
 
                 _videoService.ClearBuffer();
-                _videoService.DrawGrid(10, Color.Gray(), camera);   
-                _videoService.DrawGrid(50, Color.Red(), camera);      
-                _videoService.DrawGrid(100, Color.Blue(), camera);         
+                // _videoService.DrawGrid(10, Color.Gray(), camera);   
+                // _videoService.DrawGrid(50, Color.Red(), camera);      
+                // _videoService.DrawGrid(100, Color.Blue(), camera);         
                 
+                if(header!=null)
+                {_videoService.Draw(header);}
+
+                if(header!=null)
+                {_videoService.Draw(StartBck);}
+
+                if(titlescreenbuttons!=null)
+                {_videoService.Draw(titlescreenbuttons);}  
+
+
+
                 if(floors!=null)
                 {_videoService.Draw(floors, camera);}
                 if(pits!=null)
@@ -92,10 +110,12 @@ namespace Dragons.Game.Scripting
 
                 if (dragon_lava!=null){
                     _videoService.Draw(dragon_lava, camera);
-
                 }
                 if(dragons!=null)
                 {_videoService.Draw(dragons, camera);}
+                if (blood_splatters != null){
+                    _videoService.Draw(blood_splatters, camera);
+                }
                 if(WallTraps!=null)
                 {_videoService.Draw(WallTraps, camera);}
                 if(BlockTraps!=null)
@@ -130,11 +150,15 @@ namespace Dragons.Game.Scripting
                 if(dragon_life!=null)
                 {_videoService.Draw(dragon_life);}
                 if(player_life!=null)
-                {_videoService.Draw(player_life);} 
-                if(header!=null)
-                {_videoService.Draw(header);}
-                if(titlescreenbuttons!=null)
-                {_videoService.Draw(titlescreenbuttons);}                       
+                {_videoService.Draw(player_life);}
+                if (win_loss != null){
+                    _videoService.Draw(win_loss);
+                }
+
+                
+                
+                
+                                     
                 _videoService.FlushBuffer();
             }
             catch (Exception exception)
