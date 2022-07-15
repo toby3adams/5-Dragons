@@ -15,7 +15,7 @@ namespace Dragons.Game.Casting{
         private int HeaderSizeY=150;
 
         private int HeaderPositionX=630;  //1860 x 980 930-300 = 630
-        private int HeaderPositionY=415;   // 980 /4 =
+        private int HeaderPositionY=50;   // 980 /5 = 98 -75 = 
         private List<List<int>> HomeScreenActorDimensions= new List<List<int>>();
         private List<List<int>> HomeScreenActorPositions= new List<List<int>>();
 
@@ -25,8 +25,8 @@ namespace Dragons.Game.Casting{
         public TitleScreen()
         {   //Header will always be the starting position on the list for the HomeScreen.
             CreateHeader();
-            CreateStartmenuButtons(400,400);
-            CreateStartmenuButtons(600,200);
+            CreateStartmenuButtons(165,600);
+            CreateStartmenuButtons(1195,600);
         }
 
         private void CreateHeader()
