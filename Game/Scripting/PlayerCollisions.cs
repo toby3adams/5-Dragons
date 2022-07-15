@@ -18,7 +18,7 @@ namespace Dragons.Game.Scripting
         {
             
         }
-        public void CheckCollisions(Scene scene, Actor player)
+        public void CheckCollisions(Scene scene, Player player)
         {
            
             List<Actor>walls = scene.GetAllActors("wall");
@@ -41,6 +41,33 @@ namespace Dragons.Game.Scripting
             List<Actor>Block_traps = scene.GetAllActors("block_trap");
             foreach(Actor trap in Block_traps)
             {
+                if(player.Overlaps(trap))
+                    {
+                        player.takes_damage(100);
+                    }
+                if (player.GetTop() <= trap.GetBottom() && player.GetBottom() > trap.GetBottom() && player.GetRight() > trap.GetLeft() && player.GetLeft() < trap.GetRight())
+                {
+                    collision_up = true;
+                    player.MoveTo(player.GetLeft(), player.GetTop()+5);
+                    
+                    
+                }
+                if (player.GetLeft() <= trap.GetRight() && player.GetRight() > trap.GetRight() && player.GetBottom() > trap.GetTop() && player.GetTop() < trap.GetBottom()){
+                    collision_left = true;
+                    player.MoveTo(player.GetLeft()+5,player.GetTop());
+                }
+                if (player.GetRight() >= trap.GetLeft() && player.GetLeft() < trap.GetLeft() && player.GetBottom() > trap.GetTop() && player.GetTop() < trap.GetBottom()){
+                    collision_right = true;
+                    player.MoveTo(player.GetLeft()-5,player.GetTop());
+                }
+                if (player.GetBottom() >= trap.GetTop() && player.GetTop() < trap.GetTop() && player.GetRight() > trap.GetLeft() && player.GetLeft() < trap.GetRight()){
+                    collision_down = true;
+                    player.MoveTo(player.GetLeft(),player.GetTop()-5);
+                }    
+            }
+             List<Actor>stationary_block_traps = scene.GetAllActors("stationary_block_trap");
+            foreach(Actor trap in stationary_block_traps)
+            {
                 if (player.GetTop() <= trap.GetBottom() && player.GetBottom() > trap.GetBottom() && player.GetRight() > trap.GetLeft() && player.GetLeft() < trap.GetRight())
                 {
                     collision_up = true;
@@ -59,7 +86,7 @@ namespace Dragons.Game.Scripting
                     player.MoveTo(player.GetLeft(),player.GetTop()-5);
                 }    
             }
-             List<Actor>stationary_block_traps = scene.GetAllActors("stationary_block_trap");
+             List<Actor>destroy_walkway_trigger = scene.GetAllActors("invis_door");
             foreach(Actor trap in stationary_block_traps)
             {
                 if (player.GetTop() <= trap.GetBottom() && player.GetBottom() > trap.GetBottom() && player.GetRight() > trap.GetLeft() && player.GetLeft() < trap.GetRight())

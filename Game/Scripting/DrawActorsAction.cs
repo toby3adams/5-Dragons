@@ -45,7 +45,7 @@ namespace Dragons.Game.Scripting
                 Image header = scene.GetFirstActor<Image>("header");
                 Image StartBck = scene.GetFirstActor<Image>("stback");
 
-                List<Actor> pits = scene.GetAllActors("pit");
+                List<Image> pits = scene.GetAllActors<Image>("pit");
                 List<Image> lava = scene.GetAllActors<Image>("lava"); // will need to be changed to Image for texture application
                 List<Image> dragon_lava = scene.GetAllActors<Image>("dragon_lava");
                 List<Image> dragon_swing = scene.GetAllActors<Image>("dragon_swing");
@@ -54,9 +54,14 @@ namespace Dragons.Game.Scripting
                 List<Image> WallTraps = scene.GetAllActors<Image>("wall_trap");
                 List<Image> BlockTraps = scene.GetAllActors<Image>("block_trap");
                 List<Image> Stationary_block_traps = scene.GetAllActors<Image>("stationary_block_trap");
-                List<Actor> invis_doors = scene.GetAllActors<Actor>("invis_doors");
+
+                List<Image> invis_doors = scene.GetAllActors<Image>("invis_doors");
+                List<Actor> pit_falls = scene.GetAllActors<Actor>("pit_fall");
+
+                
                 List<Image> win_loss = scene.GetAllActors<Image>("win_loss");
                 List<Image> blood_splatters = scene.GetAllActors<Image>("blood_splatter");
+
 
                 // Actor world = camera.GetWorld();
                 // foreach (Actor dragon in dragons){
@@ -89,7 +94,12 @@ namespace Dragons.Game.Scripting
                 if(floors!=null)
                 {_videoService.Draw(floors, camera);}
                 if(pits!=null)
-                {_videoService.Draw(pits,camera);}
+                {   //Console.WriteLine("Pits are not NULL");
+                    _videoService.Draw(pits,camera);}
+                    if(pit_falls!=null)
+                    {
+                        _videoService.Draw(pit_falls, camera);
+                    }
                 if(lava!=null)
                 {_videoService.Draw(lava, camera);}
                 if (dragon_swing !=null){

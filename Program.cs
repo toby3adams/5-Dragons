@@ -78,7 +78,7 @@ namespace Dragons
                 }
                 else
                 {
-                    titleScreen1.Tint(Color.Blue());
+                    //titleScreen1.Tint(Color.Blue());
 
                     if (i==1)
                     {
@@ -87,7 +87,7 @@ namespace Dragons
                     }
                     else 
                     {
-                        titleScreen1.Display("Game/Assets/hard_button.png");
+                        titleScreen1.Display("Game/Assets/hard.png");
                     }
                     HomeScreenButtons.Add(titleScreen1);
                 }

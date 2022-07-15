@@ -153,7 +153,7 @@ namespace Dragons.Game.Scripting
 
 
                             // Traps
-                            BuildTraps traps = new BuildTraps();
+                            BuildTraps traps = new BuildTraps(scene);
                             traps.GenTraps();
                             List<Trap> AllTraps = traps.GetAllTraps();
                             List<Turret> AllTurrets = traps.GetTurrets();
@@ -169,9 +169,11 @@ namespace Dragons.Game.Scripting
                                 trap.MoveTo(trap.GetX(), trap.GetY());
                                 if(TrapType == 1)
                                 {
+                                    
                                     trap.Tint(Color.Black());
                                     Pits.Add(trap);
-                                    scene.AddActor("pit", trap);
+                                    trap.Display("Game/Assets/lava_2.png");
+                                    scene.AddActor("pit", trap);                                    
                                 }  
                                 else if(TrapType == 2)              
                                 {
@@ -195,6 +197,8 @@ namespace Dragons.Game.Scripting
                                 } else if(TrapType == 0)
                                 {
                                     invis_doors.Add(trap);
+                                    trap.Tint(Color.White());
+                                    //trap.Display("Game/Assets/brick.png");
                                     scene.AddActor("invis_doors", trap);
                                 }
 
