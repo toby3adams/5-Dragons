@@ -17,12 +17,16 @@ namespace Dragons.Game.Scripting
         private int rand_x;
         private int rand_y;
         int Trap_Room_Type;
+        private bool walkway_disintigrate = false;
+        Scene scene;
         List<Trap> Traps = new List<Trap>();
         List<Turret> Turrets = new List<Turret>();
         //List<Trap> Lava = new List<Trap>();
 
         
-        public BuildTraps(){}
+        public BuildTraps(Scene scene){
+            this.scene = scene;
+        }
 
         public List<Trap> GetAllTraps()
         {
@@ -34,7 +38,7 @@ namespace Dragons.Game.Scripting
         }
         public void GenTraps()
         {
-            //GenTrapsRoom_1();
+            GenTrapsRoom_1();
             GenTrapsRoom_2();
             GenTrapsRoom_3();
             GenTrapsRoom_4();
@@ -50,22 +54,55 @@ namespace Dragons.Game.Scripting
         }
         
         //  1 = Pit,   2 = Lava, 3 = mine,   4 = turret,  5 = ?
+        public void DestroyWalkway()
+        {
+            walkway_disintigrate = true;
+            int place_pit_counter = 0;
+            int pit_fall_y = 2450; 
+            if(walkway_disintigrate == true)
+            {
+                for(int k = 0; k < 1; k++)
+                {  
+                    for(int i = 0; i < 20; i++){
+                        int pit_fall_x = 1450;
+                        if(i > 0){
+                        pit_fall_y-=50;
+                        }
+                        place_pit_counter++;
+                        for(int j = 0; j < 2; j++){
+                            place_pit_counter++;
+                            if(place_pit_counter % 4 == 0)
+                            {
+                                Trap pit = new Trap(50,50,pit_fall_x, pit_fall_y,1,0);
+                                Traps.Add(pit);     
+                                pit.SizeTo(pit.GetWidth(), pit.GetHeight());       
+                                pit.MoveTo(pit.GetX(),pit.GetY());
+                                scene.AddActor("pit_fall", pit);
+                                pit_fall_x += 50;
+                            }                            
+                        }
+                    }
+                /*walkway_disintigrate = false;
+                List<Trap>all_pitfalls = scene.GetAllActors<Trap>("pit_fall");
+                foreach(Trap trap in all_pitfalls)
+                {
+                    scene.RemoveActor("pitfall", trap);
+                }
+                /*Trap walkway_gone = new Trap(960,960,1450,1540,1,0);
+                Traps.Add(walkway_gone);*/
+                
+                }
+            }
+            
+        }
         public void GenTrapsRoom_1()
         {
-            Trap_Room_Type = rnd.Next(1,3);
-            if(Trap_Room_Type == 1) // Central pit, walk way, with wall traps that fire projectiles
-            {
-                Trap pit = new Trap(740,740,1150,3650, 1, 0);
-                Traps.Add(pit);
-            }
-            if(Trap_Room_Type == 2) // + shaped walk way connecting rooms. lava in each corner. Mines spawning randomly on walkway.
-            {
-                
-            }
-            if(Trap_Room_Type == 3)
-            {
-                
-            }
+            Trap walkway_disint_trigger = new Trap(100,700,1450,1540,0,0);
+            Traps.Add(walkway_disint_trigger);
+            Trap pit_left = new Trap(410,960,1040,1540, 1, 0);
+            Traps.Add(pit_left);
+            Trap pit_right = new Trap(450,960,1040+510,1540, 1, 0);
+            Traps.Add(pit_right);                
         }    
         
 
