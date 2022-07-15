@@ -309,23 +309,34 @@ namespace Dragons.Game.Scripting{
 
                 melee_counter +=1;
 
-                if (melee_counter > 60){
+                if (melee_counter > 75){
                     if (player.GetCenterX() < dragon.GetCenterX() + 150 && player.GetCenterX() > dragon.GetCenterX() -150){
                         if (player.GetCenterY() < dragon.GetCenterY() + 150 && player.GetCenterY() > dragon.GetCenterY() -150){
-                            Actor swing = new Actor();
-                            scene.AddActor("swing", swing);
-                            swing.MoveTo(dragon.GetLeft()-50, dragon.GetTop()-50);
-                            swing.SizeTo(200,200);
-                            if (swing.Overlaps(player)){
+                            dragon.swing = new Image();
+                            dragon.swing.Display("Game/Assets/flame_dragon_swing.png");
+                            dragon.swing.Tint(dragon.GetTint());
+                            scene.AddActor("swing", dragon.swing);
+                            dragon.swing.MoveTo(dragon.GetLeft()-50, dragon.GetTop()-50);
+                            dragon.swing.SizeTo(200,200);
+                            if (dragon.swing.Overlaps(player)){
                                 player.takes_damage(dragon.melee_damage);
                             }
-                            scene.RemoveActor("swing",swing);
+                            // scene.RemoveActor("swing",swing);
                             melee_counter = 0;
+                            dragon.attack_is_displayed = true;
                         }
                     }
                 }
                 if (!(player.GetCenterX() < dragon.GetCenterX() + 150 && player.GetCenterX() > dragon.GetCenterX() -150) || (!(player.GetCenterY() < dragon.GetCenterY() + 150 && player.GetCenterY() > dragon.GetCenterY() -150))){
                         melee_counter = 0;
+                }
+                if (dragon.attack_is_displayed){
+                    if (dragon.ticks_since_displayed % 20 == 0){
+                        scene.RemoveActor("swing", dragon.swing);
+                        dragon.attack_is_displayed = false;
+                    }
+                    dragon.ticks_since_displayed += 1;
+                    
                 }
 
             }
@@ -359,6 +370,9 @@ namespace Dragons.Game.Scripting{
                 }
                 if (dragon.type == "shadow"){
                     // Game_ends
+                }
+                if (dragon.attack_is_displayed){
+                    scene.RemoveActor("swing", dragon.swing);
                 }
                 scene.RemoveActor("dragon", dragon);
             }

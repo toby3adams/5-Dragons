@@ -72,7 +72,7 @@ namespace Dragons.Game.Scripting
                 _videoService.Draw(Stationary_block_traps, camera);      
 
                 _videoService.Draw(dragon_lava, camera);            
-
+                _videoService.Draw(swing, camera);
                 _videoService.Draw(dragons, camera);
                 _videoService.Draw(WallTraps, camera);
                 
@@ -83,7 +83,7 @@ namespace Dragons.Game.Scripting
                 _videoService.Draw(Arrows, camera);
                 _videoService.Draw(trackers, camera);
                 _videoService.Draw(waves, camera);
-                _videoService.Draw(swing, camera);
+
 
                 _videoService.Draw(player, camera); 
                 _videoService.Draw(status);

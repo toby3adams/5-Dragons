@@ -21,6 +21,9 @@ namespace Dragons.Game.Casting{
         private bool dragon_alive = true;
         public Image lava1;
         public Image lava2;
+        public Image swing;
+        public int ticks_since_displayed = 1;
+        public bool attack_is_displayed = false;
         public bool first_placement = true;
         public bool first_placement2 = true;
         public string type;
