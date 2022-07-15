@@ -167,7 +167,7 @@ namespace Dragons.Game.Scripting
                                     
                                 //moves upper right block left
                                 }else if(((trap.GetX()!=40)||(trap.GetX()!=1040)||(trap.GetX()!=2040))&&(trap.GetY()==3540)){
-                                    Console.WriteLine("IF 2");
+                                   
                                     // trap.MoveTo(trap.GetX()-960+trap.GetWidth(),trap.GetHeight());
                                     trap.DecX(block_shift_interval, block_shift_rate);
                                     trap.MoveTo(trap.GetX(), trap.GetY());
