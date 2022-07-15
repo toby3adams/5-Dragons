@@ -83,6 +83,10 @@ namespace Dragons.Game.Scripting
                 {_videoService.Draw(dragons, camera);}
                 if(WallTraps!=null)
                 {_videoService.Draw(WallTraps, camera);}
+                if(BlockTraps!=null)
+                {_videoService.Draw(BlockTraps, camera);}
+                if(Stationary_block_traps!=null)
+                {_videoService.Draw(Stationary_block_traps,camera);}
                 
                 
                 

@@ -174,10 +174,17 @@ namespace Dragons.Game.Scripting
                                     scene.AddActor("lava", trap);                    
                                 } else if(TrapType == 3)
                                 {
-                                    trap.Tint(Color.White());
+                                    trap.Tint(Color.Gray());
                                     Wall_traps.Add(trap);
                                     trap.Display("Game/Assets/brick.png");
-                                    scene.AddActor("wall_trap", trap);
+                                    scene.AddActor("block_trap", trap);
+                                } 
+                                else if(TrapType == 4)
+                                {
+                                    trap.Tint(Color.Gray());
+                                    Wall_traps.Add(trap);
+                                    trap.Display("Game/Assets/brick.png");
+                                    scene.AddActor("stationary_block_trap", trap);
                                 }
 
                             }
