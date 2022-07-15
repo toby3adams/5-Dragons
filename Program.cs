@@ -112,6 +112,7 @@ namespace Dragons
             DragonCombat dragon_combat = new DragonCombat();
             TrapActions trap_action = new TrapActions();
             PlayMusicAction playMusicAction = new PlayMusicAction(serviceFactory);
+            VictoryDefeat victory_defeat = new VictoryDefeat();
 
 
 //            DrawImageAction drawImageAction = new DrawImageAction(serviceFactory);
@@ -137,6 +138,7 @@ namespace Dragons
                     //scene.AddAction(Phase.Update, UpdateScreen);
             
             scene.AddAction(Phase.Update, updateStatusAction);
+            scene.AddAction(Phase.Update, victory_defeat);
             scene.AddAction(Phase.Update, projectile_movement);
             scene.AddAction(Phase.Update, projectile_collisions);
             scene.AddAction(Phase.Update, dragon_combat);

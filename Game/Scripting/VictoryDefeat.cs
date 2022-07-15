@@ -20,6 +20,7 @@ namespace Dragons.Game.Scripting
                 Image loss_screen = new Image();
                 loss_screen.SizeTo(600,150);
                 loss_screen.MoveTo(630,340);
+                loss_screen.Display("Game/Assets/game_over.png");
                 scene.AddActor("win_loss", loss_screen);
             }
 
@@ -48,6 +49,7 @@ namespace Dragons.Game.Scripting
                         Image win_screen = new Image();
                         win_screen.SizeTo(600,150);
                         win_screen.MoveTo(630,340);
+                        win_screen.Display("Game/Assets/win_message.png");
                         scene.AddActor("win_loss", win_screen);
                     }
                 }
