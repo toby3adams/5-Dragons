@@ -29,9 +29,49 @@ namespace Dragons.Game.Scripting
             List<Trap> Lava = scene.GetAllActors<Trap>("lava");
             Player player = scene.GetFirstActor<Player>("player");
             List<Trap> wall_traps = scene.GetAllActors<Trap>("block_trap");
-            
+            int block_trap_shift_counter = 3;
             foreach(Floor floor in Rooms)
-            {        
+            {    
+                
+                //block trap shifting
+                if(block_trap_shift_counter %  6 == 0)
+                {
+                    /*int block_shift_interval = 1;
+                    int block_shift_rate = 1;
+                    foreach(Trap trap in wall_traps)
+                    { 
+                        if(trap.GetTrapType() == 3)
+                        {
+                                //moves upper left block down
+                            if(((trap.GetX()==40||trap.GetX()==1040||(trap.GetX()==2040))&&(trap.GetY()!= 4200))){
+                                trap.IncY(block_shift_interval, block_shift_rate);
+                                trap.MoveTo(trap.GetX(), trap.GetY());
+                                
+                            //moves upper right block left
+                            }else if(((trap.GetX()!=40)||(trap.GetX()!=1040)||(trap.GetX()!=2040))&&(trap.GetY()==3540)){
+                                Console.WriteLine("IF 2");
+                                // trap.MoveTo(trap.GetX()-960+trap.GetWidth(),trap.GetHeight());
+                                trap.DecX(block_shift_interval, block_shift_rate);
+                                trap.MoveTo(trap.GetX(), trap.GetY());
+                                
+                            //moves lower left block right
+                            }
+                            //moves lower right block up
+                            if(((trap.GetX()==40+960-trap.GetWidth())||(trap.GetX()==1040+960-trap.GetWidth())||(trap.GetX()==2040+960-trap.GetWidth()))&&(trap.GetY()!=3540)){
+                                trap.DecY(block_shift_interval, block_shift_rate);
+                                trap.MoveTo(trap.GetX(), trap.GetY());
+                                
+                            }else if(((trap.GetX()!=(40+960)-(trap.GetWidth()))||(trap.GetX()!=(1040+960-trap.GetWidth()))||(trap.GetX()!=(2040+960-trap.GetWidth())))&&(trap.GetY()==4200)){
+                                
+                                //trap.MoveTo(trap.GetX()+960-trap.GetWidth(),trap.GetWidth());
+                                trap.IncX(block_shift_interval, block_shift_rate);
+                                trap.MoveTo(trap.GetX(), trap.GetY());
+                            }
+                        }
+                            
+                    }    */
+                }
+                
                 int Room_num = Rooms.IndexOf(floor);
                 // grow lava
                 if(player.FullyOverlaps(floor))
@@ -62,11 +102,11 @@ namespace Dragons.Game.Scripting
                                 }                             
                                 if(lava_width < max_dimension)
                                 {                                    
-                                    lava.DecX(2);
+                                    lava.DecX(2,1);
                                 }
                                 if(lava_width < max_dimension)
                                 {                                    
-                                    lava.DecY(2);
+                                    lava.DecY(2,1);
                                 }                                        
                                 lava.MoveTo(lava.GetX(), lava.GetY());                                                       
                             }
@@ -100,11 +140,11 @@ namespace Dragons.Game.Scripting
                                         }                             
                                         if(lava.GetWidth() > initial_dimension)
                                         {                                    
-                                            lava.IncX(1);
+                                            lava.IncX(1,1);
                                         }
                                         if(lava.GetWidth() > initial_dimension)
                                         {                                    
-                                            lava.IncY(1);
+                                            lava.IncY(1,1);
                                         }                                        
                                         lava.MoveTo(lava.GetX(), lava.GetY());                                                       
                                     }
@@ -114,37 +154,41 @@ namespace Dragons.Game.Scripting
                     // Block trap shifting
                     if(player.FullyOverlaps(floor))
                     {
-                        Console.WriteLine("Player in room");
-                        int block_shift_speed = 5;
+                        int block_shift_interval = 5;
+                        int block_shift_rate = 1;
                         foreach(Trap trap in wall_traps)
-                        {  Console.WriteLine("Traps Identified");
-                             //moves upper left block down
-                            if(((trap.GetX()==40||trap.GetX()==1040||(trap.GetX()==2040))&&(trap.GetY()!= 4200))){
-                                trap.IncY(block_shift_speed);
-                                trap.MoveTo(trap.GetX(), trap.GetY());
-                               
-                            //moves upper right block left
-                            }else if(((trap.GetX()!=40)||(trap.GetX()!=1040)||(trap.GetX()!=2040))&&(trap.GetY()==3540)){
-                              Console.WriteLine("IF 2");
-                               // trap.MoveTo(trap.GetX()-960+trap.GetWidth(),trap.GetHeight());
-                                trap.DecX(block_shift_speed);
-                                trap.MoveTo(trap.GetX(), trap.GetY());
-                               
-                            //moves lower left block right
+                        { 
+                            if(trap.GetTrapType() == 3)
+                            {
+                                    //moves upper left block down
+                                if(((trap.GetX()==40||trap.GetX()==1040||(trap.GetX()==2040))&&(trap.GetY()!= 4200))){
+                                    trap.IncY(block_shift_interval, block_shift_rate);
+                                    trap.MoveTo(trap.GetX(), trap.GetY());
+                                    
+                                //moves upper right block left
+                                }else if(((trap.GetX()!=40)||(trap.GetX()!=1040)||(trap.GetX()!=2040))&&(trap.GetY()==3540)){
+                                    Console.WriteLine("IF 2");
+                                    // trap.MoveTo(trap.GetX()-960+trap.GetWidth(),trap.GetHeight());
+                                    trap.DecX(block_shift_interval, block_shift_rate);
+                                    trap.MoveTo(trap.GetX(), trap.GetY());
+                                    
+                                //moves lower left block right
+                                }
+                                //moves lower right block up
+                                if(((trap.GetX()==40+960-trap.GetWidth())||(trap.GetX()==1040+960-trap.GetWidth())||(trap.GetX()==2040+960-trap.GetWidth()))&&(trap.GetY()!=3540)){
+                                    trap.DecY(block_shift_interval, block_shift_rate);
+                                    trap.MoveTo(trap.GetX(), trap.GetY());
+                                    
+                                }else if(((trap.GetX()!=(40+960)-(trap.GetWidth()))||(trap.GetX()!=(1040+960-trap.GetWidth()))||(trap.GetX()!=(2040+960-trap.GetWidth())))&&(trap.GetY()==4200)){
+                                    
+                                    //trap.MoveTo(trap.GetX()+960-trap.GetWidth(),trap.GetWidth());
+                                    trap.IncX(block_shift_interval, block_shift_rate);
+                                    trap.MoveTo(trap.GetX(), trap.GetY());
+                                }
                             }
-                            //moves lower right block up
-                            if(((trap.GetX()==40+960-trap.GetWidth())||(trap.GetX()==1040+960-trap.GetWidth())||(trap.GetX()==2040+960-trap.GetWidth()))&&(trap.GetY()!=3540)){
-                                trap.DecY(block_shift_speed);
-                                trap.MoveTo(trap.GetX(), trap.GetY());
-                                
-                            }else if(((trap.GetX()!=(40+960)-(trap.GetWidth()))||(trap.GetX()!=(1040+960-trap.GetWidth()))||(trap.GetX()!=(2040+960-trap.GetWidth())))&&(trap.GetY()==4200)){
-                                
-                                //trap.MoveTo(trap.GetX()+960-trap.GetWidth(),trap.GetWidth());
-                                trap.IncX(block_shift_speed);
-                                trap.MoveTo(trap.GetX(), trap.GetY());
-                            }
-                        }
-                    }
+                        }                            
+                }    
+            
                 foreach (Turret turret in Turrets)
                 {
                     
@@ -154,6 +198,7 @@ namespace Dragons.Game.Scripting
                     }                
                 
                 }
+                block_trap_shift_counter += 3;
             } // foreach Floor end bracket      
             if (this.lava_counter > 45)
                 {               

@@ -136,15 +136,21 @@ namespace Dragons
                 {
                     trap.Tint(Color.Yellow());
                     Lava.Add(trap);
-                    trap.Display("Game/Assets/lava_2.png");
+                    trap.Display("Game/Assets/lava_3.png");
                     scene.AddActor("lava", trap);                    
                 } else if(TrapType == 3)
                 {
-                    trap.Tint(Color.White());
+                    trap.Tint(Color.Gray());
                     //Wall_traps.Add(trap);
                     trap.Display("Game/Assets/brick.png");
                     scene.AddActor("block_trap", trap);
-                }
+                } else if(TrapType == 4)
+                {
+                    trap.Tint(Color.Gray());
+                    //Wall_traps.Add(trap);
+                    trap.Display("Game/Assets/brick.png");
+                    scene.AddActor("stationary_block_trap", trap);
+                } 
 
             }
             foreach(Actor turret in AllTurrets)
@@ -174,7 +180,7 @@ namespace Dragons
                 int ySize = WallInfo[3];
                 wall.SizeTo(xSize,ySize);
                 wall.MoveTo(xVector,yVector);
-                // wall.Tint(Color.Gray());
+                wall.Tint(Color.Gray());
                 wall.Display("Game/Assets/brick.png");
                 WallList.Add(wall);
             }
