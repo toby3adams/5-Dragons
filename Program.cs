@@ -68,7 +68,7 @@ namespace Dragons
                     
                     header=titleScreen1;
                     header.Tint(Color.Red());
-                    header.Display("Game/Assets/lava_2.png");
+                    header.Display("Game/Assets/5_dragons_title.png");
                 }
                 else if (i==3)
                 {
@@ -79,7 +79,16 @@ namespace Dragons
                 else
                 {
                     titleScreen1.Tint(Color.Blue());
-                    titleScreen1.Display("Game/Assets/lava_2.png");
+
+                    if (i==1)
+                    {
+                        titleScreen1.Display("Game/Assets/easy_button.png");
+                        titleScreen1.Display("Game/Assets/hard_button.png");
+                    }
+                    else 
+                    {
+                        titleScreen1.Display("Game/Assets/hard_button.png");
+                    }
                     HomeScreenButtons.Add(titleScreen1);
                 }
                 
