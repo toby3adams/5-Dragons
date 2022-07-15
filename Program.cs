@@ -49,6 +49,7 @@ namespace Dragons
 
             
             TitleScreen header = new TitleScreen();
+            TitleScreen StartBackground = new TitleScreen();
             List<TitleScreen> HomeScreenButtons = new List<TitleScreen>();
             int NumbHomeScreenActors = header.GetAssetNumber();//wall.NumberOfWalls(); need to set this to be related to the amount of wall that their are.
             for (int i =0; i<NumbHomeScreenActors; i++)
@@ -69,7 +70,14 @@ namespace Dragons
                     header.Tint(Color.Red());
                     header.Display("Game/Assets/lava_2.png");
                 }
-                else{
+                else if (i==3)
+                {
+                    StartBackground =titleScreen1;
+                    StartBackground.Tint(Color.Yellow());
+                    header.Display("Game/Assets/lava_2.png");
+                }
+                else
+                {
                     titleScreen1.Tint(Color.Blue());
                 titleScreen1.Display("Game/Assets/lava_2.png");
                     HomeScreenButtons.Add(titleScreen1);
@@ -117,11 +125,12 @@ namespace Dragons
             scene.AddActor("player_life", player_life);
             scene.AddActor("player", player);
             foreach (Actor Button in HomeScreenButtons){   scene.AddActor("button",Button);   }
-            scene.AddActor("header", header);    
+            scene.AddActor("header", header);  
+            scene.AddActor("stback", StartBackground);  
 
 
 
-            scene.AddAction(Phase.Input, userScreenInteraction);
+            scene.AddAction(Phase.Input, userScreenInteraction); // updates the actor lists so that after space is hit all actors will display.
             scene.AddAction(Phase.Input, steerPlayerAction);
             scene.AddAction(Phase.Input, player_attacks);
                     //scene.AddAction(Phase.Update, UpdateScreen);

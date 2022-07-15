@@ -42,6 +42,7 @@ namespace Dragons.Game.Scripting
 
                 List<Image> titlescreenbuttons = scene.GetAllActors<Image>("button"); 
                 Image header = scene.GetFirstActor<Image>("header");
+                Image StartBck = scene.GetFirstActor<Image>("stback");
 
                 List<Actor> pits = scene.GetAllActors("pit");
                 List<Image> lava = scene.GetAllActors<Image>("lava"); // will need to be changed to Image for texture application
@@ -65,9 +66,9 @@ namespace Dragons.Game.Scripting
                 
 
                 _videoService.ClearBuffer();
-                _videoService.DrawGrid(10, Color.Gray(), camera);   
-                _videoService.DrawGrid(50, Color.Red(), camera);      
-                _videoService.DrawGrid(100, Color.Blue(), camera);         
+                // _videoService.DrawGrid(10, Color.Gray(), camera);   
+                // _videoService.DrawGrid(50, Color.Red(), camera);      
+                // _videoService.DrawGrid(100, Color.Blue(), camera);         
                 
                 if(floors!=null)
                 {_videoService.Draw(floors, camera);}
@@ -108,8 +109,14 @@ namespace Dragons.Game.Scripting
                 {_videoService.Draw(dragon_life);}
                 if(player_life!=null)
                 {_videoService.Draw(player_life);} 
+
                 if(header!=null)
                 {_videoService.Draw(header);}
+
+                if(header!=null)
+                {_videoService.Draw(StartBck);}
+                
+                
                 if(titlescreenbuttons!=null)
                 {_videoService.Draw(titlescreenbuttons);}                       
                 _videoService.FlushBuffer();
