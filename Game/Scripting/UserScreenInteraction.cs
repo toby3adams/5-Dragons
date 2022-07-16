@@ -31,6 +31,11 @@ namespace Dragons.Game.Scripting
                         Camera camera = scene.GetFirstActor<Camera>("camera");
                         List<Image> floors = scene.GetAllActors<Image>("floor");
 
+                        if (_keyboardService.IsKeyPressed(KeyboardKey.Enter)){
+                            Image button = scene.GetFirstActor<Image>("button");
+                            button.Display("Game/Assets/easy_out_of_order_button.png");
+                        }
+
                         // detect if button is pushed.
                         if (_keyboardService.IsKeyPressed(KeyboardKey.Space))
                         {
