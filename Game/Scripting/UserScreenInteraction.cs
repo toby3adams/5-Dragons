@@ -28,19 +28,21 @@ namespace Dragons.Game.Scripting
             
                 try
                     {
+                        Player player = scene.GetFirstActor<Player>("player");
                         Camera camera = scene.GetFirstActor<Camera>("camera");
                         List<Image> floors = scene.GetAllActors<Image>("floor");
 
                         if (_keyboardService.IsKeyPressed(KeyboardKey.Enter)){
                             Image button = scene.GetFirstActor<Image>("button");
                             button.Display("Game/Assets/easy_out_of_order_button.png");
+                            player.Display("Game/Assets/player_blood_splatter.png");
                         }
 
                         // detect if button is pushed.
                         if (_keyboardService.IsKeyPressed(KeyboardKey.Space))
                         {
                             ExitMenu = true;
-                            
+                            player.Display("Game/Assets/fighter.png");
                         }
                        
                         if(ExitMenu&&Iteration==1)
@@ -189,7 +191,7 @@ namespace Dragons.Game.Scripting
 
 
                             // Traps
-                            BuildTraps traps = new BuildTraps(scene);
+                            BuildTraps traps = new BuildTraps();
                             traps.GenTraps();
                             List<Trap> AllTraps = traps.GetAllTraps();
                             List<Turret> AllTurrets = traps.GetTurrets();
