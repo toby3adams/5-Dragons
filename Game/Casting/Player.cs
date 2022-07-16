@@ -4,7 +4,7 @@ namespace Dragons.Game.Casting
 {
     public class Player : Image 
     {
-        public int Player_Life = 300000000; 
+        public int Player_Life = 30; 
         public int Player_Armor = 0;
         public int damage = 5;
         public int melee_range = 30;
