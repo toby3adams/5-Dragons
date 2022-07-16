@@ -37,20 +37,7 @@ namespace Dragons.Game.Scripting
             {    
                 int Room_num = Rooms.IndexOf(floor);
                  //Console.WriteLine($"Room: {Room_num}");
-                    foreach(Trap trap in walkway_disint_trigger){
-                        //Console.WriteLine($"Trap_room: {trap.GetRoom()}");
-                        if(Room_num == trap.GetRoom()){
-                            //Console.WriteLine($"Room: {Room_num}");
-                            //Console.WriteLine($"Trap_Room_num: {trap.GetRoom()}");
-
-                               // Console.WriteLine("Trigger is in room");
-                            if(player.Overlaps(trap)){
-                                
-                                //Console.WriteLine("player triggered collapse");
-                                buildtraps.DestroyWalkway();
-                            }
-                        }
-                    } 
+                    
                         
                     
                 
