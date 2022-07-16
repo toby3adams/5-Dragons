@@ -11,8 +11,7 @@ namespace Dragons.Game.Casting{
         private float Width;
         private int x;
         private int y;
-        private int damage;
-        private bool is_near_player;
+        private int damage;        
         private int room;
 
         // constructor takes Pit Height, width, x position, and y position
