@@ -217,7 +217,7 @@ namespace Dragons.Game.Scripting
                                 {
                                     trap.Tint(Color.Yellow());
                                     Lava.Add(trap);
-                                    trap.Display("Game/Assets/lava_2.png");
+                                    trap.Display("Game/Assets/lava_ground_cracked_tileset.png");
                                     scene.AddActor("lava", trap);                    
                                 } else if(TrapType == 3)
                                 {
