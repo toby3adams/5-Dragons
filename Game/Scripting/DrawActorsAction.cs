@@ -27,7 +27,7 @@ namespace Dragons.Game.Scripting
                 // Get the actors from the cast.
                 
                 Camera camera = scene.GetFirstActor<Camera>("camera");
-                Label instructions = scene.GetFirstActor<Label>("instructions");
+                List<Label> instructions = scene.GetAllActors<Label>("instructions");
                 Image player = scene.GetFirstActor<Image>("player");
                 List<Image> dragons = scene.GetAllActors<Image>("dragon");
                 List<Image> projectiles = scene.GetAllActors<Image>("projectile");
@@ -93,13 +93,15 @@ namespace Dragons.Game.Scripting
 
                 if(floors!=null)
                 {_videoService.Draw(floors, camera);}
+                if(instructions!=null)
+                {_videoService.Draw(instructions, camera);}
                 if(pits!=null)
                 {   //Console.WriteLine("Pits are not NULL");
                     _videoService.Draw(pits,camera);}
-                    if(pit_falls!=null)
-                    {
-                        _videoService.Draw(pit_falls, camera);
-                    }
+                if(pit_falls!=null)
+                {
+                    _videoService.Draw(pit_falls, camera);
+                }
                 if(lava!=null)
                 {_videoService.Draw(lava, camera);}
                 if (dragon_swing !=null){
@@ -145,8 +147,7 @@ namespace Dragons.Game.Scripting
                 {_videoService.Draw(player, camera);} 
                 if(status!=null)
                 {_videoService.Draw(status);}
-                if(instructions!=null)
-                {_videoService.Draw(instructions);}
+                
                 if(dragon_life!=null)
                 {_videoService.Draw(dragon_life);}
                 if(player_life!=null)

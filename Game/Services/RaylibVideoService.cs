@@ -126,8 +126,9 @@ namespace Dragons.Game.Services
             Actor focus = camera.GetFocus();
             Actor screen = camera.GetScreen();
 
-            if (label == focus || label.Overlaps(screen))
-            {
+            if (label.GetRight() >= focus.GetCenterX() - screen.GetWidth() && label.GetLeft() <= focus.GetCenterX() + screen.GetWidth()){
+                if (label.GetBottom() >= focus.GetCenterY() - screen.GetHeight() && label.GetTop() <= focus.GetCenterY() + screen.GetHeight()){
+            
                 Raylib_cs.Font font = GetRaylibFont(label.GetFontFile());   
                 string text = label.GetText();
                 Vector2 position = label.GetPosition() - camera.GetPosition();
@@ -142,7 +143,7 @@ namespace Dragons.Game.Services
                 label.SizeTo(size);
 
                 Raylib.DrawTextEx(font, text, position, fontSize, spacing, color);
-            }
+            }}
         }
 
         

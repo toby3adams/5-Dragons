@@ -64,26 +64,57 @@ namespace Dragons.Game.Scripting
                             Random rand = new Random();
                             // Instantiate the actors that are used in this example.
                             Label instructions = new Label();
-                            instructions.Display("'w', 's', 'a', 'd' to move, j -ranged attk, k-melee attk, l-sheild");
-                            instructions.MoveTo(25, 25);
+                            instructions.Display("'W', 'A', 'S', 'D' to move, 'J' - ranged attack, 'K' - melee attack, 'L' - shield");
+                            instructions.MoveTo(1100, 4700);
 
-                            Label status = new Label();
-                            status.Display("x:-, y:-");
-                            status.MoveTo(25, 55);
+                            Label instructions_2 = new Label();
+                            instructions_2.Display("Defeat the Shadow dragon to win. Defeating each of the lesser dragons unlocks\ngreater power for the player.\n        - Bow\n         - Sword\n      - Armor\n      - Shield");
+                            instructions_2.MoveTo(1100, 4800);
+
+                            Image instructions_3 = new Image();
+                            instructions_3.Display("Game/Assets/warning_sign.png");
+                            instructions_3.MoveTo(1350, 4900);
+                            instructions_3.SizeTo(300,75);
+
+                            Image green = new Image();
+                            green.Display("Game/Assets/green_word.png");
+                            green.MoveTo(1095,4850);
+                            green.SizeTo(55,25);
+
+                            Image orange = new Image();
+                            orange.Display("Game/Assets/orange_word.png");
+                            orange.MoveTo(1095,4877);
+                            orange.SizeTo(65,25);
+
+                            Image blue = new Image();
+                            blue.Display("Game/Assets/blue_word.png");
+                            blue.MoveTo(1095,4905);
+                            blue.SizeTo(55,25);
+
+                            Image gray = new Image();
+                            gray.Display("Game/Assets/gray_word.png");
+                            gray.MoveTo(1095,4930);
+                            gray.SizeTo(55,25);
+                            
+
+
+                            // Label status = new Label();
+                            // status.Display("x:-, y:-");
+                            // status.MoveTo(25, 55);
 
                             Label dragon_life = new Label();
                             dragon_life.Display("Dragon Life:-");
-                            dragon_life.MoveTo(200, 55);
+                            dragon_life.MoveTo(25, 25);
 
                             Label player_life = new Label();
                             player_life.Display("Player Life:-");
-                            player_life.MoveTo(400, 55);
+                            player_life.MoveTo(225, 25);
 
-                            scene.AddActor("dragon_life", dragon_life);
+                            
 
-                            scene.AddActor("player_life", player_life);
+                            
 
-                            scene.AddActor("status", status);
+                            
                             
                             // Player player = new Player();
                             // player.SizeTo(50, 50);
@@ -268,9 +299,16 @@ namespace Dragons.Game.Scripting
 
                     scene.AddActor("camera", camera);
                     scene.AddActor("instructions", instructions);
-                    scene.AddActor("status", status);
+                    scene.AddActor("instructions", instructions_2);
+                    scene.AddActor("blood_splatter", instructions_3);
+                    scene.AddActor("blood_splatter", green);
+                    scene.AddActor("blood_splatter", orange);
+                    scene.AddActor("blood_splatter", blue);
+                    scene.AddActor("blood_splatter", gray);
+                    // scene.AddActor("status", status);
                     scene.AddActor("dragon_life", dragon_life);
-                    // scene.AddActor("player_life", player_life);
+                    scene.AddActor("player_life", player_life);
+                    
                     // scene.AddActor("player", player);
                     scene.AddActor("dragon", dragon_water);
                     scene.AddActor("dragon", dragon_earth);
