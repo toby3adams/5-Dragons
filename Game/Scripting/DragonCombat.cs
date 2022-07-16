@@ -149,7 +149,9 @@ namespace Dragons.Game.Scripting{
                         dragon.lava1.SizeTo(2000,100);
                     }
                     
-                    dragon.lava1.Display("Game/Assets/lava.png");
+                    //dragon.lava1.Display("Game/Assets/lava.png");
+                    
+                    dragon.lava1.Display("Game/Assets/lava_ground_cracked_tileset.png");
                     scene.AddActor("dragon_lava", dragon.lava1);
                     dragon.first_placement = false;
                     
@@ -165,7 +167,7 @@ namespace Dragons.Game.Scripting{
                             dragon.lava2.MoveTo(dragon.GetCenterX()-50, dragon.GetCenterY()-(1550/2));
                         }
                         
-                        dragon.lava2.Display("Game/Assets/lava.png");
+                        dragon.lava2.Display("Game/Assets/lava_ground_cracked_tileset.png");
                         scene.AddActor("dragon_lava", dragon.lava2);
                         dragon.first_placement2 = false;
                     }
