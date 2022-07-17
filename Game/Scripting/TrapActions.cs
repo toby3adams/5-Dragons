@@ -54,98 +54,85 @@ namespace Dragons.Game.Scripting
                                 {
                                     if(lava_width < max_dimension)
                                     {
-                                        lava.IncWidth(1);                                    
-                                    }
-                                    if(lava_width < max_dimension)
-                                    {
-                                        lava.IncHeight(1);                                        
-                                    } 
-                                    lava.SizeTo(lava.GetWidth(), lava.GetHeight()); 
+                                        lava.IncWidth(1);  
+                                        lava.IncHeight(1); 
+                                        lava.SizeTo(lava.GetWidth(), lava.GetHeight());                                 
+                                    }                                  
                                 }                             
                                 if(lava_width < max_dimension)
                                 {                                    
                                     lava.DecX(1,1);
-                                }
-                                if(lava_width < max_dimension)
-                                {                                    
                                     lava.DecY(1,1);
-                                }                                        
-                                lava.MoveTo(lava.GetX(), lava.GetY());                                                       
+                                    lava.MoveTo(lava.GetX(), lava.GetY()); 
+                                }
                             }
                             lava_grow_counter = 0;                              
                         }
                     }
                 }   
-                    if(!player.FullyOverlaps(floor))
-                        {
-                            foreach(Trap lava in Lava)
-                            {    
-                                if(lava.GetRoom() == Room_num)
+                if(!player.FullyOverlaps(floor))
+                    {
+                        foreach(Trap lava in Lava)
+                        {    
+                            if(lava.GetRoom() == Room_num)
+                            {
+                                int lava_grow_counter = 60;
+                                lava_grow_counter++;
+                                int initial_dimension = 280;
+                                if(lava_grow_counter > 60)
                                 {
-                                    int lava_grow_counter = 60;
-                                    lava_grow_counter++;
-                                    int initial_dimension = 280;
-                                    if(lava_grow_counter > 60)
-                                    {
-                                        for(int i = 0; i < 2; i++)
-                                        {                                            
-                                            if(lava.GetWidth() > initial_dimension)
-                                            {
-                                                lava.DecWidth(1);                                    
-                                            }
-                                            if(lava.GetWidth() > initial_dimension)
-                                            {
-                                                lava.DecHeight(1);                                        
-                                            } 
-                                            lava.SizeTo(lava.GetWidth(), lava.GetHeight()); 
-                                        }                             
+                                    for(int i = 0; i < 2; i++)
+                                    {                                            
                                         if(lava.GetWidth() > initial_dimension)
-                                        {                                    
-                                            lava.IncX(1,1);
-                                        }
-                                        if(lava.GetWidth() > initial_dimension)
-                                        {                                    
-                                            lava.IncY(1,1);
-                                        }                                        
-                                        lava.MoveTo(lava.GetX(), lava.GetY());                                                       
-                                    }
-                                }                        
-                            }
-                        } 
-                    if(player.FullyOverlaps(floor))
-                    {
-                        int block_shift_interval = 5;
-                        int block_shift_rate = 1;
-                        foreach(Trap trap in wall_traps)
-                        { 
-                            if(trap.GetTrapType() == 3)
-                            {                                   
-                                if(((trap.GetX()==40||trap.GetX()==1040||(trap.GetX()==2040))&&(trap.GetY()!= 4200))){
-                                    trap.IncY(block_shift_interval, block_shift_rate);
-                                    trap.MoveTo(trap.GetX(), trap.GetY());                                   
-                                    } else if(((trap.GetX()!=40)||(trap.GetX()!=1040)||(trap.GetX()!=2040))&&(trap.GetY()==3540)){                                 
-                                        trap.DecX(block_shift_interval, block_shift_rate);
-                                        trap.MoveTo(trap.GetX(), trap.GetY());                                  
-                                    }                        
-                                if(((trap.GetX()==40+960-trap.GetWidth())||(trap.GetX()==1040+960-trap.GetWidth())||(trap.GetX()==2040+960-trap.GetWidth()))&&(trap.GetY()!=3540)){
-                                    trap.DecY(block_shift_interval, block_shift_rate);
-                                    trap.MoveTo(trap.GetX(), trap.GetY());
-                                    
-                                }else if(((trap.GetX()!=(40+960)-(trap.GetWidth()))||(trap.GetX()!=(1040+960-trap.GetWidth()))||(trap.GetX()!=(2040+960-trap.GetWidth())))&&(trap.GetY()==4200)){
-                                    trap.IncX(block_shift_interval, block_shift_rate);
-                                    trap.MoveTo(trap.GetX(), trap.GetY());
+                                        {
+                                            lava.DecWidth(1);  
+                                            lava.DecHeight(1);  
+                                            lava.SizeTo(lava.GetWidth(), lava.GetHeight());                                
+                                        }                                            
+                                    }                             
+                                    if(lava.GetWidth() > initial_dimension)
+                                    {                                    
+                                        lava.IncX(1,1);
+                                        lava.IncY(1,1);
+                                        lava.MoveTo(lava.GetX(), lava.GetY());
+                                    }                                                                                              
                                 }
+                            }                        
+                        }
+                    } 
+                if(player.FullyOverlaps(floor))
+                {
+                    int block_shift_interval = 5;
+                    int block_shift_rate = 1;
+                    foreach(Trap trap in wall_traps)
+                    { 
+                        if(trap.GetTrapType() == 3)
+                        {                                   
+                            if(((trap.GetX()==40||trap.GetX()==1040||(trap.GetX()==2040))&&(trap.GetY()!= 4200))){
+                                trap.IncY(block_shift_interval, block_shift_rate);
+                                trap.MoveTo(trap.GetX(), trap.GetY());                                   
+                                } else if(((trap.GetX()!=40)||(trap.GetX()!=1040)||(trap.GetX()!=2040))&&(trap.GetY()==3540)){                                 
+                                    trap.DecX(block_shift_interval, block_shift_rate);
+                                    trap.MoveTo(trap.GetX(), trap.GetY());                                  
+                                }                        
+                            if(((trap.GetX()==40+960-trap.GetWidth())||(trap.GetX()==1040+960-trap.GetWidth())||(trap.GetX()==2040+960-trap.GetWidth()))&&(trap.GetY()!=3540)){
+                                trap.DecY(block_shift_interval, block_shift_rate);
+                                trap.MoveTo(trap.GetX(), trap.GetY());
+                                
+                            }else if(((trap.GetX()!=(40+960)-(trap.GetWidth()))||(trap.GetX()!=(1040+960-trap.GetWidth()))||(trap.GetX()!=(2040+960-trap.GetWidth())))&&(trap.GetY()==4200)){
+                                trap.IncX(block_shift_interval, block_shift_rate);
+                                trap.MoveTo(trap.GetX(), trap.GetY());
                             }
-                        }                            
-                    }    
-            
-                    foreach (Turret turret in Turrets)
+                        }
+                    }                            
+                }  
+                foreach(Turret turret in Turrets)
+                {
+                    if(turret.GetRoom() == Room_num)                        
                     {
-                        if(turret.GetRoom() == Room_num)                        
-                        {
-                            turret_attack(scene, turret, player);
-                        } 
-                    }
+                        turret_attack(scene, turret, player);
+                    } 
+                }
                 block_trap_shift_counter += 3;
             }      
             if (this.lava_counter > 45)

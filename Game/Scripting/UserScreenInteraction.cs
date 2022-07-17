@@ -23,9 +23,7 @@ namespace Dragons.Game.Scripting
         }
 
         public override void Execute(Scene scene, float deltaTime, IActionCallback callback)
-        {
-                   
-            
+        {                 
                 try
                     {
                         Player player = scene.GetFirstActor<Player>("player");
@@ -37,17 +35,14 @@ namespace Dragons.Game.Scripting
                             button.Display("Game/Assets/easy_out_of_order_button.png");
                             player.Display("Game/Assets/player_blood_splatter.png");
                         }
-
                         // detect if button is pushed.
                         if (_keyboardService.IsKeyPressed(KeyboardKey.Space))
                         {
                             ExitMenu = true;
                             player.Display("Game/Assets/fighter.png");
-                        }
-                       
+                        }                       
                         if(ExitMenu&&Iteration==1)
-                        {
-                            
+                        {                            
                             Actor header = scene.GetFirstActor<Actor>("header");
                             scene.RemoveActor("header", header);
                             Actor stBack = scene.GetFirstActor<Actor>("stback");
@@ -57,8 +52,6 @@ namespace Dragons.Game.Scripting
                             {
                                scene.RemoveActor("button", button); 
                             }  
-
-
 
                             bool AddToList = true; // used to Add generated Point to list in RandomPos class
                             bool DontAddToList = false; // used to indicate that point is NOT to be added to list in RandomPos class
@@ -104,7 +97,7 @@ namespace Dragons.Game.Scripting
                             gray.SizeTo(55,25);
                             
 
-
+                            // TEST CODE
                             // Label status = new Label();
                             // status.Display("x:-, y:-");
                             // status.MoveTo(25, 55);
@@ -115,20 +108,7 @@ namespace Dragons.Game.Scripting
 
                             Label player_life = new Label();
                             player_life.Display("Player Life:-");
-                            player_life.MoveTo(225, 25);
-
-                            
-
-                            
-
-                            
-                            
-                            // Player player = new Player();
-                            // player.SizeTo(50, 50);
-                            // player.MoveTo(1480, 5000); //5250,5250 SpawnLocation
-                            // // player.Tint(Color.Red());
-                            // player.Display("Game/Assets/fighter.png");
-
+                            player_life.MoveTo(225, 25);                         
 
                             RandomPos rdp = new RandomPos();
                             // params: min x value, max x value, min y value, max y value, Add to list for randomization, make number divisible by spec int.
@@ -150,7 +130,6 @@ namespace Dragons.Game.Scripting
                             dragon_water.Tint(Color.Blue());
                             dragon_water.Display("Game/Assets/dragon_2.png");
                             dragon_water.type = "water";
-
                             
                             Dragon dragon_earth = new Dragon(40, 150, 12, 8, 550);
                             Point dragon_earth_pos = rdp.GetPosition(); // retrieves randomized point, randomly placing dragon at one of 4 possible positions
@@ -188,8 +167,6 @@ namespace Dragons.Game.Scripting
                             dragon_shadow.Display("Game/Assets/dragon_2.png");
                             dragon_shadow.type = "shadow";
 
-
-
                             // Traps
                             BuildTraps traps = new BuildTraps();
                             traps.GenTraps();
@@ -206,8 +183,7 @@ namespace Dragons.Game.Scripting
                                 trap.SizeTo(trap.GetWidth(), trap.GetHeight());
                                 trap.MoveTo(trap.GetX(), trap.GetY());
                                 if(TrapType == 1)
-                                {
-                                    
+                                {                                    
                                     trap.Tint(Color.Black());
                                     Pits.Add(trap);
                                     trap.Display("Game/Assets/lava_2.png");
@@ -248,13 +224,7 @@ namespace Dragons.Game.Scripting
                                 turret.Tint(Color.Purple());
                                 ArrowTrap.Add(turret);
                                 scene.AddActor("ArrowTrap", turret);
-                            }
-                                    
-                            
-                            
-
-                            
-
+                            }                                 
                             Wall GetNumberOfWalls = new Wall();
                             List<Wall> WallList = new List<Wall>(); // initializes a list of the walls in the program. 
                             int NumbWall = GetNumberOfWalls.wallNumb;//wall.NumberOfWalls(); need to set this to be related to the amount of wall that their are.
@@ -272,16 +242,7 @@ namespace Dragons.Game.Scripting
                                 // wall.Tint(Color.Gray());
                                 wall.Display("Game/Assets/brick.png");
                                 WallList.Add(wall);
-                            }
-
-
-
-                            
-
-
-
-
-
+                            }                         
                             Floor GetNumberOfTiles = new Floor();
                             List<Floor> TileList = new List<Floor>(); // initializes a list of the walls in the program. 
                             int NumbTiles = GetNumberOfTiles.FloorNumb;//wall.NumberOfWalls(); need to set this to be related to the amount of wall that their are.
@@ -299,11 +260,6 @@ namespace Dragons.Game.Scripting
                                 Tile.Display("Game/Assets/brick_floor.png");
                                 TileList.Add(Tile);
                             }
-
-
-
-
-
                     scene.AddActor("camera", camera);
                     scene.AddActor("instructions", instructions);
                     scene.AddActor("instructions", instructions_2);
@@ -327,24 +283,17 @@ namespace Dragons.Game.Scripting
                     foreach (Actor tile in TileList){   scene.AddActor("floor",tile);   }
                     scene.AddActor("header", header);  
 
-
-
                     MovePlayerAction movePlayerAction = new MovePlayerAction();
                     scene.AddAction(Phase.Update, movePlayerAction);  
                 
-
-
-                    Iteration =2;
-                }                               
-                
+                     Iteration =2;
+                }                              
             }
             catch (Exception exception)
             {
                 callback.OnError("Could not StartGame.", exception);
-            }       
-            
+            }      
         }
-
         public bool ReturnExitMenu()
         {
             return ExitMenu;
