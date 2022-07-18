@@ -2,9 +2,9 @@
 
 Title: 5-Dragons
 
-Description: You are a knight on a mighty crusade: To defeat all dragons. You have uncovered a dongeon with several dragons to destroy. Defeat the lesser dragons to unlock greater power. Survive in this dungeon of death for a chance to strike at the strongest known dragon: The shadow dragon! Good luck knight. You'll need it.
+Description: You are a knight on a mighty crusade: To defeat all dragons. You have uncovered a dungeon with several dragons to destroy. Defeat the lesser dragons to unlock greater power. Survive in this dungeon of death for a chance to strike at the strongest known dragon: The shadow dragon! Good luck knight. You'll need it.
 
-Project Structure: 5-Dragonns (Main folder containinng the game files) 
+Project Structure: 5-Dragons (Main folder containinng the game files) 
   
     --+Game (folder containing the game assets and classes)
        --+Assets (contains images and music for the game)
