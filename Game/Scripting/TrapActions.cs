@@ -135,12 +135,12 @@ namespace Dragons.Game.Scripting
                 }
                 block_trap_shift_counter += 3;
             }      
-            if (this.lava_counter > 45)
+            if (this.lava_counter > 1)
                 {               
                 foreach (Trap lavaBlock in Lava)
                 {                       
                     if (player.Overlaps(lavaBlock)){
-                          player.takes_damage(player.damage);
+                          player.takes_damage(1);
                         }
                     }
                     this.lava_counter=0;
